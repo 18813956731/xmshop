@@ -2,7 +2,7 @@
 	<view>
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
 		<view class="uni-tab-bar">
-			<swiper class="swiper-box" :style="{height:swiperheight+'px'}" :current="tabIndex" @change="tabChange">
+			<swiper class="swiper-box" :current="tabIndex" @change="tabChange">
 				<swiper-item v-for="(items,index) in newslist" :key="index">
 					<scroll-view scroll-y class="list" show-scrollbar="false">
 						<template v-if="items.list.length > 0">
@@ -28,7 +28,6 @@
 		},
 		data() {
 			return {
-				swiperheight: 500,
 				tabIndex: 0,
 				tabBars: [{
 					name: '最新热品',
@@ -166,6 +165,10 @@
 
 <style scoped>
 	.list{
-		height: 500px;
+		height: 1200rpx;
+	}
+	
+	.swiper-box{
+		height: 1200rpx;
 	}
 </style>

@@ -35,16 +35,16 @@
 
 <style scoped>
 	.tab-list {
-		width: 95%;
+		width: 700rpx;
 		border-bottom: 1px solid #555555;
 		margin: auto;
 		border-radius: 15rpx;
 		overflow: hidden;
-		margin-bottom: 100rpx;
+		margin-top: 100rpx;
 	}
 
 	image {
-		width: 100%;
+		width: 700rpx;
 		height: 300rpx;
 	}
 
@@ -58,7 +58,7 @@
 	}
 
 	.goumai {
-		padding: 10upx 40upx;
+		padding: 10rpx 40rpx;
 		border-radius: 50px;
 		background: #FD7112;
 		color: #FFFFFF;
