@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-index">
+	<view id="mine-index">
 		<!-- 头部 -->
 		<view class="hreder">
 			<img class="image" src="/static/images/bg.jpg" mode="widthFix" />
@@ -25,7 +25,7 @@
 			</view>
 		</view>
 		<image class="imgae" src="/static/images/demo/demo4.jpg"></image>
-		<view class="btn" v-for="(iter,index) in datae">
+		<view class="btn" v-for="(iter,index) in datae" @click="fun" :id="index" :data-name="iter.name">
 			<span class="iconfont ico" :class="iter.iconi"></span>
 			<text>{{iter.name}}</text>
 			<span class="iconfont icon-you" :class="iter.iconj"></span>
@@ -93,21 +93,67 @@
 
 		},
 		methods: {
+			//设置
 			set: function() {
 				uni.navigateTo({
-					url:"../setup/setup?id=1"
+					url: "/pages/mine/setup/setup?id=1"
 				})
 			},
+			//通知
 			notice() {
-				console.log("顶部导航")
+				uni.showToast({
+					title: '跳转通知',
+					icon: 'none'
+				})
+
 			},
-			requer(){
+			fun(e) {
+				let index = parseInt(e.currentTarget.id) ||parseInt(e.target.id)
+				let name = e.currentTarget.dataset.name || e.currentTarget.target.name
+				switch (index) {
+					case 0:
+						uni.showToast({
+							title: '跳转' + name,
+							icon: 'none'
+						})
+						break;
+					case 1:
+						uni.showToast({
+							title: '跳转' + name,
+							icon: 'none'
+						})
+						break;
+					case 2:
+						uni.showToast({
+							title: '跳转' + name,
+							icon: 'none'
+						})
+						break;
+					case 3:
+						uni.showToast({
+							title: '跳转' + name,
+							icon: 'none'
+						})
+						break;
+					case 4:
+						uni.showToast({
+							title: '跳转' + name,
+							icon: 'none'
+						})
+						break;
+					default:
+						break;
+				}
+
+			},
+			//跳转我的订单
+			requer() {
 				uni.navigateTo({
-					url:"../myorder/myorder?id=1"
+					url: "/pages/mine/myorder/myorder"
 				})
 			}
 		},
-		
+
 	}
 </script>
 

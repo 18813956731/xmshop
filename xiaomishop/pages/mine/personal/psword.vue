@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-psword">
+	<view id="mine-psword">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">修改密码</view>
