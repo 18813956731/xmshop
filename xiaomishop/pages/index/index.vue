@@ -29,14 +29,14 @@
 							<view>
 								<image src="../../static/images/demo/demo4.jpg" style="width: 750upx;height: 350upx;"></image>
 							</view>
-							<view class="product-list">
-								<view v-for="(item,index) in selected" class="image-view" @tap="navigateTo">
+							<view class="productlist">
+								<view v-for="(item,index) in selected" class="imageview" @tap="navigateTo">
 									<view>
 										<image :src="item.imgge"></image>
 									</view>
-									<view>{{item.name}}</view>
-									<view class="selected-font">{{item.name1}}</view>
-									<view><text class="text-one">¥{{item.favourPrice}}</text><text class="text-tow">¥{{item.originalPrice}}</text></view>
+									<view class="selected">{{item.name}}</view>
+									<view class="selected-font selected">{{item.name1}}</view>
+									<view><text class="text-one selected">¥{{item.favourPrice}}</text><text class="text-tow">¥{{item.originalPrice}}</text></view>
 								</view>
 							</view>
 						</view>
@@ -403,6 +403,8 @@
 	.active-one {
 		width: 49%;
 		float: left;
+		height: 558rpx;
+		overflow: hidden;
 	}
 
 	.active-tow {
@@ -419,13 +421,21 @@
 		padding: 10px 10px;
 	}
 
-	.image-view {
-		width: 50%;
-		height: 220px;
-		float: left;
+	.productlist {
+		display: flex;
+		justify-content: space-between;
+		overflow: hidden;
+		flex-wrap: wrap;
 	}
 
-	.image-view image {
+	.imageview {
+		width: 48%;
+		margin-left: 9rpx;
+		margin-right: 9rpx;
+		margin-top: 40rpx;
+	}
+
+	.imageview image {
 		width: 100%;
 		height: 300upx;
 	}
@@ -433,6 +443,10 @@
 	.selected-font {
 		font-size: 20upx;
 		color: #8F8F94;
+	}
+
+	.selected {
+		padding: 10rpx;
 	}
 
 	/* 价格 */
@@ -459,7 +473,7 @@
 	}
 
 	.list {
-		height: 450px;
+		height:1100rpx;
 	}
 
 	/* tab切换高度 */

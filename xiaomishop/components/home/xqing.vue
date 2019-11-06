@@ -206,7 +206,7 @@
 
 	.shop-p {
 		height: 100rpx;
-		border-bottom: 1px solid #8F8F94;
+		border-bottom: 0.5rpx solid #BBBBBB;
 		line-height: 100rpx;
 	}
 
@@ -216,10 +216,11 @@
 		background: #F5F5F3;
 		font-size: 20rpx;
 		margin: auto;
-		border-radius: 15px;
+		border-radius: 20rpx;
 		color: #999999;
-		border: 1px solid #8F8F94;
+		border: 0.5rpx solid #BBBBBB;
 		margin-top: 10px;
+		text-indent: 1em;
 	}
 
 	.calse {
