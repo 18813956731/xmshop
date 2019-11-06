@@ -152,6 +152,7 @@ export default {
 	overflow: hidden;
 	line-height: 40rpx;
 	text-align: center;
+	border: 1px solid;
 }
 .icon-paixu-shengxu {
 	color: #fd964f;
