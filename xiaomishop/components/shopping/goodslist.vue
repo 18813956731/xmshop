@@ -6,9 +6,10 @@
 							<!--列表项-->
 							<view class='car-prod' v-for="(item,index) in 6" :key='index'>
 								<!-- 商品信息-->
-								<view class='goods-info'>
+								<view class='goods-info'  @click="xz(index)" :class="{active:index==xzindex}">
 									<view class='goods-info-inner'>
-										<view class='checkbox'></view>
+										<view class='checkbox'>
+										</view>
 										<view class='goods-image'>
 											<image src="../../static/images/demo/list/1.jpg"></image>
 										</view>
@@ -52,7 +53,8 @@
 				phoneHeight:0,
 				show: false,
 				type: '',
-				content: '顶部弹 popup'
+				content: '顶部弹 popup',
+				xzindex:0
 			}
 		},
 		props:['djbj'],
@@ -68,6 +70,7 @@
 			change(e) {
 				console.log(e.show)
 			},
+			//编辑弹出框
 			togglePopup(type, open) {
 				switch (type) {
 					case 'bottom':
@@ -80,6 +83,11 @@
 				} else {
 					this.$refs[open].open()
 				}
+			},
+			// 点击选中
+			xz(index){
+				console.log(index)
+				this.xzindex=index
 			}
 		},
 		created(){
@@ -205,6 +213,6 @@
 		}
 		.bjbox{
 			position: fixed;
-			bottom: 113rpx;
+			bottom: 49px;
 		}
 </style>

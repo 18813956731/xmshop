@@ -4,12 +4,22 @@
 		<view class="footer">
 			<view class="icon">
 			</view>
-			<view class="total">
-				<text>合计:</text>
-				<text class="yen">￥3232</text>
+			<view class="ftsc" v-show="!djbj">
+				<view class="total">
+					<text>合计:</text>
+					<text class="yen">￥3232</text>
+				</view>
+				<view class="close">
+					<text>结算</text>
+				</view>
 			</view>
-			<view class="close">
-				<text>结算</text>
+			<view class="ftsc" v-show="djbj">
+				<view class="collect">
+					<text>移入收藏</text>
+				</view>
+				<view class="del">
+					<text>删除</text>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -20,6 +30,7 @@
 		data(){
 		return {}
 		},
+		props:['djbj'],
 		methods: {
 			
 		}
@@ -33,7 +44,6 @@
 		display: flex;
 		justify-content: space-between;
 		background-color: #FFF;
-		z-index: 88;
 	}
 	.footer text{
 		font-size: 35rpx;
@@ -52,17 +62,38 @@
 	} 
 	.total{
 		line-height: 100rpx;
+		text-align: center;
+		width: 50%;
 	}
 	.yen{
 		color: #FD6801;
-		margin-left: 30rpx;
+		margin-left: 20rpx;
 	}
 	.close{
 		line-height: 100rpx;
-		width: 300rpx;
+		width: 50%;
 		color: white;
 		height: 100rpx;
 		background-color:#FD6801;
 		text-align: center;
+	}
+	.ftsc{
+		width: 80%;
+		display: flex;
+		justify-content: space-between;
+	}
+	.collect{
+		width: 50%;
+		background-color: #FD6801;
+		text-align: center;
+		line-height: 100rpx;
+		color: white;
+	}
+	.del{
+		width:50%;
+		background-color: #DC3546;
+		text-align: center;
+		line-height: 100rpx;
+		color: white;
 	}
 </style>

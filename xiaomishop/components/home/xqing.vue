@@ -19,12 +19,12 @@
 		</view>
 		<!-- 商品规格 -->
 		<view class="huohon">
-			<view class="shop-p">已选 火焰红 64GB 标配<text class="iconfont icon-you icorr"></text>
+			<view class="shop-p" @click="togglePopup('bottom', 'popup')">已选 火焰红 64GB 标配<text  class="iconfont icon-you icorr" ></text>
 			</view>
-			<view class="shop-p">配送 北京 东城区 <text class="calse"> 有现货</text>
-				<text class="iconfont icon-you icorr"></text>
+			<view class="shop-p" @click="togglePopup('bottom', 'popup')">配送 北京 东城区 <text class="calse"> 有现货</text>
+				<text class="iconfont icon-you icorr" ></text>
 			</view>
-			<view class="shop-p" style="border-bottom: none;">
+			<view class="shop-p" style="border-bottom: none;" @click="togglePopup('bottom', 'popup')">
 				<text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米自营</text><text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米发货</text><text><text
 					 class="iconfont icon-iconfontxuanzhong4 calse"></text>七天无理由退货</text><text class="iconfont icon-you icorr"></text>
 			</view>
@@ -63,19 +63,23 @@
 		<view class="goumai">
 			<goumai></goumai>
 		</view>
+		<uni-popup class="bjbox"  ref="popup" :type="type" @change="change"></uni-popup>
 	</view>
 </template>
 
 <script>
 	import tuijian from '@/components/home/tuijian.vue'
 	import goumai from '@/components/home/goumai.vue'
+	import uniPopup from "@/components/shopping/uni-popup.vue"
 	export default {
 		components: {
 			tuijian,
-			goumai
+			goumai,
+			uniPopup
 		},
 		data() {
 			return {
+				type:'',
 				newtext: [{
 					img: '/static/images/demo/list/4.jpg',
 					name: '米家空调',
@@ -168,11 +172,28 @@
 				}]
 			}
 		},
-		methods: {}
+		methods: {
+			change(e) {
+				console.log(e.show)
+			},
+			//编辑弹出框
+			togglePopup(type, open) {
+				this.type = type
+				if (open === 'tip') {
+					this.show = true
+				} else {
+					this.$refs[open].open()
+				}
+			},
+		}
 	}
 </script>
 
 <style scoped>
+	.bjbox{
+		position: fixed;
+		bottom: 0;
+	}
 	/* 商品价格 */
 	.textr {
 		font-size: 25upx;

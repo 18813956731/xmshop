@@ -9,9 +9,7 @@
 		<!-- 购物车商品 -->
 		<goodslist :djbj="djbj"></goodslist>
 		<!-- 底部合计、结算 -->
-		<view class="goods-carts">
-			<goodsnav/>
-		</view>
+			<goodsnav class="goods-carts" :djbj="djbj"/>
 		<!-- 推荐 -->
 		<view class="recommend">
 			<view class="rendmain">
@@ -153,7 +151,7 @@
 .goods-carts{
 	position: fixed;
 	width: 100%;
-	bottom:113rpx;
+	bottom:49px;
 	background-color:#FFFFFF ;
 	z-index: 111;
 }

@@ -5,7 +5,8 @@
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
 				<!-- <slot /> -->
 				<!-- 商品编辑 -->
-				<view>
+				
+				<view v-show="true">
 					<view class="editor">
 						<view class="tltmg">
 							<view class="edimg"><image src="../../static/images/demo/list/1.jpg"></image></view>
@@ -44,7 +45,13 @@
 					</view>
 					<view class="grgwc">加入购物车</view>
 				</view>
+				<!-- <view  v-show="">
+					
+				</view>
 				
+				<view  v-show="">
+					
+				</view> -->
 			</view>
 		</view>
 	</view>
