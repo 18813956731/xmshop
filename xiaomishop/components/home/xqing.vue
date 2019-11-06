@@ -324,6 +324,7 @@
 
 	.tuijian {
 		width: 49%;
+		padding: 10rpx 0rpx;
 	}
 
 	/* 购买 */
