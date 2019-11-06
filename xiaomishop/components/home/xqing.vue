@@ -30,8 +30,8 @@
 			</view>
 		</view>
 		<!-- 商品评论 -->
-		<view class="uni-tab-bar">
-			<scroll-view class="uni-swiper-tab" scroll-x="true" :show-scrollbar="false">
+		<view class="unitab-bar">
+			<scroll-view class="uniswiper-tab" scroll-x="true" :show-scrollbar="false">
 				<view class="swiper-tab" v-for="(item,index) in tabBars">
 					<view class="swiper-tab-list">
 						<view class="imgr">
@@ -227,12 +227,12 @@
 	}
 
 	/* 商品评论 */
-	.uni-tab-bar {
+	.unitab-bar {
 		width: 100%;
 		margin-top: 20px;
 	}
 
-	.uni-swiper-tab {
+	.uniswiper-tab {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
