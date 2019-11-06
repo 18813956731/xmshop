@@ -27,7 +27,7 @@
 						<view>
 							<text class="choice">每日精选</text>
 							<view>
-								<image src="../../static/images/demo/demo4.jpg" style="width: 750upx;height: 350upx;"></image>
+								<image src="../../static/images/demo/demo4.jpg" style="width: 750rpx;height: 350rpx;"></image>
 							</view>
 							<view class="productlist">
 								<view v-for="(item,index) in selected" class="imageview" @tap="navigateTo">
@@ -429,9 +429,9 @@
 	}
 
 	.imageview {
-		width: 45%;
-		margin-left: 15rpx;
-		margin-right: 15rpx;
+		width: 46%;
+		margin-left: 14rpx;
+		margin-right: 14rpx;
 		margin-top: 40rpx;
 	}
 
@@ -473,7 +473,7 @@
 	}
 
 	.list {
-		height:1100rpx;
+		height: 1100rpx;
 	}
 
 	/* tab切换高度 */
