@@ -429,9 +429,9 @@
 	}
 
 	.imageview {
-		width: 48%;
-		margin-left: 9rpx;
-		margin-right: 9rpx;
+		width: 45%;
+		margin-left: 15rpx;
+		margin-right: 15rpx;
 		margin-top: 40rpx;
 	}
 
