@@ -119,7 +119,8 @@ export default {
 <style scoped>
 .head {
 	height: 100rpx;
-	border: #999999 1px solid;
+	border-top: #999999 1px solid;
+	border-bottom: #999999 1px solid;
 	overflow: hidden;
 	line-height: 100rpx;
 }
@@ -152,7 +153,6 @@ export default {
 	overflow: hidden;
 	line-height: 40rpx;
 	text-align: center;
-	border: 1px solid;
 }
 .icon-paixu-shengxu {
 	color: #fd964f;
