@@ -1,9 +1,11 @@
 <template>
 	<view>
 		<!-- 顶导航tab切换  -->
-		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
+		<view class="position">
+			<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
+		</view>
 
-		<view>
+		<view style="margin-top: 25px;">
 			<swiper :current="tabIndex" @change="tabChange" class="swiper-item">
 				<swiper-item v-for="(items,index) in newslist" :key="index">
 					<scroll-view scroll-y show-scrollbar="false" class="list">
@@ -298,7 +300,7 @@
 					'/static/images/demo/demo3.jpg'
 				],
 				//每日精选
-				selected:[{
+				selected: [{
 					imgge: '/static/images/demo/list/1.jpg',
 					name: '米家空调',
 					name1: '1.5匹支流变频',
@@ -356,10 +358,9 @@
 			}
 		},
 		onLoad() {
-		
+
 		},
-		mounted() {
-		},
+		mounted() {},
 		methods: {
 			tabChange(e) {
 				this.tabIndex = e.detail.current;
@@ -386,7 +387,15 @@
 		margin: 0;
 		padding: 0;
 	}
-/* 广告 */
+
+	.position {
+		position: fixed;
+		top: 100rpx;
+		z-index: 2000;
+		background-color: #FFFFFF;
+	}
+
+	/* 广告 */
 	.active {
 		overflow: hidden;
 	}
@@ -402,7 +411,8 @@
 		float: right;
 		padding-bottom: 6px;
 	}
-/* 商品列表 */
+
+	/* 商品列表 */
 	.choice {
 		display: inline-block;
 		font-weight: bold;
@@ -434,7 +444,8 @@
 		font-size: 20upx;
 		color: #8F8F94;
 	}
-/* 类别 */
+
+	/* 类别 */
 	.list-tow {
 		width: 100%;
 		display: flex;
@@ -450,7 +461,8 @@
 	.list {
 		height: 450px;
 	}
-/* tab切换高度 */
+
+	/* tab切换高度 */
 	.swiper-item {
 		height: 1100rpx;
 	}

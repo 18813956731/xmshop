@@ -1,8 +1,8 @@
 <template>
 	<!-- tab导航组件 -->
-	<view class="uni-tab-bar">
-		<scroll-view class="uni-swiper-tab" :scroll-x="true" show-scrollbar="false">
-			<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :style="scrollStyle">
+	<view class="one">
+		<scroll-view class="tow" :scroll-x="true" show-scrollbar="false">
+			<view v-for="(tab,index) in tabBars" :key="tab.id" class="trr" :style="scrollStyle">
 				<view class="swiper-tab-list" :class="{'active' : tabIndex==index}" @tap="tabtap(index)" :style="scrollItemStyle">
 					{{tab.name}} {{tab.num?tab.num:""}}
 					<view class="swiper-tab-line"></view>
@@ -37,16 +37,14 @@
 </script>
 
 <style scoped>
-	.uni-swiper-tab {
-		width: 750upx;
-		height: 80upx;
+	 .tow {
+		width: 750rpx;
 		display: flex;
 		justify-content: space-between;
 		flex-direction: row;
 		white-space: nowrap;
-	}
-
-	.uni-tab-item {
+	} 
+	.trr {
 		height: 100%;
 		display: inline-block;
 		flex-wrap: nowrap;
@@ -58,7 +56,7 @@
 		font-size: 30rpx;
 	}
 
-	.uni-tab-bar .active {
+	.one .active {
 		color: #F0AD4E;
 	}
 
