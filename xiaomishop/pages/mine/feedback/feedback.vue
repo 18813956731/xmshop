@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-feedback">
+	<view id="mine-feedback">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="txt">意见反馈</view>
@@ -50,7 +50,7 @@
 			//跳转我的反馈
 			mine(){
 			uni.navigateTo({
-				url:"../feedback/myfeedback?id=1"
+				url:"/pages/mine/feedback/myfeedback?id=1"
 			})
 			}
 		}

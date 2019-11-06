@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-article">
+	<view id="mine-article">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">小米商城</view>

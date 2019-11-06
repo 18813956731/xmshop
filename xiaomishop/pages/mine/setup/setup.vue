@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-setup">
+	<view id="mine-setup">
 		<view class="hreder-i">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">设置</view>
@@ -50,38 +50,45 @@
 				})
 			},
 			sign(){
-			
+			uni.showToast({
+				title: '点击协',
+				icon: 'none'
+			})
 			},
 			navTop(index) {
 				switch (index) {
 					case 0: //关于商城
 						uni.navigateTo({
-							url: "../article/article?id=1"
+							url: "/pages/mine/article/article?id=1"
 						})
 						break;
 					case 1: //意见反馈
 						uni.navigateTo({
-							url: "../feedback/feedback?id=1"
+							url: "/pages/mine/feedback/feedback?id=1"
 						})
 						break;
 					case 2: //协议规则
-						uni.navigateTo({
-							url: "personal"
+						uni.showToast({
+							title: '点击协议规则',
+							icon: 'none'
 						})
 						break;
 					case 3: //资质证件
-						uni.navigateTo({
-							url: "personal"
+						uni.showToast({
+							title: '点击资质证件',
+							icon: 'none'
 						})
 						break;
 					case 4: //用户协议
-						uni.navigateTo({
-							url: "personal"
+						uni.showToast({
+							title: '点击用户协议',
+							icon: 'none'
 						})
 						break;
 					case 5: //隐私政策
-						uni.navigateTo({
-							url: "personal"
+						uni.showToast({
+							title: '点击隐私政策',
+							icon: 'none'
 						})
 						break;
 					default:

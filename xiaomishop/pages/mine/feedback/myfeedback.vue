@@ -1,5 +1,5 @@
 <template>
-	<view class="mina-myfeedback">
+	<view id="mina-myfeedback">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">我的反馈</view>

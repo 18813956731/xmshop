@@ -1,5 +1,5 @@
 <template>
-	<view class="mina-edit">
+	<view id="mina-edit">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">编辑收货地址</view>

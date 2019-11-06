@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-address">
+	<view id="mine-address">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">地址列表</view>
@@ -25,7 +25,7 @@
 			//跳转编辑地址页面
 			jiao(){
 				uni.navigateTo({
-					url:"../address/edit?id=1"
+					url:"/pages/mine/address/edit?id=1"
 				})
 			}
 		}

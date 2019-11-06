@@ -1,5 +1,5 @@
 <template>
-	<view class="mine-personal">
+	<view id="mine-personal">
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">修改资料</view>
@@ -53,7 +53,7 @@
 			},
 			psod(){
 				uni.navigateTo({
-					url:"../personal/psword?id=1"
+					url:"/pages/mine/personal/psword?id=1"
 				})
 			}
 		}
