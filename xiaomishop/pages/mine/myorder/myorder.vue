@@ -19,20 +19,32 @@
 						</view>
 						<view class="text">{{tab.name}}</view>
 					</view>
+
 					<!-- <view class="loading-more" v-if="tab.isLoading || tab.data.length > 4">
 						<text class="loading-more-text">{{tab.loadingText}}</text>
 					</view> -->
 				</scroll-view>
 			</swiper-item>
 		</swiper>
-
+		
+		<view class="footer">
+			<view class="tooer-hreder">
+				<view class="text">猜你喜欢</view>
+				<view class="text-flex">实时推荐你的爱</view>
+			</view>
+			<view class="footer-mian">
+				<view class="footer-box" v-for="(item,index) in newtext">
+					<tuijian :item="item" :index="index"></tuijian>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
 	import tuijian from "@/components/home/tuijian.vue"
 	export default {
-		components:{
+		components: {
 			tuijian
 		},
 		data() {
@@ -55,6 +67,43 @@
 						name: "您还没有待评价订单"
 					}
 				],
+				newtext: [{
+					img: '/static/images/demo/list/1.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}, {
+					img: '/static/images/demo/list/4.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}, {
+					img: '/static/images/demo/list/3.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}, {
+					img: '/static/images/demo/list/2.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}, {
+					img: '/static/images/demo/list/5.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}, {
+					img: '/static/images/demo/list/6.jpg',
+					name: '米家空调',
+					nameone: '1.5匹支流变频',
+					pic: '2199',
+					price: '2699'
+				}],
 				tabIndex: 0
 			}
 		},
@@ -152,5 +201,39 @@
 			}
 		}
 
+	}
+	.footer{
+		.tooer-hreder{
+			height: 135rpx;
+			position: relative;
+			background-color: #f5f5f5;
+			.text{
+				width: 100%;
+				text-align: center;
+				color: #FD6801;
+				font-weight: bold;
+				border-bottom: 4rpx solid #D8D8D8;
+				height: 80rpx;
+			}
+			.text-flex{
+				font-size: 32rpx;
+				width: 280rpx;
+				text-align: center;
+				color: #C0C0C0;
+				background-color:#f5f5f5;
+				position: absolute;
+				bottom: 35rpx;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+		.footer-mian{
+			display: flex;
+			flex-wrap: wrap;
+			.footer-box{
+					 width: 48%;
+			    margin: 0rpx 8rpx 8rpx 8rpx;
+			}
+		}
 	}
 </style>

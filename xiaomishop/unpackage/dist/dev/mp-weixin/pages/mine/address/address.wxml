@@ -1,0 +1,1 @@
+<view id="mine-address"><view class="hreder"><label data-event-opts="{{[['tap',[['returni',['$event']]]]]}}" class="iconfont icon-2fanhui _span" bindtap="__e"></label><view class="text">地址列表</view><label data-event-opts="{{[['tap',[['jiao',['$event']]]]]}}" class="iconfont icon-jia _span" bindtap="__e"></label></view></view>

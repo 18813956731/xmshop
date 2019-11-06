@@ -25,38 +25,63 @@
 /* 透明度 */
 /* 文章场景相关 */
 .hreder {
-  font-size: 34rpx;
-  text-indent: 25rpx;
-  color: #555555;
   height: 100rpx;
   line-height: 100rpx;
-  background-color: #F1F1F1;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
-.btn {
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 36rpx;
-  text-indent: 30rpx;
-  border-bottom: solid 2rpx #F1F1F1;
+.hreder .icon-2fanhui {
+    font-size: 40rpx;
+    text-indent: 25rpx;
+    margin-right: 250rpx;
 }
-.btn .icon-you {
-    float: right;
-    margin-right: 40rpx;
-    font-size: 16rpx;
-    color: #C0C0C0;
-}
-.footer {
-  background-color: #F1F1F1;
-  height: 200rpx;
-  padding-top: 25rpx;
-}
-.footer .text {
-    font-size: 37rpx;
-    width: 88%;
+.hreder .text {
     margin: auto;
-    height: 100rpx;
-    line-height: 100rpx;
-    background-color: white;
     text-align: center;
+}
+.hr {
+  border: 10rpx solid #F1F1F1;
+  background-color: #F1F1F1;
+}
+.fexi {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20rpx 30rpx 20rpx 30rpx;
+  border-bottom: 1rpx solid #F1F1F1;
+}
+.headportrait {
+  height: 140rpx;
+  line-height: 140rpx;
+}
+.headportrait .img {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+}
+.headportrait .img ._img {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+}
+.icon-you {
+  font-size: 37rpx;
+  color: #8F8F94;
+  margin-left: 15rpx;
+}
+.naxili {
+  line-height: 100rpx;
+  height: 100rpx;
+}
+.naxil {
+  height: 80rpx;
+  line-height: 80rpx;
 }
 

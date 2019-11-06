@@ -83,7 +83,7 @@
 					"titleNView": {
 						"searchInput": {
 							"align": "left",
-							// "disabled": "false",
+							"disabled": "false",
 							"backgroundColor": "#fff",
 							"placeholder": "智能积木 越野四驱车"
 						},

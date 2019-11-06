@@ -1,9 +1,9 @@
 {
   "navigationBarTitleText": "购物车",
   "navigationBarBackgroundColor": "#FFF",
+  "navigationStyle": "custom",
   "usingComponents": {
     "goodslist": "/components/shopping/goodslist",
-    "goodsnav": "/components/shopping/goodsnav",
-    "amount": "/components/shopping/amount"
+    "goodsnav": "/components/shopping/goodsnav"
   }
 }

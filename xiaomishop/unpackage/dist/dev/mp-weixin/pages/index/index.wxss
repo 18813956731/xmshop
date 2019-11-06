@@ -1,43 +1,100 @@
 
-.content {
+.position.data-v-d32a2d9c {
+	position: fixed;
+	top: 100rpx;
+	z-index: 2000;
+	background-color: #FFFFFF;
+}
+
+/* 广告 */
+.active.data-v-d32a2d9c {
+	overflow: hidden;
+}
+.active-one.data-v-d32a2d9c {
+	width: 49%;
+	float: left;
+	height: 558rpx;
+	overflow: hidden;
+}
+.active-tow.data-v-d32a2d9c {
+	width: 50%;
+	height: 275rpx;
+	float: right;
+	padding-bottom: 6px;
+}
+
+/* 商品列表 */
+.choice.data-v-d32a2d9c {
+	display: inline-block;
+	font-weight: bold;
+	padding: 10px 10px;
+}
+.productlist.data-v-d32a2d9c {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: center;
-	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	overflow: hidden;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
 }
-.logo {
-	height: 200rpx;
-	width: 200rpx;
-	margin-top: 200rpx;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 50rpx;
+.imageview.data-v-d32a2d9c {
+	width: 46%;
+	margin-left: 14rpx;
+	margin-right: 14rpx;
+	margin-top: 40rpx;
 }
-.text-area {
+.imageview image.data-v-d32a2d9c {
+	width: 100%;
+	height: 300rpx;
+}
+.selected-font.data-v-d32a2d9c {
+	font-size: 20rpx;
+	color: #8F8F94;
+}
+.selected.data-v-d32a2d9c {
+	padding: 10rpx;
+}
+
+/* 价格 */
+.text-one.data-v-d32a2d9c {
+	color: red;
+}
+.text-tow.data-v-d32a2d9c {
+	font-size: 20rpx;
+	color: #8F8F94;
+}
+
+/* 类别 */
+.list-tow.data-v-d32a2d9c {
+	width: 100%;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: center;
-	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
 }
-.title {
-	font-size: 36rpx;
-	color: #8f8f94;
+.list-noe.data-v-d32a2d9c {
+	width: 20%;
+	margin-top: 3px;
+}
+.list.data-v-d32a2d9c {
+	height: 1100rpx;
+}
+
+/* tab切换高度 */
+.swiper-item.data-v-d32a2d9c {
+	height: 1100rpx;
 }
 

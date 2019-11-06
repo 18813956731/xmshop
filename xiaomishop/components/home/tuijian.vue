@@ -7,7 +7,10 @@
 				</view>
 				<view class="text">{{item.name}}</view>
 				<view class="text-tow text">{{item.nameone}}</view>
-				<view class="text"><text class="text-Four">￥{{item.pic}}</text><text class="text-three">￥{{item.price}}</text></view>
+				<view class="text">
+					<text class="text-Four">￥{{item.pic}}</text>
+					<text class="text-three">￥{{item.price}}</text>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -41,9 +44,14 @@
 		width: 100%;
 		height: 300rpx;
 	}
-
+     .text{
+		 font-size: 37rpx;
+		 color: #555555;
+		 text-indent: 25rpx;
+		 line-height: 60rpx;
+	 }
 	.text-tow {
-		font-size: 35rpx;
+		font-size: 30rpx;
 		color: #999999;
 	}
 

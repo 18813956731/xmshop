@@ -110,40 +110,12 @@
 			fun(e) {
 				let index = parseInt(e.currentTarget.id) ||parseInt(e.target.id)
 				let name = e.currentTarget.dataset.name || e.currentTarget.target.name
-				switch (index) {
-					case 0:
-						uni.showToast({
-							title: '跳转' + name,
-							icon: 'none'
-						})
-						break;
-					case 1:
-						uni.showToast({
-							title: '跳转' + name,
-							icon: 'none'
-						})
-						break;
-					case 2:
-						uni.showToast({
-							title: '跳转' + name,
-							icon: 'none'
-						})
-						break;
-					case 3:
-						uni.showToast({
-							title: '跳转' + name,
-							icon: 'none'
-						})
-						break;
-					case 4:
-						uni.showToast({
-							title: '跳转' + name,
-							icon: 'none'
-						})
-						break;
-					default:
-						break;
-				}
+				  for (let i=0;i<this.datae.length;i++) {
+				  	    uni.showToast({
+				  	    	title: '跳转'+name,
+				  	    	icon: 'none'
+				  	    })
+				  }
 
 			},
 			//跳转我的订单

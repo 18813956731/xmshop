@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "amount": "/components/shopping/amount"
+    "amount": "/components/shopping/amount",
+    "uni-popup": "/components/shopping/uni-popup"
   },
   "component": true
 }

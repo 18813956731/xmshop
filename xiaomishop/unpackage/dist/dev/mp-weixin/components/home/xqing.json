@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "详情页",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "tuijian": "/components/home/tuijian",
+    "goumai": "/components/home/goumai",
+    "uni-popup": "/components/shopping/uni-popup"
+  }
+}

@@ -1,0 +1,27 @@
+
+.tuijian.data-v-b12b65f6 {
+		width: 100%;
+}
+.tuijian image.data-v-b12b65f6 {
+		width: 100%;
+		height: 300rpx;
+}
+.text.data-v-b12b65f6{
+		 font-size: 37rpx;
+		 color: #555555;
+		 text-indent: 25rpx;
+		 line-height: 60rpx;
+}
+.text-tow.data-v-b12b65f6 {
+		font-size: 30rpx;
+		color: #999999;
+}
+.text-Four.data-v-b12b65f6 {
+		color: #FF0000;
+}
+.text-three.data-v-b12b65f6 {
+		font-size: 25rpx;
+		color: #8F8F94;
+		text-decoration: line-through;
+}
+
