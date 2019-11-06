@@ -1,9 +1,9 @@
 <template>
-	<view>
+	<view style="height: 100%;">
 		<!-- 顶导航tab切换  -->
-		<view class="position">
+		<!-- <view class="position"> -->
 			<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
-		</view>
+		<!-- </view> -->
 
 		<view style="margin-top: 25px;">
 			<swiper :current="tabIndex" @change="tabChange" class="swiper-item">
@@ -473,11 +473,11 @@
 	}
 
 	.list {
-		height: 1100rpx;
+		height: 1000rpx;
 	}
 
 	/* tab切换高度 */
 	.swiper-item {
-		height: 1100rpx;
+		height: 1000rpx;
 	}
 </style>
