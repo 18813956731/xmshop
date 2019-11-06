@@ -13,11 +13,14 @@
 				<text>会员积分1.99</text>
 			</view>
 		</view>
+		
 		<view class="order" @click="requer">
 			我的订单
 			<span class="rigth">全部订单<span class="iconfont icon-you"></span></span>
 		</view>
+		<!-- 分割线 -->
 		<view class="hr"></view>
+		<!-- 订单付款 -->
 		<view class="logo">
 			<view v-for="(item,index) in datas">
 				<span class="iconfont" :class="item.icon"></span>
@@ -30,7 +33,9 @@
 			<text>{{iter.name}}</text>
 			<span class="iconfont icon-you" :class="iter.iconj"></span>
 		</view>
+		<!-- 分割线 -->
 		<view class="hr"></view>
+		<!-- 设置中心 -->
 		<view class="btn bt" @click="set">
 			<span class="iconfont icon-icon_set_up ico"></span>
 			<text>更多设置</text>
