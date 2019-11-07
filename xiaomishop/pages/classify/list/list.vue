@@ -2,12 +2,13 @@
 	<view id="content">
 		<view class="head">
 			<!-- 头部导航 -->
-			<view class="itemst" v-for="item in head">
-				<view class="items-icon">{{ item }}</view>
+			<view class="itemst" v-for="(item,index) in head" :key="index" @click="sort(index)">
+				<view class="items-icon" :class="sortIndex==index?'headerTxt':''">{{ item }}</view>
 				<view class="icon">
 					<view class="icotop">
-						<icon type="black" class="iconfont icon-paixu-shengxu"></icon>
-						<icon type="black" class="iconfont icon-paixu-jiangxu"></icon>
+						<!-- 字体图标 -->
+						<icon type="black" class="iconfont icon-paixu-shengxu" :class="sortT==true&&sortIndex==index?'headerTxt':''"></icon>
+						<icon type="black" class="iconfont icon-paixu-jiangxu" :class="sortT==false&&sortIndex==index?'headerTxt':''"></icon>
 					</view>
 				</view>
 			</view>
@@ -20,20 +21,17 @@
 				<view class="service">
 					<view>服务</view>
 					<view class="service-text">
-						<span>促销</span>
-						<span>分期</span>
-						<span>仅看有货</span>
+						<span :class="serviceB==index?'active':''" v-for="(item,index) in service" :key="index" @click="serviceD(index)">{{item}}</span>
 					</view>
 				</view>
 				<!-- 分类 -->
 				<view class="service">
 					<view>分类</view>
 					<view class="service-text">
-						<span>耳机</span>
-						<span>户外</span>
-						<span>配件</span>
+						<span :class="classB==index?'active':''"  v-for="(item,index) in classT" :key="index" @click="classD(index)">{{item}}</span>
 					</view>
 				</view>
+				<!-- 重置确定按钮 -->
 				<view class="close">
 					<button class="but1" @click="res">重置</button>
 					<button class="but2" @click="hide">确定</button>
@@ -43,12 +41,15 @@
 		<!-- 筛选end -->
 		<view class="conter">
 			<!-- 商品 -->
-			<view v-for="item in 10">
-				<view class="dl" v-for="(item, index) in datas" @click="tiao(index)">
-					<view class="dt"><image src="../../../static/images/demo/list/1.jpg"></image></view>
+			<view v-for="item in 10" :key="item">
+				<view class="dl" v-for="(item, index) in datas" @click="Jump(index)">
+					<view class="dt"><image src="/static/images/demo/list/1.jpg"></image></view>
 					<view class="dd">
+						<!-- 商品名 -->
 						<view class="name">{{ item.name }}</view>
+						<!-- 介绍 -->
 						<span class="span">{{ item.txt }}</span>
+						<!-- 价格 -->
 						<view class="rmb">
 							$
 							<span style="font-size: 45rpx;">{{ item.rmb }}</span>
@@ -69,10 +70,15 @@ export default {
 	},
 	data() {
 		return {
+			service:["促销","分期","仅看有货"],
+			serviceB:0,
+			classT:["耳机","户外","配件"],
+			classB:0,
 			showRigth: false,
 			showLeft: false,
 			head: ['综合', '销量', '价格'],
-
+			sortIndex:0,
+			sortT:false,
 			datas: [
 				{
 					name: '真无线蓝牙耳机',
@@ -84,9 +90,27 @@ export default {
 		};
 	},
 	methods: {
-		tiao(){
+		sort(e){
+			let _this=this;
+			_this.sortIndex=e;
+			_this.sortT=!_this.sortT;
+			// 获取数据
+			uni.request({
+				url:"http://ceshi3.dishait.cn/api/goods/search",
+				 success: (res) => {
+					 console.log(res)
+				 }
+			})
+		},
+		serviceD(e){//点击当前筛选赋值样式
+			this.serviceB=e;
+		},
+		classD(e){
+			this.classB=e;
+		},
+		Jump(){//跳转详情页面
 			uni.navigateTo({
-				url:"../../../components/home/xqing"
+				url:"/components/home/xqing"
 			})
 		},
 		res() {
@@ -109,14 +133,19 @@ export default {
 	},
 
 	onNavigationBarButtonTap(e) {
-		uni.navigateTo({
-			url: '../search/search'
-		});
+		if(e.index==0){
+			// uni.navigateTo({
+			// 	url: '/pages/shopping/index'
+			// });
+			console.log("购物")
+		}
+		
 	}
 };
 </script>
 
 <style scoped>
+	/* 头部 */
 .head {
 	height: 100rpx;
 	border-top: #999999 1px solid;
@@ -132,6 +161,10 @@ export default {
 	color: #808080;
 }
 /* 字体图标 */
+/* 点击头部排序列表换字体颜色 */
+.headerTxt{
+	color: #fd964f;
+}
 .icon {
 	position: relative;
 	/* width: 80rpx; */
@@ -146,6 +179,7 @@ export default {
 	/* border: 1px solid; */
 	height: 100rpx;
 }
+/* 排序字体图标 */
 .iconfont {
 	font-size: 45rpx;
 	width: 50rpx;
@@ -155,15 +189,14 @@ export default {
 	text-align: center;
 }
 .icon-paixu-shengxu {
-	color: #fd964f;
 	position: absolute;
 	top: 30rpx;
-	left: 10rpx;
+	left: 0rpx;
 }
 .icon-paixu-jiangxu {
 	position: absolute;
 	top: 30rpx;
-	left: 10rpx;
+	left: 0rpx;
 }
 /* 商品 列表*/
 .dl {
@@ -212,6 +245,7 @@ export default {
 	width: 100%;
 	height: 100rpx;
 }
+/* 重置取消 */
 .but1,
 .but2 {
 	font-size: 40rpx !important;
@@ -247,8 +281,14 @@ export default {
 	width: 160rpx;
 	margin: 5%;
 	float: left;
-	background: #c0c0c0;
-	border: #7c858d 1rpx solid;
+	background: #F8F9FB;
+	border: 1rpx solid white;
+}
+/* 点击添加的样式 */
+.active{
+	border: 1rpx solid #FA8538!important;
+	background-color: #FCE0D5;
+	color: #FA9855;
 }
 /* 筛选结束 */
 </style>

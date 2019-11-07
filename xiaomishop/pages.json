@@ -70,7 +70,7 @@
 							"float": "right",
 							"fontSize": "20px",
 							"fontSrc": "/static/icon/iconfont.ttf",
-							"text": "\ue661"
+							"text": "\ue67a"
 						}]
 					}
 				}
@@ -79,21 +79,17 @@
 		},{
 			"path": "pages/classify/list/list",
 			"style":{
+				
 				"app-plus": {
 					"titleNView": {
-						"searchInput": {
-							"align": "left",
-							"disabled": "false",
-							"backgroundColor": "#fff",
-							"placeholder": "智能积木 越野四驱车"
-						},
+						"titleText":"列表",
 						//按钮配置
 						"buttons": [{
 							"color": "#555555",
 							"float": "right",
-							"fontSize": "20px",
+							"fontSize": "40rpx",
 							"fontSrc": "/static/icon/iconfont.ttf",
-							"text": "搜索"
+							"text": "\ue64c"
 						}]
 					}
 				}

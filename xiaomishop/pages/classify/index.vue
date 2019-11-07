@@ -2,8 +2,8 @@
 	<view id="content">
 		<view class="scroll-Left">
 			<scroll-view scroll-y="false" class="scroll-y" :style="{height:phoneHeight+'px'}">
-				<view v-for="(item,index) in 10">
-					<view class="fenlei" :class="tabcss==index?'tabcolor':''" :key="index" @click="tabs(index)">分类{{index+1}}</view>
+				<view v-for="(item,index) in 10" :key="index">
+					<view class="fenlei" :class="tabcss==index?'tabcolor':''"  @click="tabs(index)">分类{{index+1}}</view>
 				</view>
 			</scroll-view>
 		</view>
@@ -71,6 +71,13 @@
 					url:"list/list"
 				})
 			}
+			
+		},
+		onNavigationBarSearchInputClicked(e){
+			uni.navigateTo({
+				url:"search/search"
+			})
+			console.log(1)
 		}
 	}
 </script>
