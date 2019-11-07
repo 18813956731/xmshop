@@ -1,13 +1,15 @@
 <template>
-	<view style="height: 100%;">
+	<view id="box" :style="{ height: swiperheight_all + 'rpx' }">
 		<!-- 顶导航tab切换  -->
 		<!-- <view class="position"> -->
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
 		<!-- </view> -->
 		<view>
-			<swiper :current="tabIndex" @change="tabChange" class="swiper-item">
+			<!-- class="swiper-item" -->
+			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
 				<swiper-item v-for="(itemz,indexz) in 10" :key='indexz'>
-					<scroll-view scroll-y show-scrollbar="false" class="list">
+					<!-- class="list" -->
+					<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore(index)">
 						<!-- 轮播 -->
 						<caroUsel />
 						<!-- 类别 -->
@@ -35,7 +37,7 @@
 								</view>
 							</view>
 							<view class="productlist">
-								<view v-for="(item,index) in selected" class="imageview" @tap="navigateTo">
+								<view v-for="(item,index) in selectedss" class="imageview" :key='index' @tap="navigateTo(item)">
 									<view>
 										<image :src="item.cover"></image>
 									</view>
@@ -44,6 +46,7 @@
 									<view><text class="text-one selected">¥{{item.pprice}}</text><text class="text-tow">¥{{item.oprice}}</text></view>
 								</view>
 							</view>
+							<view class="load-more">{{loadtext}}</view>
 						</view>
 					</scroll-view>
 				</swiper-item>
@@ -60,21 +63,40 @@
 		components: {
 			swiperTabHead,
 			caroUsel
-			// indexlist
 		},
 		data() {
-			return {
-				imgrg:'',
+			return { //定义滚动高度
+				swiperheight_s: 1100,
+				swiperheight_all: 1100,
+				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
 				tabIndex: 0,
 				selecteds: '', //每日精选
 				tabBars: [], //tab导航数据存放数组
 				selected: [], //每日精选商品类
-				newslist: ''//类别
+				selectedss: [], //循环每日精选商品类
+				newslist: '' //类别
+
 			}
 		},
 		onLoad() {
-			this.shuj()
+			// 计算屏幕剩余高度  填补剩余高度
+			uni.getSystemInfo({
+				success: (res) => {
+					//屏幕总高度
+					this.swiperheight_all = res.windowHeight
+					//console.log(this.swiperheight_all,11)
+					let info = uni.createSelectorQuery().select(".swiper-box")
+					info.boundingClientRect(data => {
+						//显示高度
+						this.swiperheight_s = data.height
+						//console.log(this.swiperheight_s,12)
+					}).exec()
+				}
+			})
+		},
+		created() {
+			this.shuj();
 		},
 		methods: {
 			async shuj() {
@@ -86,9 +108,30 @@
 				this.selecteds = res.data.data.data[3].data //每日精选
 				this.selected = res.data.data.data[4].data //每日精选商品
 				this.imgr = res.data.data.data[2].data //广告图
-				this.newslist = res.data.data.data[1].data//类别
-				this.imgrg = res.data.data.data[0].data.src//类别
-				console.log(this.imgrg)
+				this.newslist = res.data.data.data[1].data //类别
+				for (let i in this.selected) { //循环遍历
+					this.selectedss.push(this.selected[i])
+				}
+				// console.log(this.imgrg)
+			},
+			loadmore(index) { //下拉加载更多
+				console.log(this.loadtext)
+				if (this.loadtext == "上拉加载更多") {
+					//修改状态
+					this.loadtext = "加载中..."
+					//获取数据
+					let that = this
+					setTimeout(() => {
+						let obj = that.selectedss;
+						console.log(obj)
+						//每次刷新加载数据，把新数据加进去
+						that.selectedss = that.selectedss.concat(obj.slice(0, 6))
+						console.log(that.selectedss)
+						that.loadtext = "上拉加载更多";
+					}, 1000)
+				} else {
+					return
+				}
 			},
 			tabChange(e) {
 				this.tabIndex = e.detail.current;
@@ -96,13 +139,14 @@
 			tabtap(index) {
 				this.tabIndex = index;
 			},
-			navigateTo() { //点击商品跳转到商品详情购买页
+			navigateTo(e) { //点击商品跳转到商品详情购买页
+				console.log(e)
 				uni.navigateTo({
-					url: "/components/home/xqing"
+					url: "/components/home/xqing?id=" + e.id
 				})
 			},
 			navigateTow() {
-				uni.navigateTo({//跳转到类别
+				uni.navigateTo({ //跳转到类别
 					url: "/components/home/products"
 				})
 			}
@@ -114,6 +158,10 @@
 	* {
 		margin: 0;
 		padding: 0;
+	}
+
+	.box {
+		height: 100%;
 	}
 
 	.position {
@@ -225,5 +273,11 @@
 	/* tab切换高度 */
 	.swiper-item {
 		height: 1080rpx;
+	}
+
+	.load-more {
+		text-align: center;
+		height: 60upx;
+		line-height: 60upx;
 	}
 </style>
