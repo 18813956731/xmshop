@@ -51,7 +51,7 @@
 	}
 
 	.swiper-tab-list {
-		padding: 0px 37upx;
+		padding: 30rpx 37rpx;
 		color: #333333;
 		font-size: 30rpx;
 	}

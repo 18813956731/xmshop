@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view style="height: 90%;">
 		<!-- 商品介绍价格 -->
 		<view>
 			<view class="img">
@@ -449,7 +449,6 @@
 		display: flex;
 		justify-content: space-around;
 		flex-wrap: wrap;
-		height: 200rpx;
 	}
 
 	.tuijian {
