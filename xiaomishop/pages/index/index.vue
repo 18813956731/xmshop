@@ -2,10 +2,9 @@
 	<view style="height: 100%;">
 		<!-- 顶导航tab切换  -->
 		<!-- <view class="position"> -->
-			<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
+		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
 		<!-- </view> -->
-
-		<view style="margin-top: 25px;">
+		<view>
 			<swiper :current="tabIndex" @change="tabChange" class="swiper-item">
 				<swiper-item v-for="(items,index) in newslist" :key="index">
 					<scroll-view scroll-y show-scrollbar="false" class="list">
@@ -18,25 +17,28 @@
 							</view>
 						</view>
 						<!-- 广告 -->
-						<view class="active" v-for="(item,index) in imgr" v-if="index<1">
-							<image :src="imgr[0]" mode="" class="active-one"></image>
-							<image :src="imgr[1]" mode="" class="active-tow"></image>
-							<image :src="imgr[2]" mode="" class="active-tow"></image>
+						<view class="active" v-for="(item,index) in imgr" :key="index" v-if="index<1">
+							<image :src="imgr[0].src" class="active-one"></image>
+							<image :src="imgr[1].src" class="active-tow"></image>
+							<image :src="imgr[2].src" class="active-tow"></image>
 						</view>
 						<!-- 商品列表 -->
 						<view>
-							<text class="choice">每日精选</text>
+							<!-- 每日精选 -->
 							<view>
-								<image src="../../static/images/demo/demo4.jpg" style="width: 750rpx;height: 350rpx;"></image>
+								<text class="choice">{{selecteds.title}}</text>
+								<view>
+									<image :src="selecteds.cover" style="width: 750rpx;height: 350rpx;"></image>
+								</view>
 							</view>
 							<view class="productlist">
 								<view v-for="(item,index) in selected" class="imageview" @tap="navigateTo">
 									<view>
-										<image :src="item.imgge"></image>
+										<image :src="item.cover"></image>
 									</view>
-									<view class="selected">{{item.name}}</view>
-									<view class="selected-font selected">{{item.name1}}</view>
-									<view><text class="text-one selected">¥{{item.favourPrice}}</text><text class="text-tow">¥{{item.originalPrice}}</text></view>
+									<view class="selected">{{item.title}}</view>
+									<view class="selected-font selected">{{item.desc}}</view>
+									<view><text class="text-one selected">¥{{item.pprice}}</text><text class="text-tow">¥{{item.oprice}}</text></view>
 								</view>
 							</view>
 						</view>
@@ -60,32 +62,11 @@
 		},
 		data() {
 			return {
+				imgr:'',//广告图
 				tabIndex: 0,
-				tabBars: [{
-					name: '推荐',
-					id: 'tuijian'
-				}, {
-					name: '体育',
-					id: 'tiyu'
-				}, {
-					name: '热点',
-					id: 'redian'
-				}, {
-					name: '财经',
-					id: 'caijing'
-				}, {
-					name: '娱乐',
-					id: 'yule'
-				}, {
-					name: '军事',
-					id: 'junshi'
-				}, {
-					name: "历史",
-					id: "lishi"
-				}, {
-					name: "本地",
-					id: "bendi"
-				}],
+				selecteds:'',//每日精选
+				tabBars: [],//tab导航数据存放数组
+				selected: [],//每日精选商品类
 				newslist: [{
 					list: [{
 						name: '新品分类',
@@ -294,81 +275,31 @@
 						name: '电视热卖',
 						img: '/static/indexnav/8.gif'
 					}]
-				}],
-				imgr: ['/static/images/demo/demo1.jpg',
-					'/static/images/demo/demo2.jpg',
-					'/static/images/demo/demo3.jpg'
-				],
-				//每日精选
-				selected: [{
-					imgge: '/static/images/demo/list/1.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/2.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/3.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/5.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/6.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/1.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/2.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
-				}, {
-					imgge: '/static/images/demo/list/3.jpg',
-					name: '米家空调',
-					name1: '1.5匹支流变频',
-					favourPrice: '2199',
-					originalPrice: '2699'
 				}]
 			}
 		},
 		onLoad() {
-
+			this.shuj()
 		},
-		mounted() {},
 		methods: {
+			async shuj() {
+				let [error, res] = await uni.request({
+					url: 'http://ceshi3.dishait.cn/api/index_category/data'//接口拿取数据
+				})
+				console.log(res)
+				this.tabBars=res.data.data.category//tab导航
+				this.selecteds=res.data.data.data[3].data//每日精选
+				this.selected=res.data.data.data[4].data//每日精选商品
+				this.imgr=res.data.data.data[2].data//广告图
+				console.log(this.imgr)
+			},
 			tabChange(e) {
 				this.tabIndex = e.detail.current;
 			},
 			tabtap(index) {
 				this.tabIndex = index;
 			},
-			navigateTo() {
+			navigateTo() {//点击商品跳转到商品详情购买页
 				uni.navigateTo({
 					url: "/components/home/xqing"
 				})
@@ -473,11 +404,11 @@
 	}
 
 	.list {
-		height: 1000rpx;
+		height: 1080rpx;
 	}
 
 	/* tab切换高度 */
 	.swiper-item {
-		height: 1000rpx;
+		height: 1080rpx;
 	}
 </style>
