@@ -99,6 +99,9 @@ import amount from "@/components/shopping/amount.vue"
 			}
 		},
 		methods: {
+			clear(){
+				console.log("1")
+			},
 			open() {
 				this.showPopup = true
 				this.$nextTick(() => {
