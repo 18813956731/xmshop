@@ -14,7 +14,7 @@
 			<scroll-view scroll-y="false" class="scroll-yr" :style="{height:phoneHeights+'px'}">
 				<ul class="commodity-ul" v-for="(item,indexs) in 6">
 					<!-- 商品品牌种类 -->
-					<li class="li-item" v-for="(val,index) in list_img" @click="Jump(item)">
+					<li class="li-item" v-for="(val,index) in list_img" @click="Jumps(item)">
 						<image :src="val"></image>
 						<view class="Trade-Name">分类{{classif}}商品{{index+1+(indexs*6)}}</view>
 					</li>
@@ -66,16 +66,16 @@
 		},
 		methods: {
 			// 切换样式
-			tabs:function(e){
+			tabs(e){
 				let _this=this
 				_this.tabcss=e;
 				_this.classif=e;
 				
 			},
 			// 跳转列表页
-			Jump:function(e){
+			Jumps(e){
 				uni.navigateTo({
-					url:"list/list"
+					url:"/pages/classify/list/list"
 				})
 			},
 		},

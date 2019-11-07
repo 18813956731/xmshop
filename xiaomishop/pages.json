@@ -109,9 +109,11 @@
 						"buttons": [{
 							"color": "#555555",
 							"float": "right",
-							"fontSize": "20px",
+							"fontSize": "36rpx",
+							"fontWeight":"normal",
 							"fontSrc": "/static/icon/iconfont.ttf",
-							"text": "搜索"
+							"text": "搜索",
+							"width":"auto"
 						}]
 					}
 				}
