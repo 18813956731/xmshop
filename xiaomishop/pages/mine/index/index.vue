@@ -22,7 +22,7 @@
 		<view class="hr"></view>
 		<!-- 订单付款 -->
 		<view class="logo">
-			<view v-for="(item,index) in datas">
+			<view v-for="(item,index) in datas" :key="index"  @click="requer">
 				<span class="iconfont" :class="item.icon"></span>
 				<text>{{item.name}}</text>
 			</view>
@@ -30,7 +30,7 @@
 		<!-- 广告 -->
 		<image class="imgae" src="/static/images/demo/demo4.jpg"></image>
 		<!-- 功能循环 -->
-		<view class="btn" v-for="(iter,index) in datae" @click="fun" :id="index" :data-name="iter.name">
+		<view class="btn" v-for="(iter,index) in datae" @click="fun" :id="index" :data-name="iter.name" :key="index">
 			<span class="iconfont ico" :class="iter.iconi"></span>
 			<text>{{iter.name}}</text>
 			<span class="iconfont icon-you" :class="iter.iconj"></span>

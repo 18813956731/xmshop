@@ -188,6 +188,12 @@
 						"navigationStyle":"custom"
 					}
 				},
+				{//我的反馈
+					"path":"components/mine/BlankPage",
+					"style":{
+						"navigationStyle":"custom"
+					}
+				},
 				{//我的订单
 					"path":"pages/mine/myorder/myorder",
 					"style":{
