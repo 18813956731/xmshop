@@ -1,30 +1,43 @@
 <template>
 	<view id="mine-feedback">
+		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="txt">意见反馈</view>
 			<view class="txt-right" @click="mine">我的反馈</view>
 		</view>
+		<!-- 主体内容 -->
 		<view class="main">
-			<view class="textarea">
-				<textarea value="" placeholder-style="color: #C8C7CC;" placeholder="请描述您的相关问题 , 若遇到功能异常 , 请您上传图片可以更加快速解决哦~" />
-				</view>
-			<view class="image">
+			<form @submit="formsuibmit" @reset="">
+				<!-- 卡片内容 -->
+				<view class="textarea">
+					<textarea @blur="blur" name="textarea" value="" placeholder-style="color: #C8C7CC;" placeholder="请描述您的相关问题 , 若遇到功能异常 , 请您上传图片可以更加快速解决哦~" />
+					</view>
+				<!-- 图片 -->
+			    <view class="image">
+				<!-- 循环图片 -->
 			    <block v-for="(image,index) in imageList" :key="index">
 			    <view class="uni-uploader__file">
 					<image class="uni-uploader__img" :src="image" :data-src="image" @tap="previewImage"></image>
 				</view>
 			    </block>
+				<!-- 提交图片 -->
 			    <view class="uni-uploader__paizhao" @tap="chooseImage">
 				    <span class="iconfont icon-paizhao" ></span>
 			    </view>
-			</view>
-			<view class="text">最多三张照片(选填)140</view>
-			<view class="haom"><input value="" placeholder-style="color:#B2B2B2;text-indent:55rpx;font-size:35rpx;" placeholder="请留下您的手机号码 ( 选填 ) " /></view>
-			<view class="footer">
-				<view class="txt">提交</view>
+			    </view>
+			    <view class="text">最多三张照片(选填)140</view>
+				<!-- 输入手机号码 -->
+			    <view class="haom">
+			   <input value="" name="input" placeholder-style="color:#B2B2B2;text-indent:55rpx;font-size:35rpx;" placeholder="请留下您的手机号码 ( 选填 ) " />
+			   </view>
+			    <view class="footer">
+				<!-- 提交修改 -->
+				<button form-type="submit" class="txt" :class="activeindex?'active':'activeindex'">提交</button>
 				<view class="tex">咨询小米客服></view>
 			</view>
+			</form>
+			
     	</view>
 	</view>
 </template>
@@ -33,6 +46,7 @@
 	export default {
 		data() {
 			return {
+			  activeindex:false,
               imageList:[]
 			}
 		},
@@ -52,6 +66,20 @@
 			uni.navigateTo({
 				url:"/pages/mine/feedback/myfeedback?id=1"
 			})
+			},
+			//卡片失去焦点
+			blur(e){
+				let name=e.detail.value
+				if(name!=""){
+					this.activeindex=!this.activeindex
+				}else{
+					this.activeindex=!this.activeindex
+				}
+				
+			},
+			//表单提交
+			formsuibmit(e){
+			console.log(e.detail.value)
 			}
 		}
 	}
@@ -141,6 +169,7 @@
 				}
 			}
 			.footer{
+				
 				.txt{
 					height: 100rpx;
 					width: 90%;
@@ -150,7 +179,13 @@
 					line-height: 100rpx;
 					color: white;
 					border-radius: 100rpx;
-					opacity: 0.5;
+					
+					}
+					.activeindex{
+						opacity: 0.5;
+					}
+					.active{
+						opacity: 1;
 					}
 				.tex{
 					text-align: center;

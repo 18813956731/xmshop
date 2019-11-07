@@ -14,9 +14,9 @@
 			</view>
 		</view>
 		<!-- 我的订单 -->
-		<view class="order" @click="requer">
+		<view class="order">
 			我的订单
-			<span class="rigth">全部订单<span class="iconfont icon-you"></span></span>
+			<span class="rigth"  @click="requer">全部订单<span class="iconfont icon-you"></span></span>
 		</view>
 		<!-- 分割线 -->
 		<view class="hr"></view>
@@ -129,7 +129,7 @@
 			//跳转我的订单
 			requer() {
 				uni.navigateTo({
-					url: "/pages/mine/myorder/myorder"
+					url: "/pages/mine/myorder/myorder?id=1"
 				})
 			}
 		},

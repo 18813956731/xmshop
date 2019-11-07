@@ -1,5 +1,6 @@
 <template>
 	<view id="mine-myorder">
+		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">我的订单</view>
@@ -8,25 +9,19 @@
 				<span class="iconfont icon-gouwuche"></span>
 			</view>
 		</view>
+		<!-- 导航 -->
 		<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
 		 :id="index">{{item}}</view>
-		<swiper class="swiper-box" style="flex: 1;" :duration="300" @change="ontabchange" :current="tabIndex">
-			<swiper-item class="swiper-item" v-for="(tab,index1) in nothing" :key="index1">
-				<scroll-view class="scroll-v list" enableBackToTop="true" scroll-y @scrolltolower="loadMore(index1)">
-					<view class="order">
-						<view class="image">
-							<img :src="tab.image" mode="widthFix" />
-						</view>
-						<view class="text">{{tab.name}}</view>
-					</view>
-
-					<!-- <view class="loading-more" v-if="tab.isLoading || tab.data.length > 4">
-						<text class="loading-more-text">{{tab.loadingText}}</text>
-					</view> -->
+		<!-- 滑动 -->
+		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
+			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in order" :key="tabIndex">
+				<!-- 纵向滚动 -->
+				<scroll-view class="list-scroll-content" scroll-y>
+					<all></all>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
-		
+
 		<view class="footer">
 			<view class="tooer-hreder">
 				<view class="text">猜你喜欢</view>
@@ -43,13 +38,16 @@
 
 <script>
 	import tuijian from "@/components/home/tuijian.vue"
+	import all from "@/components/mine/all.vue"
 	export default {
 		components: {
-			tuijian
+			tuijian,
+			all
 		},
 		data() {
 			return {
-				order: ["全部", "待付款", "待收货", "待评价"],
+				order: ["全部", "待付款", "待收货", "待评价"], //导航数据
+				//空数据渲染
 				nothing: [{
 						image: "/static/images/nothing/no_receiving.png",
 						name: "您的全部订单"
@@ -67,58 +65,66 @@
 						name: "您还没有待评价订单"
 					}
 				],
+				//猜你喜欢数据
 				newtext: [{
-					img: '/static/images/demo/list/1.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/3.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/2.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/5.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/6.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}],
-				tabIndex: 0
+						img: '/static/images/demo/list/1.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					},
+					{
+						img: '/static/images/demo/list/4.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					},
+					{
+						img: '/static/images/demo/list/3.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					},
+					{
+						img: '/static/images/demo/list/2.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					}, {
+						img: '/static/images/demo/list/5.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					}, {
+						img: '/static/images/demo/list/6.jpg',
+						name: '米家空调',
+						nameone: '1.5匹支流变频',
+						pic: '2199',
+						price: '2699'
+					}
+				],
+				tabIndex: 0 //条件渲染
 			}
 		},
 		methods: {
+			//返回上一层
 			returni() {
 				uni.navigateBack({
 					delta: 1
 				})
 			},
+			//更换导航内容一起
 			tabactive(e) {
 				this.tabIndex = parseInt(e.currentTarget.id) || parseInt(e.target.id)
 			},
 			loadMore() {
 
 			},
+			//更换内容导航一起
 			ontabchange(e) {
 				this.tabIndex = e.detail.current || e.target.current
 			}
@@ -127,6 +133,16 @@
 </script>
 
 <style lang="scss">
+	.scs {
+		margin: 30rpx;
+		padding: 30rpx;
+		background-color: red;
+	}
+
+	.mine-myorder {
+		height: 100%;
+	}
+
 	.hreder {
 		display: flex;
 		justify-content: space-between;
@@ -149,11 +165,6 @@
 		}
 	}
 
-	.swiper-item {
-		flex: 1;
-		flex-direction: row;
-	}
-
 	.tab-item {
 		display: inline-block;
 		height: 100rpx;
@@ -170,44 +181,20 @@
 	}
 
 	.swiper-box {
-		height: 500rpx;
+		height: 1000rpx;
 	}
 
-	.scroll-v {
-		height: 500rpx;
-		flex: 1;
-		background-color: #f5f5f5;
-
-		.order {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			text-align: center;
-
-			.image {
-				width: 300rpx;
-				height: 250rpx;
-
-				img {
-					width: 100%;
-					height: 100%;
-				}
-			}
-
-			.text {
-				color: #999999;
-				font-size: 35rpx;
-			}
-		}
-
+	.list-scroll-content {
+		height: 100%;
 	}
-	.footer{
-		.tooer-hreder{
+
+	.footer {
+		.tooer-hreder {
 			height: 135rpx;
 			position: relative;
 			background-color: #f5f5f5;
-			.text{
+
+			.text {
 				width: 100%;
 				text-align: center;
 				color: #FD6801;
@@ -215,24 +202,27 @@
 				border-bottom: 4rpx solid #D8D8D8;
 				height: 80rpx;
 			}
-			.text-flex{
+
+			.text-flex {
 				font-size: 32rpx;
 				width: 280rpx;
 				text-align: center;
 				color: #C0C0C0;
-				background-color:#f5f5f5;
+				background-color: #f5f5f5;
 				position: absolute;
 				bottom: 35rpx;
 				left: 50%;
 				transform: translateX(-50%);
 			}
 		}
-		.footer-mian{
+
+		.footer-mian {
 			display: flex;
 			flex-wrap: wrap;
-			.footer-box{
-					 width: 48%;
-			    margin: 0rpx 8rpx 8rpx 8rpx;
+
+			.footer-box {
+				width: 48%;
+				margin: 0rpx 8rpx 8rpx 8rpx;
 			}
 		}
 	}

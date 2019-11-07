@@ -7,7 +7,7 @@
 		</view>
 		<view class="uni-list">
 			<view class="uni-list-cell" v-for="(item,index) in list" :key="index">
-				<view class="uni-list-cell-navigate">
+				<view class="">
 					<image :src="item.image" mode=""></image>
 					<view>
 						<view>{{item.title}}</view>
@@ -71,7 +71,7 @@
 					price: "￥1999.00",
 					count: "1"
 				}, {
-					image: "/static/images/demo/demo1.jpg",
+					image: "/static/images/demo/demo2.jpg",
 					title: "小米8",
 					color: "金色",
 					price: "￥1999.00",
@@ -81,7 +81,7 @@
 		},
 	}
 </script>
-<style>
+<style scoped="scoped">
 	ul{
 		margin:0upx;
 		padding:0upx;
