@@ -1,5 +1,5 @@
 <template>
-	<view id="box" :style="{ height: swiperheight_all + 'rpx' }">
+	<view id="box" :style="{height:swiperheight_all + 'rpx' }">
 		<!-- 顶导航tab切换  -->
 		<!-- <view class="position"> -->
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
@@ -79,22 +79,6 @@
 
 			}
 		},
-		onLoad() {
-			// 计算屏幕剩余高度  填补剩余高度
-			uni.getSystemInfo({
-				success: (res) => {
-					//屏幕总高度
-					this.swiperheight_all = res.windowHeight
-					//console.log(this.swiperheight_all,11)
-					let info = uni.createSelectorQuery().select(".swiper-box")
-					info.boundingClientRect(data => {
-						//显示高度
-						this.swiperheight_s = data.height
-						//console.log(this.swiperheight_s,12)
-					}).exec()
-				}
-			})
-		},
 		created() {
 			this.shuj();
 		},
@@ -103,7 +87,7 @@
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
 				})
-				console.log(res)
+				// console.log(res)
 				this.tabBars = res.data.data.category //tab导航
 				this.selecteds = res.data.data.data[3].data //每日精选
 				this.selected = res.data.data.data[4].data //每日精选商品
@@ -112,6 +96,7 @@
 				for (let i in this.selected) { //循环遍历
 					this.selectedss.push(this.selected[i])
 				}
+				console.log(res.data.data.data[0].data)
 				// console.log(this.imgrg)
 			},
 			loadmore(index) { //下拉加载更多
@@ -262,7 +247,8 @@
 		width: 20%;
 		font-size: 20upx;
 		text-align: center;
-		margin-bottom: 20rpx;
+		padding: 30rpx 0rpx;
+		color: #555555;
 	}
 
 	.category-one image {

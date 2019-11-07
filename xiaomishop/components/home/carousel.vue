@@ -16,13 +16,14 @@
 				imgge:[]
 			}
 		},
-		onLoad() {
+		created() {
 			this.shujr()
+			console.log(this.imgge)
 		},
 		methods: {
 			async shujr() {
 				let [error, res] = await uni.request({
-					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿去数据
+					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
 				})
 				this.imgge=res.data.data.data[0].data
 			}
