@@ -2,13 +2,13 @@
 	<view id="content">
 		<view class="head">
 			<!-- 头部导航 -->
-			<view class="itemst" v-for="(item,index) in head" :key="index" @click="sort(index)">
-				<view class="items-icon" :class="sortIndex==index?'headerTxt':''">{{ item }}</view>
+			<view class="itemst" v-for="(item, index) in head" :key="index" @click="sort(index)">
+				<view class="items-icon" :class="sortIndex == index ? 'headerTxt' : ''">{{ item.txt }}</view>
 				<view class="icon">
 					<view class="icotop">
 						<!-- 字体图标 -->
-						<icon type="black" class="iconfont icon-paixu-shengxu" :class="sortT==true&&sortIndex==index?'headerTxt':''"></icon>
-						<icon type="black" class="iconfont icon-paixu-jiangxu" :class="sortT==false&&sortIndex==index?'headerTxt':''"></icon>
+						<icon type="black" class="iconfont icon-paixu-shengxu" :class="item.judge == 1 && sortIndex == index ? 'headerTxt' : ''"></icon>
+						<icon type="black" class="iconfont icon-paixu-jiangxu" :class="item.judge == 0 && sortIndex == index ? 'headerTxt' : ''"></icon>
 					</view>
 				</view>
 			</view>
@@ -21,14 +21,14 @@
 				<view class="service">
 					<view>服务</view>
 					<view class="service-text">
-						<span :class="serviceB==index?'active':''" v-for="(item,index) in service" :key="index" @click="serviceD(index)">{{item}}</span>
+						<span :class="serviceB == index ? 'active' : ''" v-for="(item, index) in service" :key="index" @click="serviceD(index)">{{ item }}</span>
 					</view>
 				</view>
 				<!-- 分类 -->
 				<view class="service">
 					<view>分类</view>
 					<view class="service-text">
-						<span :class="classB==index?'active':''"  v-for="(item,index) in classT" :key="index" @click="classD(index)">{{item}}</span>
+						<span :class="classB == index ? 'active' : ''" v-for="(item, index) in classT" :key="index" @click="classD(index)">{{ item }}</span>
 					</view>
 				</view>
 				<!-- 重置确定按钮 -->
@@ -43,18 +43,18 @@
 			<!-- 商品 -->
 			<view v-for="item in 10" :key="item">
 				<view class="dl" v-for="(item, index) in datas" @click="Jump(index)">
-					<view class="dt"><image src="/static/images/demo/list/1.jpg"></image></view>
+					<view class="dt"><image :src="item.cover"></image></view>
 					<view class="dd">
 						<!-- 商品名 -->
-						<view class="name">{{ item.name }}</view>
+						<view class="name">{{ item.title }}</view>
 						<!-- 介绍 -->
-						<span class="span">{{ item.txt }}</span>
+						<!-- <span class="span">{{ item.txt }}</span> -->
 						<!-- 价格 -->
 						<view class="rmb">
 							$
-							<span style="font-size: 45rpx;">{{ item.rmb }}</span>
+							<span style="font-size: 45rpx;">{{ item.min_price }}</span>
 						</view>
-						<view class="pinglun">{{ item.pinglun }}</view>
+						<view class="pinglun">{{ item.comments_count}}条评论 98%满意</view>
 					</view>
 				</view>
 			</view>
@@ -70,51 +70,69 @@ export default {
 	},
 	data() {
 		return {
-			service:["促销","分期","仅看有货"],
-			serviceB:0,
-			classT:["耳机","户外","配件"],
-			classB:0,
-			showRigth: false,
-			showLeft: false,
-			head: ['综合', '销量', '价格'],
-			sortIndex:0,
-			sortT:false,
+			service: ['促销', '分期', '仅看有货'],
+			serviceB: 0,
+			classT: ['耳机', '户外', '配件'],
+			classB: 0,
+			showRigth: false, //筛选
+			head: [{ txt: '综合', judge: 0 }, { txt: '销量', judge: 0 }, { txt: '价格', judge: 0 }],
+			sortIndex: 0,
 			datas: [
 				{
-					name: '真无线蓝牙耳机',
-					txt: '雅致简约/分体式入耳/收纳盒充电/蓝牙5.0、触控操作',
-					rmb: '199',
-					pinglun: '1348'
+					pinglun: '1348',
+					"id": 28,
+					"title": "小米空调",
+					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
+					"min_price": "25.00",
+					"comments_count": 0,
+					"comments_good_count": 0
 				}
 			]
 		};
 	},
 	methods: {
-		sort(e){
-			let _this=this;
-			_this.sortIndex=e;
-			_this.sortT=!_this.sortT;
+		sort(e) {
+			let _this = this;
+			let index = 0;
+			_this.sortIndex = e;
+			for (let i = 0; i < _this.head.length; i++) {
+				if (e == i) {//当前字体图标
+					if (_this.head[i].judge == 0) {
+						_this.head[i].judge = 1;//向上字体图标的颜色变色
+					} else {
+						_this.head[i].judge = 0;//向下字体图标的颜色变色
+					}
+				} else {//其他字体图标
+					_this.head[i].judge = 1;
+				}
+			}
+
 			// 获取数据
-			uni.request({
-				url:"http://ceshi3.dishait.cn/api/goods/search",
-				 success: (res) => {
-					 console.log(res)
-				 }
-			})
 		},
-		serviceD(e){//点击当前筛选赋值样式
-			this.serviceB=e;
+		async showChange() {
+			let [error, res] = await uni.request({
+				url: 'http://ceshi3.dishait.cn/api/index_category/data'
+			});
+			console.log(res.data.data.category);
 		},
-		classD(e){
-			this.classB=e;
+		serviceD(e) {
+			//点击当前筛选赋值样式
+			this.serviceB = e;
 		},
-		Jump(){//跳转详情页面
+		classD(e) {
+			this.classB = e;
+		},
+		Jump() {
+			//跳转详情页面
 			uni.navigateTo({
-				url:"/components/home/xqing"
-			})
+				url: '/components/home/xqing'
+			});
 		},
 		res() {
 			//关闭筛选
+			let _this=this
+			_this.serviceB=0
+			_this.classB=0
 			console.log('取消');
 			// this.showRigth = false;
 		},
@@ -129,23 +147,24 @@ export default {
 		closeDrawer(e) {
 			this.showRigth = false;
 		},
-		confirm() { }
+		confirm() {}
 	},
-
+	created() {
+		this.showChange();
+	},
 	onNavigationBarButtonTap(e) {
-		if(e.index==0){
+		if (e.index == 0) {
 			// uni.navigateTo({
 			// 	url: '/pages/shopping/index'
 			// });
-			console.log("购物")
+			console.log('购物');
 		}
-		
 	}
 };
 </script>
 
 <style scoped>
-	/* 头部 */
+/* 头部 */
 .head {
 	height: 100rpx;
 	border-top: #999999 1px solid;
@@ -162,7 +181,7 @@ export default {
 }
 /* 字体图标 */
 /* 点击头部排序列表换字体颜色 */
-.headerTxt{
+.headerTxt {
 	color: #fd964f;
 }
 .icon {
@@ -281,14 +300,14 @@ export default {
 	width: 160rpx;
 	margin: 5%;
 	float: left;
-	background: #F8F9FB;
+	background: #f8f9fb;
 	border: 1rpx solid white;
 }
 /* 点击添加的样式 */
-.active{
-	border: 1rpx solid #FA8538!important;
-	background-color: #FCE0D5;
-	color: #FA9855;
+.active {
+	border: 1rpx solid #fa8538 !important;
+	background-color: #fce0d5;
+	color: #fa9855;
 }
 /* 筛选结束 */
 </style>
