@@ -4,15 +4,13 @@
 			<!-- 头部导航 -->
 			<view class="itemst" v-for="(item, index) in head" :key="index" @click="sort(index)">
 				<view class="items-icon" :class="sortIndex == index ? 'headerTxt' : ''">{{ item.txt }}</view>
-				<view class="icon">
-					<view class="icotop">
+				<view class="icotop">
 						<!-- 字体图标 -->
 						<icon type="black" class="iconfont icon-paixu-shengxu" :class="item.judge == 1 && sortIndex == index ? 'headerTxt' : ''"></icon>
 						<icon type="black" class="iconfont icon-paixu-jiangxu" :class="item.judge == 0 && sortIndex == index ? 'headerTxt' : ''"></icon>
 					</view>
-				</view>
 			</view>
-			<view class="items" @click="show('right')" style="color: orange;">筛选</view>
+			<view class="itemst" @click="show('right')" style="color: orange;">筛选</view>
 		</view>
 		<!-- 筛选 -->
 		<view class="example-body">
@@ -167,15 +165,16 @@ export default {
 /* 头部 */
 .head {
 	height: 100rpx;
+	line-height:100rpx;
 	border-top: #999999 1px solid;
 	border-bottom: #999999 1px solid;
 	overflow: hidden;
-	line-height: 100rpx;
 }
 .itemst {
+	float:left;
+	overflow:hidden;
 	text-align: center;
-	width: 180rpx;
-	float: left;
+	width: 160rpx;
 	padding-left: 20rpx;
 	color: #808080;
 }
@@ -184,38 +183,31 @@ export default {
 .headerTxt {
 	color: #fd964f;
 }
-.icon {
-	position: relative;
-	/* width: 80rpx; */
-	height: 100rpx;
-	float: left;
-}
 .items-icon {
+	padding-left:30rpx;
 	float: left;
 }
 .icotop {
+	width: 50rpx;
+	top:0rpx;
 	position: relative;
-	/* border: 1px solid; */
+	height: 100rpx;
+	float: left;
 	height: 100rpx;
 }
 /* 排序字体图标 */
 .iconfont {
+	position: absolute;
+	top: 0rpx;
+	left: 0rpx;
+	/* border: 1px solid; */
+	height:100rpx;
 	font-size: 45rpx;
 	width: 50rpx;
 	float: left;
 	overflow: hidden;
-	line-height: 40rpx;
+	line-height: 100rpx;
 	text-align: center;
-}
-.icon-paixu-shengxu {
-	position: absolute;
-	top: 30rpx;
-	left: 0rpx;
-}
-.icon-paixu-jiangxu {
-	position: absolute;
-	top: 30rpx;
-	left: 0rpx;
 }
 /* 商品 列表*/
 .dl {
@@ -294,6 +286,7 @@ export default {
 	overflow: hidden;
 }
 .service-text span {
+	padding:10rpx 0rpx;
 	display: block;
 	text-align: center;
 	font-size: 36rpx;

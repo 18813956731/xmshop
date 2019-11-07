@@ -115,7 +115,7 @@
 	}
 
 	/* tab切换 */
-	.classs{
+	.fenlei{
 		font-size: 30rpx;
 		padding: 25rpx 0rpx;
 		text-align: center;
