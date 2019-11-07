@@ -35,6 +35,7 @@
 		},
 		methods:{
 			returni(){
+				//返回上一层
 				uni.navigateBack({
 					delta:1
 				})

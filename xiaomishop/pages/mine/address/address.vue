@@ -1,5 +1,6 @@
 <template>
 	<view id="mine-address">
+	<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">地址列表</view>

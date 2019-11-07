@@ -1,33 +1,41 @@
 <template>
 	<view id="mina-edit">
+		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">编辑收货地址</view>
 			<view class="text-right">删除</view>
 		</view>
+		<!-- 主体 -->
 		<view class="main">
+			<!-- 表单 -->
 			<form @submit="fomsubmit" @reset="">
+				<!-- 收货人 -->
 				<view class="flex">
 					<label>收货人:</label>
-					<input type="text" value="" />
+					<input type="text" value="" name="input1" />
 				</view>
+				<!-- 手机号码 -->
 				<view class="flex">
 					<label>手机号码:</label>
-					<input type="text" value="" />
+					<input type="text" value="" name="input2" />
 				</view>
+				<!-- 所在地区 -->
 				<view class="hr"></view>
 				<view class="flex">
 					<label>所在地区:</label>
-					<input type="text" value="" />
+					<input type="text" value="" name="input3"/>
 				</view>
+				<!-- 详细地址 -->
 				<view class="flex">
 					<label>详细地址:</label>
-					<input type="text" value="" />
+					<input type="text" value="" name="input4"/>
 				</view>
 				<view class="hr"></view>
+				<!-- 设置默认地址 -->
 				<view class="flex">
 					<label>设置默认地址:</label>
-					<switch checked="flase" @change="switchchange" color="#FD6801" />
+					<switch checked="flase" @change="switchchange" name="switch" color="#FD6801" />
 				</view>
 				<button form-type="submit" class="footer">保存</button>
 			</form>	
@@ -43,16 +51,20 @@
 			}
 		},
 		methods: {
+			//设置默认地址
 			switchchange(e) {
 				console.log('switch1 发生 change 事件，携带值为', e.target.value)
 			},
+			//返回上一层
 			returni(){
 				uni.navigateBack({
 					delta:1
 				})
 			},
+			//提交
 			fomsubmit(e){
-				console.log(e)
+				console.log("1123")
+				console.log(JSON.stringify(e.detail.value))
 			}
 		}
 	}
