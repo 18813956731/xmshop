@@ -1,15 +1,19 @@
 <template>
 	<view id="content">
+		<!-- 左边栏上下滑动  -->
 		<view class="scroll-Left">
 			<scroll-view scroll-y="false" class="scroll-y" :style="{height:phoneHeight+'px'}">
-				<view v-for="(item,index) in 10" :key="index">
-					<view class="fenlei" :class="tabcss==index?'tabcolor':''"  @click="tabs(index)">分类{{index+1}}</view>
+				<!-- 类别 -->
+				<view v-for="(item,index) in classification" :key="index">
+					<view class="fenlei" :class="tabcss==index?'tabcolor':''"  @click="tabs(index)">{{item.name}}</view>
 				</view>
 			</scroll-view>
 		</view>
+		<!-- 右边栏上下滑动  -->
 		<view class="commodity-Right">
 			<scroll-view scroll-y="false" class="scroll-yr" :style="{height:phoneHeights+'px'}">
 				<ul class="commodity-ul" v-for="(item,indexs) in 6">
+					<!-- 商品品牌种类 -->
 					<li class="li-item" v-for="(val,index) in list_img" @click="Jump(item)">
 						<image :src="val"></image>
 						<view class="Trade-Name">分类{{classif}}商品{{index+1+(indexs*6)}}</view>
@@ -24,18 +28,20 @@
 	export default {
 		data() {
 			return {
+				// index下标
 				tabcss:0,
+				// index下标商品类别
 				classif:0,
-				"phoneHeight": 0,
-				"phoneHeights": 0,
-				"classification":'',
+				"phoneHeight": 0,//左边栏高度
+				"phoneHeights": 0,//右边栏高度
+				"classification":'',//类别
 				"list_img": [
-					"../../static/images/demo/list/1.jpg",
-					"../../static/images/demo/list/2.jpg",
-					"../../static/images/demo/list/3.jpg",
-					"../../static/images/demo/list/4.jpg",
-					"../../static/images/demo/list/5.jpg",
-					"../../static/images/demo/list/6.jpg"
+					"/static/images/demo/list/1.jpg",
+					"/static/images/demo/list/2.jpg",
+					"/static/images/demo/list/3.jpg",
+					"/static/images/demo/list/4.jpg",
+					"/static/images/demo/list/5.jpg",
+					"/static/images/demo/list/6.jpg"
 				]
 			}
 		},
@@ -49,14 +55,14 @@
 					// console.log(res.windowHeight)
 				}
 			});
-			// uni.request({
-			// 	url: 'http://ceshi3.dishait.cn/api/index_category/data',
-			// 	success(res) {
-			// 		// 分类
-			// 		_this.classification=res.data.data.category
-			// 		console.log(res.data.data);
-			// 	}
-			// })
+			uni.request({//获取数据
+				url: 'http://ceshi3.dishait.cn/api/index_category/data',
+				success(res) {
+					// 分类
+					_this.classification=res.data.data.category
+					console.log(res.data.data);
+				}
+			})
 		},
 		methods: {
 			// 切换样式
@@ -64,14 +70,14 @@
 				let _this=this
 				_this.tabcss=e;
 				_this.classif=e;
+				
 			},
 			// 跳转列表页
 			Jump:function(e){
 				uni.navigateTo({
 					url:"list/list"
 				})
-			}
-			
+			},
 		},
 		onNavigationBarSearchInputClicked(e){
 			uni.navigateTo({
