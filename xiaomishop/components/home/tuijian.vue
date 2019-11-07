@@ -56,7 +56,7 @@
 	}
 
 	.text-Four {
-		color: #FF0000;
+		color: #DC3546;
 	}
 
 	.text-three {

@@ -11,13 +11,16 @@
 		</view>
 		<!-- 导航 -->
 		<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
-		 :id="index">{{item}}</view>
+		 :id="index">{{item.name}}</view>
 		<!-- 滑动 -->
 		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
 			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in order" :key="tabIndex">
 				<!-- 纵向滚动 -->
 				<scroll-view class="list-scroll-content" scroll-y>
+				  <!-- 空白页 -->
+				  
 					<all></all>
+
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -46,13 +49,29 @@
 		},
 		data() {
 			return {
-				order: ["全部", "待付款", "待收货", "待评价"], //导航数据
-				//空数据渲染
-				nothing: [{
-						image: "/static/images/nothing/no_receiving.png",
-						name: "您的全部订单"
+				order: [{
+						name: "全部", //导航数据
+						index: 0,
+						nothing: [] //空数据渲染
 					},
 					{
+						name: "待付款",
+						index: 1,
+						nothing: []
+					},
+					{
+						name: "待收货",
+						index: 2,
+						nothing: []
+					},
+					{
+						name: "待评价",
+						index: 3,
+						nothing: []
+					}
+				],
+
+				nothing: [{
 						image: "/static/images/nothing/no_comment.png",
 						name: "您还没有待付款订单"
 					},
@@ -221,8 +240,8 @@
 			flex-wrap: wrap;
 
 			.footer-box {
-				width: 48%;
-				margin: 0rpx 8rpx 8rpx 8rpx;
+				width: 47%;
+				margin: 0rpx 0rpx 10rpx 15rpx;
 			}
 		}
 	}
