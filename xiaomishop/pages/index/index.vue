@@ -126,7 +126,7 @@
 				this.tabIndex = index;
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
-				// console.log(e)
+				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
 					url: "/components/home/xqing?id=" + e.id
 				})

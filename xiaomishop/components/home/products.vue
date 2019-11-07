@@ -114,7 +114,7 @@
 
 	.item.one {
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
