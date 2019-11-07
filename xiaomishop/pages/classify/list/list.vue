@@ -51,7 +51,7 @@
 						<!-- <span class="span">{{ item.txt }}</span> -->
 						<!-- 价格 -->
 						<view class="rmb">
-							$
+							￥
 							<span style="font-size: 45rpx;">{{ item.min_price }}</span>
 						</view>
 						<view class="pinglun">{{ item.comments_count}}条评论 98%满意</view>

@@ -5,7 +5,7 @@
 			<scroll-view scroll-y="false" class="scroll-y" :style="{height:phoneHeight+'px'}">
 				<!-- 类别 -->
 				<view v-for="(item,index) in classification" :key="index">
-					<view class="fenlei" :class="tabcss==index?'tabcolor':''"  @click="tabs(index)">{{item.name}}</view>
+					<view class="classs" :class="tabcss==index?'tabcolor':''"  @click="tabs(index)">{{item.name}}</view>
 				</view>
 			</scroll-view>
 		</view>
@@ -80,6 +80,7 @@
 			},
 		},
 		onNavigationBarSearchInputClicked(e){
+			// 跳转搜索页面
 			uni.navigateTo({
 				url:"search/search"
 			})
@@ -114,7 +115,7 @@
 	}
 
 	/* tab切换 */
-	.fenlei{
+	.classs{
 		font-size: 30rpx;
 		padding: 25rpx 0rpx;
 		text-align: center;
