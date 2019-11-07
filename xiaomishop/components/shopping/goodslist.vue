@@ -15,11 +15,11 @@
 										</view>
 										<view class='good-info'>
 											<view class='name'>华为matax210</view>
-											<view class='lx' :class="{bjaction:djbj}">
+											<view class='lx' :class="{bjaction:editor}">
 												<view class="lxtext">
 													火焰红 64G 标配
 												</view>
-												<view v-show="djbj">
+												<view v-show="editor">
 													<span class="iconfont" @click="togglePopup('bottom', 'popup')">&#xe65d;</span>
 												</view>
 											</view>
@@ -39,7 +39,8 @@
 								购物车空空如也，赶紧去挑选你心意的产品吧~~~~~
 						</view>
 					</view>
-					<uni-popup class="bjbox"  ref="popup" :type="type" @change="change"></uni-popup>
+					<!-- 商品编辑弹框 -->
+					<uni-popup class="bjbox"  ref="popup" :type="type" ></uni-popup>
 	</view>
 </template>
 
@@ -57,7 +58,7 @@
 				xzindex:0
 			}
 		},
-		props:['djbj'],
+		props:['editor'],
 		components:{
 			amount,
 			uniPopup
@@ -67,9 +68,6 @@
 			// 	// this.numberValue = value
 			// 	console.log("商品数量"+value)
 			// },
-			change(e) {
-				console.log(e.show)
-			},
 			//编辑弹出框
 			togglePopup(type, open) {
 				switch (type) {
@@ -97,10 +95,6 @@
 </script>
 
 <style scoped>
-/* 	.car-list {
-			padding-bottom: 47px;
-		} */
-		
 		.car-item {
 			position: relative;
 			overflow: hidden;

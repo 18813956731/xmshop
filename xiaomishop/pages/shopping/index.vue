@@ -7,9 +7,9 @@
 				</view>
 			</view>
 		<!-- 购物车商品 -->
-		<goodslist :djbj="djbj"></goodslist>
+		<goodslist :editor="editor"></goodslist>
 		<!-- 底部合计、结算 -->
-			<goodsnav class="goods-carts" :djbj="djbj"/>
+			<goodsnav class="goods-carts" :editor="editor"/>
 		<!-- 推荐 -->
 		<view class="recommend">
 			<view class="rendmain">
@@ -49,7 +49,7 @@
 				productList: [],
 				renderImage: false,
 				rightText:"编辑",
-				djbj:false
+				editor:false
 			}
 		},
 		components:{
@@ -119,10 +119,10 @@
 			onClickRight(){
 				if(this.rightText=="编辑"){
 					this.rightText="完成"
-					this.djbj=true;
+					this.editor=true;
 				}else{
 					this.rightText="编辑"
-					this.djbj=false;
+					this.editor=false;
 				}
 			}
 		},

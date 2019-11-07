@@ -3,55 +3,48 @@
 		<view :class="[ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__mask" @click="close(true)" />
 		<view :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__wrapper" @click="close(true)">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
-				<!-- <slot /> -->
-				<!-- 商品编辑 -->
-				
-				<view v-show="true">
-					<view class="editor">
-						<view class="tltmg">
-							<view class="edimg"><image src="../../static/images/demo/list/1.jpg"></image></view>
-							<view class="edlb">
-								<view  class="edprice"><text>￥</text><text>3369</text></view>
-								<view><text class="edlx">火焰红 64G 标配</text></view>
+				<slot>
+					<!-- 商品编辑插槽 -->
+					<view class="edmain">
+						<view class="editor">
+							<view class="tltmg">
+								<view class="edimg"><image src="../../static/images/demo/list/1.jpg"></image></view>
+								<view class="edlb">
+									<view  class="edprice"><text>￥</text><text>3369</text></view>
+									<view><text class="edlx">火焰红 64G 标配</text></view>
+								</view>
+							</view>
+							<view>
+								<view class="color"><text>颜色</text></view>
+								<view class="jtfl">
+									<view><text>火焰红</text></view>
+									<view><text>炭黑</text></view>
+									<view><text>冰川蓝</text></view>
+								</view>
+							</view>
+							<view>
+								<view class="color"><text>容量</text></view>
+								<view class="jtfl">
+									<view><text>64GB</text></view>
+									<view><text>128GB</text></view>
+								</view>
+							</view>
+							<view>
+								<view class="color"><text>套餐</text></view>
+								<view class="jtfl">
+									<view><text>标配</text></view>
+									<view><text>套餐一</text></view>
+									<view><text>套餐二</text></view>
+								</view>
+							</view>
+							<view class="gmnum">
+								<view><text>购买数量</text></view>
+								<amount></amount>
 							</view>
 						</view>
-						<view>
-							<view class="color"><text>颜色</text></view>
-							<view class="jtfl">
-								<view><text>火焰红</text></view>
-								<view><text>炭黑</text></view>
-								<view><text>冰川蓝</text></view>
-							</view>
-						</view>
-						<view>
-							<view class="color"><text>容量</text></view>
-							<view class="jtfl">
-								<view><text>64GB</text></view>
-								<view><text>128GB</text></view>
-							</view>
-						</view>
-						<view>
-							<view class="color"><text>套餐</text></view>
-							<view class="jtfl">
-								<view><text>标配</text></view>
-								<view><text>套餐一</text></view>
-								<view><text>套餐二</text></view>
-							</view>
-						</view>
-						<view class="gmnum">
-							<view><text>购买数量</text></view>
-							<amount></amount>
-						</view>
+						<view class="grgwc">加入购物车</view>
 					</view>
-					<view class="grgwc">加入购物车</view>
-				</view>
-				<!-- <view  v-show="">
-					
-				</view>
-				
-				<view  v-show="">
-					
-				</view> -->
+				</slot>
 			</view>
 		</view>
 	</view>
@@ -105,13 +98,8 @@ import amount from "@/components/shopping/amount.vue"
 				}
 			}
 		},
-		created() {},
 		methods: {
-			clear() {},
 			open() {
-				this.$emit('change', {
-					show: true
-				})
 				this.showPopup = true
 				this.$nextTick(() => {
 					setTimeout(() => {
@@ -121,9 +109,6 @@ import amount from "@/components/shopping/amount.vue"
 			},
 			close(type) {
 				if (!this.maskClick && type) return
-				this.$emit('change', {
-					show: false
-				})
 				this.ani = ''
 				this.$nextTick(() => {
 					setTimeout(() => {
@@ -172,7 +157,7 @@ import amount from "@/components/shopping/amount.vue"
 	.uni-popup__wrapper {
 		position: absolute;
 		z-index: 999;
-		box-sizing: border-box
+		box-sizing: border-box;
 	}
 
 	.uni-popup__wrapper.ani {

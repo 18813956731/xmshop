@@ -4,7 +4,7 @@
 		<view class="footer">
 			<view class="icon">
 			</view>
-			<view class="ftsc" v-show="!djbj">
+			<view class="ftsc" v-show="!editor">
 				<view class="total">
 					<text>合计:</text>
 					<text class="yen">￥3232</text>
@@ -13,7 +13,7 @@
 					<text>结算</text>
 				</view>
 			</view>
-			<view class="ftsc" v-show="djbj">
+			<view class="ftsc" v-show="editor">
 				<view class="collect">
 					<text>移入收藏</text>
 				</view>
@@ -30,7 +30,7 @@
 		data(){
 		return {}
 		},
-		props:['djbj'],
+		props:['editor'],
 		methods: {
 			
 		}
