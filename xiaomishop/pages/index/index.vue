@@ -42,8 +42,8 @@
 										<image :src="item.cover"></image>
 									</view>
 									<view class="selected">{{item.title}}</view>
-									<view class="selected-font selected">{{item.desc}}</view>
-									<view><text class="text-one selected">¥{{item.pprice}}</text><text class="text-tow">¥{{item.oprice}}</text></view>
+									<view class="selected-font">{{item.desc}}</view>
+									<view class="text-one"><text class=" selected">¥{{item.pprice}}</text><text class="text-tow">¥{{item.oprice}}</text></view>
 								</view>
 							</view>
 							<view class="load-more">{{loadtext}}</view>
@@ -126,7 +126,7 @@
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				console.log(e)
-				uni.navigateTo({
+				uni.navigateTo({ //跳转传参到商品详情页
 					url: "/components/home/xqing?id=" + e.id
 				})
 			},
@@ -204,15 +204,22 @@
 	.selected-font {
 		font-size: 20upx;
 		color: #8F8F94;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 	}
 
-	.selected {
-		padding: 10rpx;
-	}
+		.selected {
+			padding: 10rpx 0rpx;
+			font-size: 35rpx;
+		}
 
 	/* 价格 */
 	.text-one {
 		color: red;
+		margin-top: 10rpx;
 	}
 
 	.text-tow {
@@ -263,7 +270,8 @@
 
 	.load-more {
 		text-align: center;
-		height: 60upx;
-		line-height: 60upx;
+		height: 60rpx;
+		line-height: 60rpx;
+		font-size: 20rpx;
 	}
 </style>
