@@ -2,7 +2,7 @@
 	<view class="content">
 		<!-- 底部占位 -->
 		<view class="footer">
-			<view class="icon">
+			<view class="icon" @click="allChek">
 			</view>
 			<view class="ftsc" v-show="!editor">
 				<view class="total">
@@ -28,11 +28,17 @@
 <script>
 	export default {
 		data(){
-		return {}
+		return {
+			allcheks:false//全选状态
+		}
 		},
 		props:['editor'],
 		methods: {
-			
+			//全选或全不选
+			allChek(){
+				this.allcheks=!this.allcheks
+				this.$emit("allChek",this.allcheks)
+			}
 		}
 	}
 </script>

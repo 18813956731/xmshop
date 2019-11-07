@@ -4,29 +4,28 @@
 						<!-- 购物车产品 -->
 						<view class='car-item'>
 							<!--列表项-->
-							<view class='car-prod' v-for="(item,index) in 6" :key='index'>
+							<view class='car-prod' v-for="(item,index) in goodList" :key='index'>
 								<!-- 商品信息-->
-								<view class='goods-info'  @click="xz(index)" :class="{active:index==xzindex}">
+								<view class='goods-info'   :class="{active:item.action}">
 									<view class='goods-info-inner'>
-										<view class='checkbox'>
+										<view class='checkbox' @click="action(item)">
 										</view>
 										<view class='goods-image'>
-											<image src="../../static/images/demo/list/1.jpg"></image>
+											<image :src="item.img"></image>
 										</view>
 										<view class='good-info'>
-											<view class='name'>华为matax210</view>
+											<view class='name'>{{item.name}}</view>
 											<view class='lx' :class="{bjaction:editor}">
 												<view class="lxtext">
-													火焰红 64G 标配
+													{{item.lxtext}}
 												</view>
 												<view v-show="editor">
 													<span class="iconfont" @click="togglePopup('bottom', 'popup')">&#xe65d;</span>
 												</view>
 											</view>
 											<view class="infobox">
-												<view class='price'>￥3541</view>
-												<!-- :value="numberValue" -->
-												<amount  class="numbers" @change="change"></amount>
+												<view class='price'>￥{{item.price}}</view>
+												<amount  class="numbers" :value="item.number"></amount>
 											</view>
 											
 										</view>
@@ -40,7 +39,7 @@
 						</view>
 					</view>
 					<!-- 商品编辑弹框 -->
-					<uni-popup class="bjbox"  ref="popup" :type="type" ></uni-popup>
+					<uni-popup class="bjbox" ref="popup" :type="type"></uni-popup>
 	</view>
 </template>
 
@@ -50,25 +49,55 @@
 	export default{
 		data(){
 			return{
-				// numberValue:1,
 				phoneHeight:0,
 				show: false,
 				type: '',
 				content: '顶部弹 popup',
-				xzindex:0
+				goodList:[{
+					img:"../../static/images/demo/list/1.jpg",
+					name:"华为matax210",
+					lxtext:"火焰红 64G 标配",
+					price:"3541",
+					action:false,
+					number:1
+				},{
+					img:"../../static/images/demo/list/1.jpg",
+					name:"华为matax210",
+					lxtext:"火焰红 64G 标配",
+					price:"3541",
+					action:false,
+					number:1
+				},{
+					img:"../../static/images/demo/list/1.jpg",
+					name:"华为matax210",
+					lxtext:"火焰红 64G 标配",
+					price:"3541",
+					action:false,
+					number:1
+				},{
+					img:"../../static/images/demo/list/1.jpg",
+					name:"华为matax210",
+					lxtext:"火焰红 64G 标配",
+					price:"3541",
+					action:false,
+					number:1
+				},{
+					img:"../../static/images/demo/list/1.jpg",
+					name:"华为matax210",
+					lxtext:"火焰红 64G 标配",
+					price:"3541",
+					action:false,
+					number:1
+				}]
 			}
 		},
-		props:['editor'],
+		props:['editor','allchek'],
 		components:{
 			amount,
 			uniPopup
 		},
 		methods:{
-			// change(value) {
-			// 	// this.numberValue = value
-			// 	console.log("商品数量"+value)
-			// },
-			//编辑弹出框
+			//弹出模态框
 			togglePopup(type, open) {
 				switch (type) {
 					case 'bottom':
@@ -83,13 +112,17 @@
 				}
 			},
 			// 点击选中
-			xz(index){
-				console.log(index)
-				this.xzindex=index
+			action(item){
+				item.action=!item.action
 			}
 		},
-		created(){
-			
+		watch:{
+			//监听全选状态，并改变选中
+			allchek(newval){
+					this.goodList.forEach(item=>{
+						item.action=newval
+					})
+			}
 		}
 	}
 </script>
@@ -207,6 +240,6 @@
 		}
 		.bjbox{
 			position: fixed;
-			bottom: 49px;
+			bottom: 0;
 		}
 </style>

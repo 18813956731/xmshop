@@ -3,13 +3,13 @@
 			<view class="uni-navbar">
 				<view class="navb">
 					<view><text>购物车</text></view>
-					<view><text @tap="onClickRight">{{ rightText }}</text></view> 
+					<view><text @click="onClickRight">{{ rightText }}</text></view> 
 				</view>
 			</view>
 		<!-- 购物车商品 -->
-		<goodslist :editor="editor"></goodslist>
+		<goodslist :editor="editor" :allchek="allchek"></goodslist>
 		<!-- 底部合计、结算 -->
-			<goodsnav class="goods-carts" :editor="editor"/>
+			<goodsnav class="goods-carts" :editor="editor" @allChek="allChek"/>
 		<!-- 推荐 -->
 		<view class="recommend">
 			<view class="rendmain">
@@ -49,7 +49,8 @@
 				productList: [],
 				renderImage: false,
 				rightText:"编辑",
-				editor:false
+				editor:false, //编辑
+				allchek:false//全选状态
 			}
 		},
 		components:{
@@ -116,15 +117,17 @@
 			        this.productList.push(item);
 			    });
 			},
+			//点击编辑
 			onClickRight(){
-				if(this.rightText=="编辑"){
-					this.rightText="完成"
-					this.editor=true;
-				}else{
-					this.rightText="编辑"
-					this.editor=false;
-				}
+				this.editor?this.rightText='编辑':this.rightText='完成'
+				this.editor=!this.editor
+			},
+			//底部点击全选
+			allChek(allchek){
+				this.allchek=allchek
+				console.log(allchek)
 			}
+			
 		},
 		onLoad() {
 		    this.loadData();
@@ -151,7 +154,7 @@
 .goods-carts{
 	position: fixed;
 	width: 100%;
-	bottom:49px;
+	bottom:0;
 	background-color:#FFFFFF ;
 	z-index: 111;
 }
