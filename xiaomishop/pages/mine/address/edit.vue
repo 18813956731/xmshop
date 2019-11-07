@@ -6,29 +6,31 @@
 			<view class="text-right">删除</view>
 		</view>
 		<view class="main">
-			<view class="flex">
-				<label>收货人:</label>
-				<input type="text" value="" />
-			</view>
-			<view class="flex">
-				<label>手机号码:</label>
-				<input type="text" value="" />
-			</view>
-			<view class="hr"></view>
-			<view class="flex">
-				<label>所在地区:</label>
-				<input type="text" value="" />
-			</view>
-			<view class="flex">
-				<label>详细地址:</label>
-				<input type="text" value="" />
-			</view>
-			<view class="hr"></view>
-			<view class="flex">
-				<label>设置默认地址:</label>
-				<switch checked="flase" @change="switchchange" color="#FD6801" />
-			</view>
-			<view class="footer" @click="baoc">保存</view>
+			<form @submit="fomsubmit" @reset="">
+				<view class="flex">
+					<label>收货人:</label>
+					<input type="text" value="" />
+				</view>
+				<view class="flex">
+					<label>手机号码:</label>
+					<input type="text" value="" />
+				</view>
+				<view class="hr"></view>
+				<view class="flex">
+					<label>所在地区:</label>
+					<input type="text" value="" />
+				</view>
+				<view class="flex">
+					<label>详细地址:</label>
+					<input type="text" value="" />
+				</view>
+				<view class="hr"></view>
+				<view class="flex">
+					<label>设置默认地址:</label>
+					<switch checked="flase" @change="switchchange" color="#FD6801" />
+				</view>
+				<button form-type="submit" class="footer">保存</button>
+			</form>	
 		</view>
 	</view>
 </template>
@@ -49,11 +51,8 @@
 					delta:1
 				})
 			},
-			baoc(){
-				uni.showToast({
-					title: '点击保存',
-					icon: 'none'
-				})
+			fomsubmit(e){
+				console.log(e)
 			}
 		}
 	}

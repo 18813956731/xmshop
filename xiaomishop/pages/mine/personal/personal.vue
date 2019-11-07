@@ -1,16 +1,19 @@
 <template>
 	<view id="mine-personal">
+		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">修改资料</view>
 		</view>
 		<view class="hr"></view>
+		<!-- 头像 -->
 		<view class="headportrait fexi">
 			<view>头像</view>
 			<view class="img">
 				<img src="/static/images/demo/demo6.jpg" mode="widthFix" />
 			</view>
 		</view>
+		<!-- 姓名 -->
 		<view class="naxil fexi">
 			<view>姓名</view>
 			<view class="text">
@@ -22,15 +25,19 @@
 			<view>性别</view>
 			<span class="iconfont icon-you"></span>
 		</view>
+		<!-- 生日 -->
 		<view class="naxil fexi">
 			<view>生日</view>
 			<span class="iconfont icon-you"></span>
 		</view>
+		<!-- 分割线 -->
 		<view class="hr"></view>
+		<!-- 修改密码 -->
 		<view class="naxil fexi" @tap="psod">
 			<view>修改密码</view>
 			<span class="iconfont icon-you"></span>
 		</view>
+		<!-- 密保手机 -->
 		<view class="naxil fexi">
 			<view>密保手机</view>
 			<span class="iconfont icon-you"></span>
@@ -46,11 +53,13 @@
 			}
 		},
 		methods: {
+			//返回上一层
 			returni() {
 				uni.navigateBack({
 					delta:1
 				})
 			},
+			//跳转密码修改
 			psod(){
 				uni.navigateTo({
 					url:"/pages/mine/personal/psword?id=1"

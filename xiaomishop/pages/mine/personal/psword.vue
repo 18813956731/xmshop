@@ -1,24 +1,29 @@
 <template>
 	<view id="mine-psword">
+		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
 			<view class="text">修改密码</view>
 		</view>
+		<!-- 主体 -->
 		<view class="main">
-            <view class="flex">
-				<label>当前密码</label>
-				<input type="text" value="" placeholder="请输入" />
-			</view>
-			<view class="flex">
-				<label>新密码</label>
-				<input type="text" value="" placeholder="请输入" />
-			</view>
-			<view class="flex">
-				<label>确认密码</label>
-				<input type="text" value="" placeholder="请输入" />
-			</view>
-			 <view class="text">密码长度8-16位，数字，字母，符号至少包含两种</view>
-			 <view class="footer" @click="fooert">确认</view>
+			<!-- 表单 -->
+			<form @submit="formSubmit" @reset="">
+				<view class="flex">
+					<label>当前密码</label>
+					<input type="number" value="" name="input" placeholder="请输入" />
+				</view>
+				<view class="flex">
+					<label>新密码</label>
+					<input type="number" value=""name="input" placeholder="请输入" />
+				</view>
+				<view class="flex">
+					<label>确认密码</label>
+					<input type="number" value=""name="input" placeholder="请输入" />
+				</view>
+				<view class="text">密码长度8-16位，数字，字母，符号至少包含两种</view>
+				<button class="footer" form-type="submit">确认</button>
+			</form>
 		</view>
 	</view>
 </template>
@@ -31,18 +36,17 @@
 			}
 		},
 		methods: {
+			//返回上一层
 			returni() {
 				uni.navigateBack({
 					delta: 1
 				})
 			},
-			fooert(){
-				uni.showToast({
-					title: '点击确认',
-					icon: 'none'
-				})
+			//提交修改
+			formSubmit(e) {
+				console.log(e)
 			}
-			
+
 		}
 	}
 </script>
@@ -66,35 +70,40 @@
 		}
 	}
 
-	.main{
+	.main {
 		width: 100%;
 		height: 1212rpx;
 		background-color: #F5F5F5;
 		padding-top: 20rpx;
-		.flex{
+
+		.flex {
 			background-color: white;
 			width: 100%;
 			display: inline-block;
 			padding-bottom: 5rpx;
-			label{
+
+			label {
 				text-indent: 35rpx;
 				width: 250rpx;
 				float: left;
 				line-height: 100rpx;
 				color: #2C405A;
 			}
-			input{
+
+			input {
 				height: 100rpx;
 				line-height: 100rpx;
 			}
 		}
-		.text{
+
+		.text {
 			font-size: 30rpx;
 			text-align: center;
-			color:#C8C7CC ;
+			color: #C8C7CC;
 			line-height: 100rpx;
 		}
-		.footer{
+
+		.footer {
 			height: 100rpx;
 			width: 90%;
 			margin: auto;

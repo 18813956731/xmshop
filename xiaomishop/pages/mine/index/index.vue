@@ -13,7 +13,7 @@
 				<text>会员积分1.99</text>
 			</view>
 		</view>
-		
+		<!-- 我的订单 -->
 		<view class="order" @click="requer">
 			我的订单
 			<span class="rigth">全部订单<span class="iconfont icon-you"></span></span>
@@ -27,7 +27,9 @@
 				<text>{{item.name}}</text>
 			</view>
 		</view>
+		<!-- 广告 -->
 		<image class="imgae" src="/static/images/demo/demo4.jpg"></image>
+		<!-- 功能循环 -->
 		<view class="btn" v-for="(iter,index) in datae" @click="fun" :id="index" :data-name="iter.name">
 			<span class="iconfont ico" :class="iter.iconi"></span>
 			<text>{{iter.name}}</text>
@@ -112,6 +114,7 @@
 				})
 
 			},
+			//跳转指定页面
 			fun(e) {
 				let index = parseInt(e.currentTarget.id) ||parseInt(e.target.id)
 				let name = e.currentTarget.dataset.name || e.currentTarget.target.name
@@ -144,7 +147,7 @@
 	.iconfont {
 		font-size: 45rpx;
 	}
-
+// 头部样式
 	.hreder {
 		width: 100%;
 		height: 340rpx;

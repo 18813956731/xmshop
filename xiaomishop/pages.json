@@ -46,11 +46,10 @@
 			        "navigationBarTitleText": "详情页",//设置页面标题文字
 			        "enablePullDownRefresh":true//开启下拉刷新
 			      }
-		}, {
-			"path": "components/home/gunayu",
+		},{
+			"path": "pages/mine/about/about",
 			 "style": {
-			        "navigationBarTitleText":"关于",//设置页面标题文字
-			        "enablePullDownRefresh":true//开启下拉刷新
+			        "navigationBarTitleText":"关于商城"//设置页面标题文字
 			      }
 		},
 		{
