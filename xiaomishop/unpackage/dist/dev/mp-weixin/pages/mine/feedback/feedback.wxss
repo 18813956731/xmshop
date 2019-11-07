@@ -116,7 +116,12 @@
     line-height: 100rpx;
     color: white;
     border-radius: 100rpx;
+}
+.main .footer .activeindex {
     opacity: 0.5;
+}
+.main .footer .active {
+    opacity: 1;
 }
 .main .footer .tex {
     text-align: center;

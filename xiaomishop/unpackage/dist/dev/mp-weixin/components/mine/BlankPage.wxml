@@ -1,0 +1,1 @@
+<view id="mine-blank"><view class="order"><view class="image"><image src="{{nothing[0].image}}" mode="widthFix" class="_img"></image></view><view class="text">{{nothing[0].name}}</view></view></view>

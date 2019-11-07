@@ -4,7 +4,7 @@
     "components/home/carousel",
     "components/home/products",
     "components/home/xqing",
-    "components/home/gunayu",
+    "pages/mine/about/about",
     "pages/classify/index",
     "pages/classify/list/list",
     "pages/classify/search/search",
@@ -20,6 +20,7 @@
     "pages/mine/address/edit",
     "pages/mine/feedback/feedback",
     "pages/mine/feedback/myfeedback",
+    "components/mine/BlankPage",
     "pages/mine/myorder/myorder"
   ],
   "subPackages": [],
@@ -61,5 +62,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

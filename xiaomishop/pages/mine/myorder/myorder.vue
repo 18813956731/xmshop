@@ -16,9 +16,9 @@
 		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
 			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in order" :key="tabIndex">
 				<!-- 纵向滚动 -->
-				<scroll-view class="list-scroll-content" scroll-y>
+				<scroll-view class="list-scroll-content" scroll-y @scrolltolower="loadData">
 				  <!-- 空白页 -->
-				  
+				
 					<all></all>
 
 				</scroll-view>
@@ -143,6 +143,10 @@
 			loadMore() {
 
 			},
+			//获取订单列表
+			loadData(source){
+				console.log(source)
+			},
 			//更换内容导航一起
 			ontabchange(e) {
 				this.tabIndex = e.detail.current || e.target.current
@@ -152,16 +156,12 @@
 </script>
 
 <style lang="scss">
-	.scs {
-		margin: 30rpx;
-		padding: 30rpx;
-		background-color: red;
-	}
-
 	.mine-myorder {
 		height: 100%;
 	}
-
+        .icon-2fanhui{
+        	font-size: 38rpx !important;
+        }
 	.hreder {
 		display: flex;
 		justify-content: space-between;
@@ -169,7 +169,9 @@
 		height: 100rpx;
 		padding: 0rpx 30rpx 0rpx 40rpx;
 		border-bottom: #E5E5E5 2rpx solid;
-
+        .text{
+			font-size: 36rpx;
+		}
 		.iconfont {
 			font-size: 50rpx;
 		}
@@ -190,7 +192,7 @@
 		width: 25%;
 		text-align: center;
 		color: #6D6D72;
-		font-size: 35rpx;
+		font-size: 33rpx;
 		line-height: 100rpx;
 	}
 

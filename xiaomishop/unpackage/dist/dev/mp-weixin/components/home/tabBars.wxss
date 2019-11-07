@@ -24,7 +24,7 @@
 	        flex-wrap: nowrap;
 }
 .swiper-tab-list.data-v-82932e74 {
-	padding: 0px 37rpx;
+	padding: 30rpx 37rpx;
 	color: #333333;
 	font-size: 30rpx;
 }

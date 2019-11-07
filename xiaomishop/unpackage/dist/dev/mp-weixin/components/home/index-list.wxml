@@ -1,1 +1,0 @@
-<view class="category data-v-de865910"><view class="category-one data-v-de865910"><view class="data-v-de865910"><image src="{{item.img}}" class="data-v-de865910"></image></view><text class="data-v-de865910">{{item.name}}</text></view></view>

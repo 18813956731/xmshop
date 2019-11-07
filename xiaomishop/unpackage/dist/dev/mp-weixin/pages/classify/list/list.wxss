@@ -1,51 +1,213 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 头部 */
 .head.data-v-88f80252 {
 	height: 100rpx;
+	line-height:100rpx;
 	border-top: #999999 1px solid;
 	border-bottom: #999999 1px solid;
 	overflow: hidden;
-	line-height: 100rpx;
 }
 .itemst.data-v-88f80252 {
+	float:left;
+	overflow:hidden;
 	text-align: center;
-	width: 180rpx;
-	float: left;
+	width: 160rpx;
 	padding-left: 20rpx;
 	color: #808080;
 }
 /* 字体图标 */
-.icon.data-v-88f80252 {
-	position: relative;
-	/* width: 80rpx; */
-	height: 100rpx;
-	float: left;
+/* 点击头部排序列表换字体颜色 */
+.headerTxt.data-v-88f80252 {
+	color: #fd964f;
 }
 .items-icon.data-v-88f80252 {
+	padding-left:30rpx;
 	float: left;
 }
 .icotop.data-v-88f80252 {
+	width: 50rpx;
+	top:0rpx;
 	position: relative;
-	/* border: 1px solid; */
+	height: 100rpx;
+	float: left;
 	height: 100rpx;
 }
+/* 排序字体图标 */
 .iconfont.data-v-88f80252 {
+	position: absolute;
+	top: 0rpx;
+	left: 0rpx;
+	/* border: 1px solid; */
+	height:100rpx;
 	font-size: 45rpx;
 	width: 50rpx;
 	float: left;
 	overflow: hidden;
-	line-height: 40rpx;
+	line-height: 100rpx;
 	text-align: center;
-}
-.icon-paixu-shengxu.data-v-88f80252 {
-	color: #fd964f;
-	position: absolute;
-	top: 30rpx;
-	left: 10rpx;
-}
-.icon-paixu-jiangxu.data-v-88f80252 {
-	position: absolute;
-	top: 30rpx;
-	left: 10rpx;
 }
 /* 商品 列表*/
 .dl.data-v-88f80252 {
@@ -93,6 +255,7 @@
 	width: 100%;
 	height: 100rpx;
 }
+/* 重置取消 */
 .but1.data-v-88f80252,
 .but2.data-v-88f80252 {
 	font-size: 40rpx !important;
@@ -122,14 +285,21 @@
 	overflow: hidden;
 }
 .service-text ._span.data-v-88f80252 {
+	padding:10rpx 0rpx;
 	display: block;
 	text-align: center;
 	font-size: 36rpx;
 	width: 160rpx;
 	margin: 5%;
 	float: left;
-	background: #c0c0c0;
-	border: #7c858d 1rpx solid;
+	background: #f8f9fb;
+	border: 1rpx solid white;
+}
+/* 点击添加的样式 */
+.active.data-v-88f80252 {
+	border: 1rpx solid #fa8538 !important;
+	background-color: #fce0d5;
+	color: #fa9855;
 }
 /* 筛选结束 */
 

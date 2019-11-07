@@ -84,11 +84,12 @@
 	.shipped {
 		height: 80upx;
 		line-height: 80upx;
-		font-size: 32rpx;
+		font-size: 30rpx;
 	}
 
 	.date {
-		color: #DDDDDD;
+		font-size: 26rpx;
+		color: #000000;
 	}
 
 	.shipped {

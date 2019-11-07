@@ -6,7 +6,7 @@
 					<image :src="item.img"></image>
 				</view>
 				<view class="text">{{item.name}}</view>
-				<view class="text-tow text">{{item.nameone}}</view>
+				<view class="text_tow">{{item.nameone}}</view>
 				<view class="text">
 					<text class="text-Four">￥{{item.pic}}</text>
 					<text class="text-three">￥{{item.price}}</text>
@@ -44,14 +44,17 @@
 		width: 100%;
 		height: 300rpx;
 	}
-     .text{
-		 font-size: 37rpx;
-		 color: #555555;
-		 text-indent: 25rpx;
-		 line-height: 60rpx;
-	 }
-	.text-tow {
-		font-size: 30rpx;
+
+	.text {
+		font-size: 33rpx;
+		color: #333333;
+		text-indent: 25rpx;
+		line-height: 60rpx;
+	}
+
+	.text_tow {
+		text-indent: 25rpx;
+		font-size: 25rpx !important;
 		color: #999999;
 	}
 

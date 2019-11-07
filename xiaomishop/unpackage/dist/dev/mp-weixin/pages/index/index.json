@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "swiper-tab-head": "/components/home/tabBars",
-    "caro-usel": "/components/home/carousel",
-    "indexlist": "/components/home/index-list"
+    "caro-usel": "/components/home/carousel"
   }
 }
