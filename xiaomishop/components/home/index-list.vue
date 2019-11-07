@@ -2,9 +2,9 @@
 	<view class="category">
 		<view class="category-one">
 			<view>
-				<image :src="item.img"></image>
+				<image :src="item.src"></image>
 			</view>
-			<text>{{item.name}}</text>
+			<text>{{item.text}}</text>
 		</view>
 	</view>
 </template>
@@ -12,8 +12,7 @@
 <script>
 	export default {
 		props: {
-			item: Object,
-			index: Number
+			item: Object
 		},
 		data() {
 			return {}

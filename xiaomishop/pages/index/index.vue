@@ -6,14 +6,17 @@
 		<!-- </view> -->
 		<view>
 			<swiper :current="tabIndex" @change="tabChange" class="swiper-item">
-				<swiper-item v-for="(items,index) in newslist" :key="index">
+				<swiper-item v-for="(itemz,indexz) in 10" :key='indexz'>
 					<scroll-view scroll-y show-scrollbar="false" class="list">
 						<!-- 轮播 -->
 						<caroUsel />
 						<!-- 类别 -->
-						<view v-if="items.list.length > 0" class="list-tow">
-							<view v-for="(item,index1) in items.list" :key="index1" class="list-noe" @tap="navigateTow">
-								<indexlist :item="item" :index="index1"></indexlist>
+						<view class="category">
+							<view class="category-one" v-for="(items,index1) in newslist" :key="index1" @tap="navigateTow()">
+								<view>
+									<image :src="items.src"></image>
+								</view>
+								<text>{{items.text}}</text>
 							</view>
 						</view>
 						<!-- 广告 -->
@@ -53,229 +56,21 @@
 <script>
 	import swiperTabHead from "@/components/home/tabBars.vue"
 	import caroUsel from "@/components/home/carousel.vue"
-	import indexlist from '@/components/home/index-list.vue'
 	export default {
 		components: {
 			swiperTabHead,
-			caroUsel,
-			indexlist
+			caroUsel
+			// indexlist
 		},
 		data() {
 			return {
-				imgr:'',//广告图
+				imgrg:'',
+				imgr: '', //广告图
 				tabIndex: 0,
-				selecteds:'',//每日精选
-				tabBars: [],//tab导航数据存放数组
-				selected: [],//每日精选商品类
-				newslist: [{
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}, {
-						name: '家电热卖',
-						img: '/static/indexnav/9.gif'
-					}, {
-						name: '米粉卡',
-						img: '/static/indexnav/10.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}, {
-					list: [{
-						name: '新品分类',
-						img: '/static/indexnav/1.png'
-					}, {
-						name: '小米众筹',
-						img: '/static/indexnav/2.gif'
-					}, {
-						name: '以旧换新',
-						img: '/static/indexnav/3.gif'
-					}, {
-						name: '1分拼团',
-						img: '/static/indexnav/4.gif'
-					}, {
-						name: '超值特卖',
-						img: '/static/indexnav/5.gif'
-					}, {
-						name: '小米秒杀',
-						img: '/static/indexnav/6.gif'
-					}, {
-						name: '真心想要',
-						img: '/static/indexnav/7.gif'
-					}, {
-						name: '电视热卖',
-						img: '/static/indexnav/8.gif'
-					}]
-				}]
+				selecteds: '', //每日精选
+				tabBars: [], //tab导航数据存放数组
+				selected: [], //每日精选商品类
+				newslist: ''//类别
 			}
 		},
 		onLoad() {
@@ -284,14 +79,16 @@
 		methods: {
 			async shuj() {
 				let [error, res] = await uni.request({
-					url: 'http://ceshi3.dishait.cn/api/index_category/data'//接口拿取数据
+					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
 				})
 				console.log(res)
-				this.tabBars=res.data.data.category//tab导航
-				this.selecteds=res.data.data.data[3].data//每日精选
-				this.selected=res.data.data.data[4].data//每日精选商品
-				this.imgr=res.data.data.data[2].data//广告图
-				console.log(this.imgr)
+				this.tabBars = res.data.data.category //tab导航
+				this.selecteds = res.data.data.data[3].data //每日精选
+				this.selected = res.data.data.data[4].data //每日精选商品
+				this.imgr = res.data.data.data[2].data //广告图
+				this.newslist = res.data.data.data[1].data//类别
+				this.imgrg = res.data.data.data[0].data.src//类别
+				console.log(this.imgrg)
 			},
 			tabChange(e) {
 				this.tabIndex = e.detail.current;
@@ -299,13 +96,13 @@
 			tabtap(index) {
 				this.tabIndex = index;
 			},
-			navigateTo() {//点击商品跳转到商品详情购买页
+			navigateTo() { //点击商品跳转到商品详情购买页
 				uni.navigateTo({
 					url: "/components/home/xqing"
 				})
 			},
 			navigateTow() {
-				uni.navigateTo({
+				uni.navigateTo({//跳转到类别
 					url: "/components/home/products"
 				})
 			}
@@ -405,6 +202,24 @@
 
 	.list {
 		height: 1080rpx;
+	}
+
+	.category {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.category-one {
+		width: 20%;
+		font-size: 20upx;
+		text-align: center;
+		margin-bottom: 20rpx;
+	}
+
+	.category-one image {
+		width: 70upx;
+		height: 70upx;
 	}
 
 	/* tab切换高度 */
