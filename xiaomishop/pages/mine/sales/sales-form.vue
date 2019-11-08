@@ -46,9 +46,9 @@
 			return {
 				showImg: false,
 				list: [{
-						title: "米加金属签字笔 金色",
-						content: "能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？",
-						img: "/static/images/demo/demo1.jpg"
+						title: "小米8 青春 6GB+128G 梦幻蓝 ",
+						content: "维修服务:剩余111天",
+						img: "/static/images/demo/list/1.jpg"
 					}
 				]
 			}
@@ -66,75 +66,81 @@
 		width: 100%;
 		height: 100%;
 		background-color: #EEEEEE;
-		font-size: 60upx;
 	}
 	.line{
 		width: 100%;
-		height: 20upx;
+		height: 20rpx;
 	}
 	.products,.typeService{
 		background-color: white;
 	}
+	.uni-media-list-text-top{
+		font-size: 28rpx;
+	}
 	.tit{
 		width: 100%;
-		height: 80upx;
+		height: 80rpx;
 		line-height: 80upx;
-		border-bottom: 1upx solid #E0E0E0;
-		margin-left: 20upx;
+		border-bottom: 1rpx solid #E0E0E0;
+		margin-left: 20rpx;
+		font-size: 28rpx;
+		color: #7A7E83;
 	}
 	.uni-list{
-		height: 180upx;
+		height: 180rpx;
 	}
 	.uni-media-list-body{
-		margin-top:20upx;
+		margin-top:20rpx;
 	}
 	.uni-media-list-logo{
-		height: 120upx;
-		width: 120upx;
+		height: 120rpx;
+		width: 120rpx;
 	}
 	.service{
 		width: 100%;
-		height: 120upx;
-		line-height: 120upx;		
+		height: 120rpx;
+		line-height: 120rpx;		
 	}
 	.service text{
 		display: inline-block;
-		width: 150upx;
-		height: 80upx;
-		line-height: 80upx;
+		width: 150rpx;
+		height: 80rpx;
+		line-height: 80rpx;
 		text-align: center;
-		border: 1upx solid #FF6B01;
-		margin-left:20upx;
+		border: 1rpx solid #F5B181;
+		margin-left:20rpx;
 		color:#FF6B01;
+		font-size: 28rpx;
 	}
 	.problem{
 		background-color: white;
-		height:404upx
+		height:404rpx
 	}
 	.detail{				
-		margin: 20upx;
-		border-radius: 15upx;
-		border: 1upx solid #D1D1D1;
+		margin: 20rpx;
+		border-radius: 15rpx;
+		border: 1rpx solid #D1D1D1;
 	}
 	.photograph{
 		color: #D1D1D1;
 		display: flex;
 		justify-content: space-between;
-		padding: 0px 20upx;
-		height:40upx;
-		line-height:40upx;
-		margin-bottom:10upx;
+		padding: 0px 20rpx;
+		height:40rpx;
+		line-height:40rpx;
+		margin-bottom:10rpx;
+		font-size: 30rpx;
 	}
 	.icon-paizhao{
-		font-size: 40upx;
+		font-size: 40rpx;
 		color: #D6D6D6;
 	}
 	.next{
-		height: 100upx;
-		line-height: 100upx;
+		height: 100rpx;
+		line-height: 100rpx;
 		background-color: #FF6B01;
 		text-align: center;
 		color: white;
-		margin: 25upx;
+		margin: 25rpx;
 	}
 </style>

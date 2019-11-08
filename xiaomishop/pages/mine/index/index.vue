@@ -16,14 +16,14 @@
 		<!-- 我的订单 -->
 		<view class="order">
 			我的订单
-			<span class="rigth"  @click="requer">全部订单<span class="iconfont icon-you"></span></span>
+			<span class="rigth" @click="requer">全部订单<span class="iconfont icon-you"></span></span>
 		</view>
 		<!-- 分割线 -->
 		<view class="hr"></view>
 		<!-- 订单付款 -->
 		<view class="logo">
-			<view v-for="(item,index) in datas" :key="index"  @click="requer">
-				<span class="iconfont" :class="item.icon"></span>
+			<view v-for="(item,index) in datas" :key="index" :data-index="index" @click="requer">
+				<span class="iconfont vioc" :class="item.icon"></span>
 				<text>{{item.name}}</text>
 			</view>
 		</view>
@@ -116,21 +116,37 @@
 			},
 			//跳转指定页面
 			fun(e) {
-				let index = parseInt(e.currentTarget.id) ||parseInt(e.target.id)
+				let index = parseInt(e.currentTarget.id) || parseInt(e.target.id)
 				let name = e.currentTarget.dataset.name || e.currentTarget.target.name
-				  for (let i=0;i<this.datae.length;i++) {
-				  	    uni.showToast({
-				  	    	title: '跳转'+name,
-				  	    	icon: 'none'
-				  	    })
-				  }
+				for (let i = 0; i < this.datae.length; i++) {
+					uni.showToast({
+						title: '跳转' + name,
+						icon: 'none'
+					})
+				}
 
 			},
 			//跳转我的订单
-			requer() {
-				uni.navigateTo({
-					url: "/pages/mine/myorder/myorder?id=1"
-				})
+			requer(e) {
+				let index = parseInt(e.currentTarget.dataset.index)//页面下标
+				if (isNaN(index)) {
+					uni.navigateTo({
+						url: "/pages/mine/myorder/myorder?steat=0"
+					})
+				} else {
+					index++
+					if (index == 4) {
+						uni.navigateTo({
+							url:"/pages/mine/sales/after-sales"
+						})
+					} else {
+						uni.navigateTo({
+							url: "/pages/mine/myorder/myorder?steat=" + index + ""
+						})
+					}
+
+
+				}
 			}
 		},
 
@@ -147,7 +163,8 @@
 	.iconfont {
 		font-size: 45rpx;
 	}
-// 头部样式
+
+	// 头部样式
 	.hreder {
 		width: 100%;
 		height: 340rpx;
@@ -223,15 +240,21 @@
 		font-weight: bold;
 
 		.rigth {
+			display: inline-block;
 			font-weight: 100;
 			display: block;
 			width: 190rpx;
 			float: right;
 			font-size: 30rpx;
 			color: #999999;
+			height: 40rpx;
+			line-height: 40rpx;
 		}
 
 		.icon-you {
+			position: relative;
+			bottom: 3rpx;
+			left: 5rpx;
 			font-size: 19rpx;
 		}
 	}
@@ -254,7 +277,10 @@
 		}
 
 		text {
-			font-size: 14rpx;
+			font-size: 24rpx;
+		}
+		.vioc{
+			font-size: 55rpx;
 		}
 	}
 

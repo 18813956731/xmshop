@@ -36,21 +36,21 @@
 			"path": "components/home/carousel"
 		}, {
 			"path": "components/home/products",
-			 "style": {
-			        "navigationBarTitleText": "新品发布",//设置页面标题文字
-			        "enablePullDownRefresh":true//开启下拉刷新
-			      }
+			"style": {
+				"navigationBarTitleText": "新品发布", //设置页面标题文字
+				"enablePullDownRefresh": true //开启下拉刷新
+			}
 		}, {
 			"path": "components/home/xqing",
-			 "style": {
-			        "navigationBarTitleText": "详情页",//设置页面标题文字
-			        "enablePullDownRefresh":true//开启下拉刷新
-			      }
-		},{
+			"style": {
+				"navigationBarTitleText": "详情页", //设置页面标题文字
+				"enablePullDownRefresh": true //开启下拉刷新
+			}
+		}, {
 			"path": "pages/mine/about/about",
-			 "style": {
-			        "navigationBarTitleText":"关于商城"//设置页面标题文字
-			      }
+			"style": {
+				"navigationBarTitleText": "关于商城" //设置页面标题文字
+			}
 		},
 		{
 			"path": "pages/classify/index",
@@ -75,13 +75,13 @@
 				}
 
 			}
-		},{
+		}, {
 			"path": "pages/classify/list/list",
-			"style":{
-				
+			"style": {
+
 				"app-plus": {
 					"titleNView": {
-						"titleText":"列表",
+						"titleText": "列表",
 						//按钮配置
 						"buttons": [{
 							"color": "#555555",
@@ -93,10 +93,9 @@
 					}
 				}
 			}
-		}
-		,{
-		    "path" : "pages/classify/search/search",
-		    "style" : {
+		}, {
+			"path": "pages/classify/search/search",
+			"style": {
 				"app-plus": {
 					"titleNView": {
 						"searchInput": {
@@ -110,96 +109,136 @@
 							"color": "#555555",
 							"float": "right",
 							"fontSize": "36rpx",
-							"fontWeight":"normal",
+							"fontWeight": "normal",
 							"fontSrc": "/static/icon/iconfont.ttf",
 							"text": "搜索",
-							"width":"auto"
+							"width": "auto"
 						}]
 					}
 				}
-		
+
 			}
-		},{
-			"path":"pages/mine/login"
-		},{
-			"path":"pages/mine/phone"
+		}, {
+			"path": "pages/mine/login"
+		}, {
+			"path": "pages/mine/phone"
 		},
 		{
 			"path": "pages/shopping/index",
 			"style": {
 				"navigationBarTitleText": "购物车",
 				"navigationBarBackgroundColor": "#FFF",
-				"navigationStyle":"custom"
+				"navigationStyle": "custom"
 			}
 		},
-		{//我的页面
-					"path": "pages/mine/index/index",
-					"style": {
-						"navigationBarBackgroundColor": "rgba(255,0,0,0.1)",
-						"navigationStyle": "custom"
-					}
-				},
-				{//设置页面
-					"path": "pages/mine/setup/setup",
-					"style": {
-						"navigationStyle": "custom"
-					}
-		
-				},
-				{//密码页面
-					"path": "pages/mine/personal/psword",
-					"style": {
-						"navigationStyle": "custom"
-					}
-		
-				}, {//修改资料
-					"path": "pages/mine/personal/personal",
-					"style": {
-						"navigationStyle": "custom"
-						
-					}
-				}, {//小米商城
-					"path": "pages/mine/article/article",
-					"style": {
-						"navigationStyle": "custom"
-					}
-				},
-				{//收货地址
-					"path":"pages/mine/address/address",
-					"style":{
-						"navigationStyle":"custom"
-					}
-				},
-				{//编辑收货地址
-					"path":"pages/mine/address/edit",
-					"style":{
-						"navigationStyle":"custom"
-					}
-				},
-				{//意见反馈
-					"path":"pages/mine/feedback/feedback",
-					"style":{
-						"navigationStyle":"custom"
-					}
-				},
-				{//我的反馈
-					"path":"pages/mine/feedback/myfeedback",
-					"style":{
-						"navigationStyle":"custom"
-					}
-				},
-				{//我的反馈
-					"path":"components/mine/BlankPage",
-					"style":{
-						"navigationStyle":"custom"
-					}
-				},
-				{//我的订单
-					"path":"pages/mine/myorder/myorder",
-					"style":{
-						"navigationStyle":"custom"
+		{ //我的页面
+			"path": "pages/mine/index/index",
+			"style": {
+				"navigationBarBackgroundColor": "rgba(255,0,0,0.1)",
+				"navigationStyle": "custom"
+			}
+		},
+		{ //设置页面
+			"path": "pages/mine/setup/setup",
+			"style": {
+				"navigationStyle": "custom"
+			}
+
+		},
+		{ //密码页面
+			"path": "pages/mine/personal/psword",
+			"style": {
+				"navigationStyle": "custom"
+			}
+
+		}, { //修改资料
+			"path": "pages/mine/personal/personal",
+			"style": {
+				"navigationStyle": "custom"
+
+			}
+		}, { //小米商城
+			"path": "pages/mine/article/article",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //收货地址
+			"path": "pages/mine/address/address",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //编辑收货地址
+			"path": "pages/mine/address/edit",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //意见反馈
+			"path": "pages/mine/feedback/feedback",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //我的反馈
+			"path": "pages/mine/feedback/myfeedback",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //我的反馈
+			"path": "components/mine/blank",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{ //申请售后
+			"path": "pages/mine/sales/after-sales",
+			"style": {
+				"navigationBarTitleText": "申请售后"
+			}
+		},
+		{ //售后服务
+			"path": "pages/mine/sales/sales-service",
+			"style": {
+				"navigationBarTitleText": "售后服务"
+			}
+		},
+		{ //售后服务
+			"path": "pages/mine/sales/sales-form",
+			"style": {
+				"navigationBarTitleText": "申请售后"
+			}
+		},
+		{ //我的订单
+			"path": "pages/mine/myorder/myorder",
+			"style": {
+				"app-plus": {
+					"titleNView": {
+						"titleText": "我的订单",
+						"titleSize": "33rpx",
+						"buttons": [{
+								"float": "right",
+								"fontSrc": "/static/icon/iconfont.ttf",
+								"text": "\ue60c",
+								"color": "#666666",
+								"width": "40px",
+								"fontSize": "50rpx"
+							},
+							{
+								"float": "right",
+								"fontSrc": "/static/icon/iconfont.ttf",
+								"text": "\ue6e3",
+								"color": "#666666",
+								"width": "40px",
+								"fontSize": "50rpx"
+							}
+						]
 					}
 				}
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

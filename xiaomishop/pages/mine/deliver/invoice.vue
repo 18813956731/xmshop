@@ -48,17 +48,20 @@
 		background-color: #F5F5F5;
 	}
 
-	.invoice-type,.invoice-title {
+	.invoice-type,
+	.invoice-title {
 		padding: 20upx;
 	}
-	.invoice-title .btn{
+
+	.invoice-title .btn {
 		display: inline-block;
 	}
+
 	.title {
 		margin-bottom: 40upx;
 	}
 
-	.btn{
+	.btn {
 		width: 200upx;
 		height: 70upx;
 		line-height: 70upx;
@@ -69,30 +72,38 @@
 		margin-bottom: 20upx;
 		border-radius: 5upx;
 	}
-	.units{
+
+	.units {
 		background-color: #F8F9FB;
 		color: black;
 		border: none;
 		margin-left: 30upx;
 	}
+
 	.txt {
 		color: #CACACA;
 	}
-	.name,.content,.phone{
+
+	.name,
+	.content,
+	.phone {
 		height: 90upx;
 		line-height: 90upx;
 		padding-left: 20upx;
 	}
-	.name{
+
+	.name {
 		border-bottom: 2upx solid #EBEDF0;
 	}
-	.information{
+
+	.information {
 		padding-left: 20upx;
 		background-color: #EEEEEE;
 		padding-top: 20upx;
 		height: 276upx;
 	}
-	.information text{
+
+	.information text {
 		display: block;
 		color: #C8C8C8;
 	}

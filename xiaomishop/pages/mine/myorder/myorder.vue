@@ -1,25 +1,21 @@
 <template>
 	<view id="mine-myorder">
-		<!-- 头部导航 -->
-		<view class="hreder">
-			<span class="iconfont icon-2fanhui" @click="returni"></span>
-			<view class="text">我的订单</view>
-			<view>
-				<span class="iconfont icon-sousuo"></span>
-				<span class="iconfont icon-gouwuche"></span>
-			</view>
-		</view>
+
 		<!-- 导航 -->
 		<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
-		 :id="index">{{item.name}}</view>
+		 :id="index">{{item.title}}</view>
 		<!-- 滑动 -->
-		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
+		<swiper :current="tabIndex" :class="heighttactive?'swiper-box-active':'swiper-box'" duration="300" @change="ontabchange">
 			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in order" :key="tabIndex">
 				<!-- 纵向滚动 -->
 				<scroll-view class="list-scroll-content" scroll-y @scrolltolower="loadData">
-				  <!-- 空白页 -->
-				
-					<all></all>
+					<!-- 空白页 -->
+					<blank v-if="heighttactive" :nothing="blank" ></blank>
+					<!-- 列表内容 -->
+					<all v-else></all>
+					
+
+
 
 				</scroll-view>
 			</swiper-item>
@@ -42,126 +38,154 @@
 <script>
 	import tuijian from "@/components/home/tuijian.vue"
 	import all from "@/components/mine/all.vue"
+	import blank from "@/components/mine/blank.vue"
 	export default {
 		components: {
 			tuijian,
-			all
+			all,
+			blank
 		},
 		data() {
 			return {
-				order: [{
-						name: "全部", //导航数据
-						index: 0,
-						nothing: [] //空数据渲染
+				blank:[],//空页面要渲染数据
+				order: [{ //导航数据
+						title: "全部",
+						index: 0, //根据下标渲染
+						nothing: [{
+							name: 1
+						}] //空数据渲染
 					},
 					{
-						name: "待付款",
+						title: "待付款",
 						index: 1,
 						nothing: []
 					},
 					{
-						name: "待收货",
+						title: "待收货",
 						index: 2,
-						nothing: []
+						nothing: [{
+							name:1
+						}]
 					},
 					{
-						name: "待评价",
+						title: "待评价",
 						index: 3,
 						nothing: []
 					}
 				],
-
+                 //空白数据渲染
 				nothing: [{
-						image: "/static/images/nothing/no_comment.png",
-						name: "您还没有待付款订单"
+						ime:"/static/images/nothing/no_pay.png",
+						title: "您还没有待付款订单"
 					},
 					{
-						image: "/static/images/nothing/no_pay.png",
-						name: "您还没有待收货订单"
+						ime: "/static/images/nothing/no_receiving.png",
+						title: "您还没有待收货订单"
 					},
 					{
-						image: "/static/images/nothing/no_receiving.png",
-						name: "您还没有待评价订单"
+						ime: "/static/images/nothing/no_comment.png",
+						title: "您还没有待评价订单"
 					}
 				],
 				//猜你喜欢数据
 				newtext: [{
-						img: '/static/images/demo/list/1.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/1.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					},
 					{
-						img: '/static/images/demo/list/4.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/4.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					},
 					{
-						img: '/static/images/demo/list/3.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/3.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					},
 					{
-						img: '/static/images/demo/list/2.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/2.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					}, {
-						img: '/static/images/demo/list/5.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/5.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					}, {
-						img: '/static/images/demo/list/6.jpg',
-						name: '米家空调',
-						nameone: '1.5匹支流变频',
-						pic: '2199',
-						price: '2699'
+						cover: '/static/images/demo/list/6.jpg',
+						title: '米家空调',
+						desc: '1.5匹支流变频',
+						min_oprice: '2199',
+						min_price: '2699'
 					}
 				],
-				tabIndex: 0 //条件渲染
+				tabIndex: 0, //条件渲染
+				heighttactive: true //样式渲染
+
 			}
 		},
 		methods: {
-			//返回上一层
-			returni() {
-				uni.navigateBack({
-					delta: 1
-				})
-			},
-			//更换导航内容一起
+			//点击导航内容一起
 			tabactive(e) {
 				this.tabIndex = parseInt(e.currentTarget.id) || parseInt(e.target.id)
-			},
-			loadMore() {
-
+				this.loadData()
 			},
 			//获取订单列表
-			loadData(source){
-				console.log(source)
+			loadData(source) {
+				let index = this.tabIndex
+				let tab = this.order[index].nothing.length
+				this.blank=this.nothing[index-1]
+				if (tab == 0) {
+					this.heighttactive = true
+				} else {
+					this.heighttactive = false
+				}
 			},
-			//更换内容导航一起
+			//滑动内容导航一起
 			ontabchange(e) {
 				this.tabIndex = e.detail.current || e.target.current
+				this.loadData()
+			},
+			onLoad(options) {
+				this.tabIndex = options.steat
+				this.loadData()
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	swiper {
+		transition: all 0.5s;
+	}
+
+	.swiper-box {
+		height: 1380rpx;
+	}
+
+	.swiper-box-active {
+		background-color: #f5f5f5;
+		height: 600rpx;
+	}
+
 	.mine-myorder {
 		height: 100%;
 	}
-        .icon-2fanhui{
-        	font-size: 38rpx !important;
-        }
+
+	.icon-2fanhui {
+		font-size: 38rpx !important;
+	}
+
 	.hreder {
 		display: flex;
 		justify-content: space-between;
@@ -169,9 +193,11 @@
 		height: 100rpx;
 		padding: 0rpx 30rpx 0rpx 40rpx;
 		border-bottom: #E5E5E5 2rpx solid;
-        .text{
+
+		.text {
 			font-size: 36rpx;
 		}
+
 		.iconfont {
 			font-size: 50rpx;
 		}
@@ -184,6 +210,10 @@
 		.icon-gouwuche {
 			font-size: 50rpx;
 		}
+	}
+
+	.nav {
+		width: 100%;
 	}
 
 	.tab-item {
@@ -201,9 +231,7 @@
 		border-bottom: 3rpx solid #FD6801;
 	}
 
-	.swiper-box {
-		height: 1000rpx;
-	}
+
 
 	.list-scroll-content {
 		height: 100%;

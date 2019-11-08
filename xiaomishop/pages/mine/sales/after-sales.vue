@@ -1,8 +1,8 @@
 <template>
 	<view id="afterSales">
 		<view class="information">
-			<view><text>订单号:5180925177903542</text></view>
-			<view><text>订单时间:2018年09月25日 11:34</text></view>
+			<view class="text">订单号:5180925177903542</view>
+			<view>订单时间:2018年09月25日 11:34</view>
 		</view>
 		<view class="line"></view>
 		<view class="uni-list">
@@ -51,35 +51,39 @@
 		methods: {
 			topage() {
 				uni.navigateTo({
-					url:"sales-form"
+					url:"/pages/mine/sales/sales-service"
 				})
 			}
 		},
 	}
 </script>
-<style>
+<style lang="scss">
 	#afterSales {
 		position: fixed; 
 		width: 100%;
 		height: 100%;
 		background-color: #EEEEEE;
-		font-size: 60upx;
 	}
 	.information{
-		height: 120upx;
+		height: 120rpx;
 		width: 100%;
 		background-color: white;
 		text-indent: 1em;
+		font-size: 28rpx;
+		.text{
+			color: #7A7E83;
+			line-height: 63rpx;
+		}
 	}
 	.line{
 		width: 100%;
-		height: 20upx;
+		height: 20rpx;
 	}
 	.uni-media-list{
-		height: 200upx;
+		height: 200rpx;
 	}
 	.uni-media-list-logo{
-		height: 120upx;
-		width: 120upx;
+		height: 120rpx;
+		width: 120rpx;
 	}
 </style>
