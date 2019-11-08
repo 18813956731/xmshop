@@ -36,7 +36,7 @@
 					<!-- 商品评论 -->
 					<view class="unitab-bar">
 						<scroll-view class="uniswiper-tab" scroll-x="true" :show-scrollbar="false">
-							<view class="swiper-tab" v-for="(item,index) in tabBars">
+							<view class="swiper-tab" v-for="(item,index) in tabBars" :key='index'>
 								<view class="swiper-tab-list">
 									<view class="imgr">
 										<view style="float: left;">
@@ -66,7 +66,7 @@
 					<!-- 为你推荐 -->
 					<text class="text">为你推荐</text>
 					<view class="textrt">
-						<view v-for="(items,index) in newtexts" :key="index" class="tuijian">
+						<view v-for="(items,index) in newtexts" :key="index" class="tuijian" @tap="navigateTo(items)">
 							<tuijian :item="items" :index="index"></tuijian>
 						</view>
 					</view>
@@ -132,6 +132,12 @@
 			this.shuj(); //调用方法周期里获取API的函数
 		},
 		methods: {
+			navigateTo(e) { //点击商品跳转到商品详情购买页
+				// console.log(e) 
+				uni.navigateTo({ //跳转传参到商品详情页
+					url: "/components/home/xqing?data=" + JSON.stringify(e)
+				})
+			},
 			async shuj() {
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
@@ -224,6 +230,7 @@
 		justify-content: space-around;
 		font-size: 20rpx;
 		text-align: center;
+		color: #555555;
 	}
 
 	/* 商品规格 */
@@ -332,15 +339,17 @@
 
 
 	.pinlun {
-		color: #007AFF;
+		color: #0A98D5;
 		text-align: center;
 		margin-top: 20px;
+		font-size: 30rpx;
 	}
 
 	/* 为你推荐 */
 	.text {
 		display: block;
 		padding: 20rpx 0rpx;
+		color: #555555;
 	}
 
 	.textrt {
