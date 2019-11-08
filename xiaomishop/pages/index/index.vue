@@ -80,7 +80,7 @@
 			}
 		},
 		created() {
-			this.shuj();
+			this.shuj();//调用方法周期里获取API的函数
 		},
 		methods: {
 			async shuj() {
@@ -91,7 +91,6 @@
 				this.tabBars = res.data.data.category //tab导航
 				this.selecteds = res.data.data.data[3].data //每日精选
 				this.selected = res.data.data.data[4].data //每日精选商品
-				console.log(this.selected)
 				this.imgr = res.data.data.data[2].data //广告图
 				this.newslist = res.data.data.data[1].data //类别
 				for (let i in this.selected) { //循环遍历
@@ -128,7 +127,7 @@
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
-					url: "/components/home/xqing?id=" + e.id
+					url: "/components/home/xqing?data=" + JSON.stringify(e)
 				})
 			},
 			navigateTow() {
