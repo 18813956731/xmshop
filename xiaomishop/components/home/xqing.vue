@@ -350,7 +350,7 @@
 	}
 
 	.tuijian {
-		width: 49%;
+		width: 48%;
 		padding: 10rpx 5rpx;
 	}
 

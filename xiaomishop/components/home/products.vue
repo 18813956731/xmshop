@@ -77,11 +77,11 @@
 
 <style scoped>
 	.list {
-		height: 1200rpx;
+		height: 1155rpx;
 	}
 
 	.swiper-box {
-		height: 1200rpx;
+		height: 1155rpx;
 	}
 
 	/*  */

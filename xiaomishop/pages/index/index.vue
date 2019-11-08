@@ -66,8 +66,8 @@
 		},
 		data() {
 			return {
-				swiperheight_s: 1100, //定义滚动高度
-				swiperheight_all: 1100, //定义滚动高度
+				swiperheight_s: 1070, //定义滚动高度
+				swiperheight_all: 1070, //定义滚动高度
 				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
 				tabIndex: 0,
