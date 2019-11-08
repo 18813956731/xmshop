@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "tuijian": "/components/home/tuijian",
-    "all": "/components/mine/all"
-  }
-}

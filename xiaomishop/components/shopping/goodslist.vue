@@ -20,7 +20,7 @@
 													{{item.lxtext}}
 												</view>
 												<view v-show="editor">
-													<span class="iconfont" @click="togglePopup('bottom', 'popup')">&#xe65d;</span>
+													<span class="iconfont" @click="togglePopup('bottom', 'popup','type')">&#xe65d;</span>
 												</view>
 											</view>
 											<view class="infobox">
@@ -39,7 +39,7 @@
 						</view>
 					</view>
 					<!-- 商品编辑弹框 -->
-					<uni-popup class="bjbox" ref="popup" :type="type"></uni-popup>
+					<uni-popup class="bjbox" ref="popup" :type="type" :tktype="tktype"></uni-popup>
 	</view>
 </template>
 
@@ -51,8 +51,8 @@
 			return{
 				phoneHeight:0,
 				show: false,
-				type: '',
-				content: '顶部弹 popup',
+				type: '',//弹出层类型
+				tktype:'',//具体弹出层
 				goodList:[{
 					img:"../../static/images/demo/list/1.jpg",
 					name:"华为matax210",
@@ -98,12 +98,8 @@
 		},
 		methods:{
 			//弹出模态框
-			togglePopup(type, open) {
-				switch (type) {
-					case 'bottom':
-						this.content = '底部弹出 popup'
-						break
-				}
+			togglePopup(type,open,tktype) {
+				this.tktype=tktype;
 				this.type = type
 				if (open === 'tip') {
 					this.show = true
@@ -240,6 +236,7 @@
 		}
 		.bjbox{
 			position: fixed;
+			z-index: 1000;
 			bottom: 0;
 		}
 </style>

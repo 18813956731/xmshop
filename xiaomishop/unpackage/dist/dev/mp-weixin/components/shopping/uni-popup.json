@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "amount": "/components/shopping/amount"
-  },
-  "component": true
-}

@@ -2,9 +2,9 @@
 	<view class="content">
 		<!-- 底部占位 -->
 		<view class="footer">
-			<view class="icon" @click="allChek">
+			<view class="icon" @click="allChek" :class="{active:allcheks}">
 			</view>
-			<view class="ftsc" v-show="!editor">
+			<view class="ftsc" v-if="!editor">
 				<view class="total">
 					<text>合计:</text>
 					<text class="yen">￥3232</text>
@@ -13,7 +13,7 @@
 					<text>结算</text>
 				</view>
 			</view>
-			<view class="ftsc" v-show="editor">
+			<view class="ftsc" v-if="editor">
 				<view class="collect">
 					<text>移入收藏</text>
 				</view>
@@ -61,10 +61,8 @@
 		background: url(https://cdn.it120.cc/images/weappshop/gou.png) no-repeat 50% 50%;
 		background-size: 40rpx auto;
 	}
-	.icon .active {
-		height: 100rpx;
-		width: 130rpx;
-		background-image: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat;
+	.icon.active {
+		background-image: url(https://cdn.it120.cc/images/weappshop/gou-red.png);
 	} 
 	.total{
 		line-height: 100rpx;

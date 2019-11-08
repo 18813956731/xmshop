@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "新品发布",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "swiper-tab-head": "/components/home/tabBars",
-    "tab-list": "/components/home/tab-list"
-  }
-}

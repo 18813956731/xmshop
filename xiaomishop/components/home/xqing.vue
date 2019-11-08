@@ -19,7 +19,7 @@
 		</view>
 		<!-- 商品规格 -->
 		<view class="huohon">
-			<view class="shop-p" @click="togglePopup('bottom', 'popup','')">已选 火焰红 64GB 标配<text  class="iconfont icon-you icorr" ></text>
+			<view class="shop-p" @click="togglePopup('bottom', 'popup','type')">已选 火焰红 64GB 标配<text  class="iconfont icon-you icorr" ></text>
 			</view>
 			<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 北京 东城区 <text class="calse"> 有现货</text>
 				<text class="iconfont icon-you icorr" ></text>
@@ -63,56 +63,8 @@
 		<view class="goumai">
 			<goumai></goumai>
 		</view>
-			<uni-popup class="bjbox"  ref="popup" :type="type">
-				<!-- 地址 -->
-				<view v-if="this.popup=='site'" class="site">
-					<view class="sitebox">
-						<view class="address">收货地址</view>
-						<view class="location">
-							<view class="lction">
-								<span class="iconfont">&#xe64d;</span>
-							</view>
-						</view>
-					</view>
-					<view class="newAddress">选择新的地址</view>
-				</view>
-				<!-- 服务详情  setviceNote-->
-				<view v-if="this.popup=='setviceNote'">
-					<view class="sitebox">
-						<view class="address">服务说明</view>
-						<view class="fw">
-							<view>
-								<span class="iconfont pitch">&#xe623;</span>
-								<text>仿米自营</text>
-							</view>
-							<view>
-								<span class="iconfont pitch">&#xe623;</span>
-								<text>仿米自营</text>
-							</view>
-							<view>
-								<view>
-									<span class="iconfont pitch">&#xe623;</span>
-									<text>仿米发货</text>
-								</view>
-									<view class="Small">由仿米发货</view>
-							</view>
-							<view>
-								<span class="iconfont pitch">&#xe623;</span>
-								<text>七天无理由就是不退货</text>
-							</view>
-							<view>
-								<view>
-									<span class="iconfont pitch">&#xe623;</span>
-									<text>运费说明</text>
-								</view>
-									<view class="Small">不管满多少就是不包邮</view>
-									<view class="Small">特殊产品,也是一样</view>
-							</view>
-						</view>
-					</view>
-					<view class="newAddress">确定</view>
-				</view>
-			</uni-popup>
+		<!-- 弹框层 -->
+		<uni-popup class="bjbox" ref="popup" :type="type" :tktype="tktype"></uni-popup>
 	</view>
 </template>
 
@@ -129,7 +81,7 @@
 		data() {
 			return {
 				type:'',// 弹出层类型
-				popup:'',//点击具体的弹出层
+				tktype:'',//具体弹出层
 				newtext: [{
 					img: '/static/images/demo/list/4.jpg',
 					name: '米家空调',
@@ -227,8 +179,9 @@
 				console.log(e.show)
 			},
 			//编辑弹出框
-			togglePopup(type, open,popup) {
-				this.popup=popup;
+			togglePopup(type, open,tktype) {
+				//具体弹出层类型
+				this.tktype=tktype
 				this.type = type
 				if (open === 'tip') {
 					this.show = true
@@ -244,63 +197,8 @@
 	/* 弹出层 */
 	.bjbox{
 		position: fixed;
+		z-index: 1000;
 		bottom: 0;
-	}
-	/* 弹出层地址 */
-	.sitebox{
-		padding: 20rpx 30rpx 0;
-	}
-	.address{
-		height: 65rpx;
-		width: 100%;
-		text-align: center;
-		font-size: 30rpx;
-		font-weight: bold;
-	}
-	.location{
-		height: 140rpx;
-		line-height: 140rpx;
-		width: 100%;
-		border-top:1px solid #CCCCCC ;
-		border-bottom:1px solid #CCCCCC ;
-		margin-bottom: 650rpx;
-	}
-	.lction{
-		height: 90rpx;
-		line-height: 90rpx;
-		width: 100%;
-		padding-left:20rpx ;
-		font-weight: bold;
-	}
-	.newAddress{
-		width: 100%;
-		height: 80rpx;
-		line-height: 80rpx;
-		background-color: #FD6801;
-		text-align: center;
-		font-size: 30rpx;
-		color: white;
-	}
-	.fw{
-		width: 100%;
-		border-top:1px solid #CCCCCC ;
-		margin-bottom: 250rpx;
-	}
-	.fw view{
-		line-height: 80rpx;
-		font-size: 30rpx;
-		font-weight: bold;
-	}
-	.pitch{
-		color: #FD6801;
-		font-weight:100;
-		margin-right: 20rpx;
-	}
-	view.Small{
-		line-height: 50rpx;
-		font-size: 26rpx;
-		color: #C8C7CC;
-		margin-left: 50rpx;
 	}
 	/* 商品价格 */
 	.textr {

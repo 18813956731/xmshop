@@ -3,8 +3,8 @@
 		<view :class="[ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__mask" @click="close(true)" />
 		<view :class="[type, ani, animation ? 'ani' : '', !custom ? 'uni-custom' : '']" class="uni-popup__wrapper" @click="close(true)">
 			<view class="uni-popup__wrapper-box" @click.stop="clear">
-				<slot>
-					<!-- 商品编辑插槽 -->
+				<!-- 商品筛选 -->
+				<view v-if="tktype=='type'">
 					<view class="edmain">
 						<view class="editor">
 							<view class="tltmg">
@@ -44,7 +44,55 @@
 						</view>
 						<view class="grgwc">加入购物车</view>
 					</view>
-				</slot>
+				</view>
+					<!-- 地址 -->
+					<view v-if="tktype=='site'" class="site">
+						<view class="sitebox">
+							<view class="address">收货地址</view>
+							<view class="location">
+								<view class="lction">
+									<span class="iconfont">&#xe64d;</span>
+								</view>
+							</view>
+						</view>
+						<view class="newAddress">选择新的地址</view>
+					</view>
+					<!-- 服务详情  setviceNote-->
+					<view v-if="tktype=='setviceNote'">
+						<view class="sitebox">
+							<view class="address">服务说明</view>
+							<view class="fw">
+								<view>
+									<span class="iconfont pitch">&#xe623;</span>
+									<text>仿米自营</text>
+								</view>
+								<view>
+									<span class="iconfont pitch">&#xe623;</span>
+									<text>仿米自营</text>
+								</view>
+								<view>
+									<view>
+										<span class="iconfont pitch">&#xe623;</span>
+										<text>仿米发货</text>
+									</view>
+										<view class="Small">由仿米发货</view>
+								</view>
+								<view>
+									<span class="iconfont pitch">&#xe623;</span>
+									<text>七天无理由就是不退货</text>
+								</view>
+								<view>
+									<view>
+										<span class="iconfont pitch">&#xe623;</span>
+										<text>运费说明</text>
+									</view>
+										<view class="Small">不管满多少就是不包邮</view>
+										<view class="Small">特殊产品,也是一样</view>
+								</view>
+							</view>
+						</view>
+						<view class="newAddress">确定</view>
+					</view>
 			</view>
 		</view>
 	</view>
@@ -62,6 +110,10 @@ import amount from "@/components/shopping/amount.vue"
 			animation: {
 				type: Boolean,
 				default: true
+			},
+			// 具体弹出层
+			tktype: {
+				type: String
 			},
 			// 弹出层类型，可选值，top: 顶部弹出层；bottom：底部弹出层；center：全屏弹出层
 			type: {
@@ -303,5 +355,61 @@ import amount from "@/components/shopping/amount.vue"
 			background-color: #FD6801;
 			color: white;
 			font-size: 33rpx;
+		}
+		/* 弹出层*/
+		.sitebox{
+			padding: 20rpx 30rpx 0;
+		}
+		.address{
+			height: 65rpx;
+			width: 100%;
+			text-align: center;
+			font-size: 30rpx;
+			font-weight: bold;
+		}
+		.location{
+			height: 140rpx;
+			line-height: 140rpx;
+			width: 100%;
+			border-top:1px solid #CCCCCC ;
+			border-bottom:1px solid #CCCCCC ;
+			margin-bottom: 650rpx;
+		}
+		.lction{
+			height: 90rpx;
+			line-height: 90rpx;
+			width: 100%;
+			padding-left:20rpx ;
+			font-weight: bold;
+		}
+		.newAddress{
+			width: 100%;
+			height: 80rpx;
+			line-height: 80rpx;
+			background-color: #FD6801;
+			text-align: center;
+			font-size: 30rpx;
+			color: white;
+		}
+		.fw{
+			width: 100%;
+			border-top:1px solid #CCCCCC ;
+			margin-bottom: 250rpx;
+		}
+		.fw view{
+			line-height: 80rpx;
+			font-size: 30rpx;
+			font-weight: bold;
+		}
+		.pitch{
+			color: #FD6801;
+			font-weight:100;
+			margin-right: 20rpx;
+		}
+		view.Small{
+			line-height: 50rpx;
+			font-size: 26rpx;
+			color: #C8C7CC;
+			margin-left: 50rpx;
 		}
 </style>
