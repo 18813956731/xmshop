@@ -39,20 +39,21 @@
 		<!-- 筛选end -->
 		<view class="conter">
 			<!-- 商品 -->
-			<view v-for="item in 10" :key="item">
-				<view class="dl" v-for="(item, index) in datas" @click="Jump(index)">
+			<view >
+				<view class="dl" v-for="(item, index) in datas" @click="Jump(index)" :key="index">
 					<view class="dt"><image :src="item.cover"></image></view>
 					<view class="dd">
 						<!-- 商品名 -->
 						<view class="name">{{ item.title }}</view>
-						<!-- 介绍 -->
-						<!-- <span class="span">{{ item.txt }}</span> -->
 						<!-- 价格 -->
 						<view class="rmb">
 							￥
 							<span style="font-size: 45rpx;">{{ item.min_price }}</span>
 						</view>
+						<!-- 销量-->
+						<span class="span">销量:{{ item.num }}</span>
 						<view class="pinglun">{{ item.comments_count}}条评论 98%满意</view>
+						<span class="span">综合:{{item.comprehensive}}</span>
 					</view>
 				</view>
 			</view>
@@ -77,15 +78,56 @@ export default {
 			sortIndex: 0,
 			datas: [
 				{
+					comprehensive:9,//综合排序
+					num:1,//数量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "25.00",
+					"min_price": "220.00",//价格
+					"comments_count": 0,
+					"comments_good_count": 0
+				},{
+					comprehensive:5,//综合排序
+					num:2,//数量
+					pinglun: '1348',
+					"id": 28,
+					"title": "小米空调",
+					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
+					"min_price": "155.00",//价格
+					"comments_count": 0,
+					"comments_good_count": 0
+				},{
+					comprehensive:7,//综合排序
+					num:3,//数量
+					pinglun: '1348',
+					"id": 28,
+					"title": "小米空调",
+					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
+					"min_price": "85.00",//价格
+					"comments_count": 0,
+					"comments_good_count": 0
+				},{comprehensive:20,//综合排序
+					num:4,//数量
+					pinglun: '1348',
+					"id": 28,
+					"title": "小米空调",
+					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
+					"min_price": "27.00",//价格
+					"comments_count": 0,
+					"comments_good_count": 0
+				},{comprehensive:15,//综合排序
+					num:30,//数量
+					pinglun: '1348',
+					"id": 28,
+					"title": "小米空调",
+					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
+					"min_price": "29.00",//价格
 					"comments_count": 0,
 					"comments_good_count": 0
 				}
-			]
+			],
+			click:["comprehensive","num","min_price"]
 		};
 	},
 	methods: {
@@ -96,8 +138,12 @@ export default {
 			for (let i = 0; i < _this.head.length; i++) {
 				if (e == i) {//当前字体图标
 					if (_this.head[i].judge == 0) {
+						this.datas=this.datas.sort(this.compareB(this.click[e]))//小到大
+						console.log(this.datas)
 						_this.head[i].judge = 1;//向上字体图标的颜色变色
 					} else {
+						this.datas=this.datas.sort(this.compareT(this.click[e]))//大到小
+						console.log(this.datas)
 						_this.head[i].judge = 0;//向下字体图标的颜色变色
 					}
 				} else {//其他字体图标
@@ -107,12 +153,7 @@ export default {
 
 			// 获取数据
 		},
-		async showChange() {
-			let [error, res] = await uni.request({
-				url: 'http://ceshi3.dishait.cn/api/index_category/data'
-			});
-			console.log(res.data.data.category);
-		},
+		
 		serviceD(e) {
 			//点击当前筛选赋值样式
 			this.serviceB = e;
@@ -145,10 +186,37 @@ export default {
 		closeDrawer(e) {
 			this.showRigth = false;
 		},
-		confirm() {}
+		compareT(property){
+		    return function(a,b){
+		        var value1 = a[property];
+		        var value2 = b[property];
+		        return value1 - value2;
+		    }
+		},
+		compareB(property){
+		    return function(a,b){
+		        var value1 = b[property];
+		        var value2 = a[property];
+		        return value1 - value2;
+		    }
+		}
 	},
 	created() {
-		this.showChange();
+		uni.request({
+			url:"http://ceshi3.dishait.cn/api/goods/search",
+			data:{
+				page:1,
+				title:"小米空调"
+			},
+			method:"POST",
+			header: {
+				'content-type': 'application/x-www-form-urlencoded',
+			},
+			success(res) {
+				// console.log(res)
+			}
+		})
+		// console.log(arr.sort(compare('age')))
 	},
 	onNavigationBarButtonTap(e) {
 		if (e.index == 0) {
@@ -189,7 +257,6 @@ export default {
 }
 .icotop {
 	width: 50rpx;
-	top:0rpx;
 	position: relative;
 	height: 100rpx;
 	float: left;
@@ -200,11 +267,9 @@ export default {
 	position: absolute;
 	top: 0rpx;
 	left: 0rpx;
-	/* border: 1px solid; */
 	height:100rpx;
 	font-size: 45rpx;
 	width: 50rpx;
-	float: left;
 	overflow: hidden;
 	line-height: 100rpx;
 	text-align: center;
@@ -259,8 +324,7 @@ export default {
 /* 重置取消 */
 .but1,
 .but2 {
-	font-size: 40rpx !important;
-	font-weight: 600;
+	font-size: 38rpx !important;
 	border: none;
 	border-radius: 0rpx;
 	outline: none;
@@ -274,7 +338,8 @@ export default {
 	background-color: white;
 }
 .but2 {
-	background-color: orange;
+	color: white;
+	background-color: #FD6801;
 }
 .service {
 	width: 100%;
@@ -295,6 +360,7 @@ export default {
 	float: left;
 	background: #f8f9fb;
 	border: 1rpx solid white;
+	border-radius: 10rpx;
 }
 /* 点击添加的样式 */
 .active {
