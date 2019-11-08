@@ -14,7 +14,7 @@
 			<scroll-view scroll-y="false" class="scroll-yr" :style="{height:phoneHeights+'px'}">
 				<ul class="commodity-ul" v-for="(item,indexs) in 6">
 					<!-- 商品品牌种类 -->
-					<li class="li-item" v-for="(val,index) in list_img" @click="Jumps(item)">
+					<li class="li-item" v-for="(val,index) in list_img" @tap="Jumps(item)">
 						<image :src="val"></image>
 						<view class="Trade-Name">分类{{classif}}商品{{index+1+(indexs*6)}}</view>
 					</li>
