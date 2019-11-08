@@ -3,13 +3,13 @@
 		<view class="textr">
 			<view class="tuijian">
 				<view>
-					<image :src="item.img"></image>
+					<image :src="item.cover"></image>
 				</view>
-				<view class="text">{{item.name}}</view>
-				<view class="text_tow">{{item.nameone}}</view>
+				<view class="text">{{item.title}}</view>
+				<view class="text_tow">{{item.desc}}</view>
 				<view class="text">
-					<text class="text-Four">￥{{item.pic}}</text>
-					<text class="text-three">￥{{item.price}}</text>
+					<text class="text-Four">￥{{item.min_oprice}}</text>
+					<text class="text-three">￥{{item.min_price}}</text>
 				</view>
 			</view>
 		</view>
@@ -48,14 +48,15 @@
 	.text {
 		font-size: 33rpx;
 		color: #333333;
-		text-indent: 25rpx;
 		line-height: 60rpx;
 	}
 
 	.text_tow {
-		text-indent: 25rpx;
 		font-size: 25rpx !important;
 		color: #999999;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
 	}
 
 	.text-Four {

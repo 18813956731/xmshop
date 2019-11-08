@@ -1,65 +1,79 @@
 <template>
 	<view style="height: 90%;">
-		<!-- 商品介绍价格 -->
-		<view>
-			<view class="img">
-				<image :src="shop.img" style="width: 500upx;"></image>
-			</view>
-			<view class="shop">{{shop.name}}</view>
-			<view class="textr shop">{{shop.text}}</view>
-			<view class="item-name shop">¥{{shop.monye}}</view>
-		</view>
-		<!-- 商品cpu -->
-		<view class="ico">
-			<view v-for="(item,index) in list">
-				<view class="iconfont icon-cpu"></view>
-				<view>{{item.cpu}}</view>
-				<view>{{item.name}}</view>
-			</view>
-		</view>
-		<!-- 商品规格 -->
-		<view class="huohon">
-			<view class="shop-p" @click="togglePopup('bottom', 'popup','type')">已选 火焰红 64GB 标配<text  class="iconfont icon-you icorr" ></text>
-			</view>
-			<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 北京 东城区 <text class="calse"> 有现货</text>
-				<text class="iconfont icon-you icorr" ></text>
-			</view>
-			<view class="shop-p" style="border-bottom: none;" @click="togglePopup('bottom', 'popup','setviceNote')">
-				<text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米自营</text><text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米发货</text><text><text
-					 class="iconfont icon-iconfontxuanzhong4 calse"></text>七天无理由退货</text><text class="iconfont icon-you icorr"></text>
-			</view>
-		</view>
-		<!-- 商品评论 -->
-		<view class="unitab-bar">
-			<scroll-view class="uniswiper-tab" scroll-x="true" :show-scrollbar="false">
-				<view class="swiper-tab" v-for="(item,index) in tabBars">
-					<view class="swiper-tab-list">
-						<view class="imgr">
-							<view style="float: left;">
-								<image :src="item.img"></image>
+		<swiper :style="{ height: swiperheight_s + 'rpx' }">
+			<swiper-item>
+				<!-- class="list" -->
+				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore(index)">
+					<!-- 商品介绍价格 -->
+					<view>
+						<view class="img">
+							<image :src="shuddd.cover" style="width: 500upx;"></image>
+						</view>
+						<view class="shop">{{shuddd.title}}</view>
+						<view class="textr shop">{{shuddd.desc}}</view>
+						<view class="item-name shop">¥{{shuddd.pprice}}</view>
+					</view>
+					<!-- 商品cpu -->
+					<view class="ico">
+						<view v-for="(item,index) in cupr" v-if="index<4">
+							<view class="iconfont icon-cpu"></view>
+							<view>{{item.name}}</view>
+							<view>{{item.value}}</view>
+						</view>
+					</view>
+					<!-- 商品规格 -->
+					<view class="huohon">
+						<view class="shop-p" @click="togglePopup('bottom', 'popup','type')">已选 火焰红 64GB 标配<text class="iconfont icon-you icorr"></text>
+						</view>
+						<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 北京 东城区 <text class="calse"> 有现货</text>
+							<text class="iconfont icon-you icorr"></text>
+						</view>
+						<view class="shop-p" style="border-bottom: none;" @click="togglePopup('bottom', 'popup','setviceNote')">
+							<text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米自营</text><text><text class="iconfont icon-iconfontxuanzhong4 calse"></text>小米发货</text><text><text
+								 class="iconfont icon-iconfontxuanzhong4 calse"></text>七天无理由退货</text><text class="iconfont icon-you icorr"></text>
+						</view>
+					</view>
+					<!-- 商品评论 -->
+					<view class="unitab-bar">
+						<scroll-view class="uniswiper-tab" scroll-x="true" :show-scrollbar="false">
+							<view class="swiper-tab" v-for="(item,index) in tabBars">
+								<view class="swiper-tab-list">
+									<view class="imgr">
+										<view style="float: left;">
+											<image :src="item.img"></image>
+										</view>
+										<view class="float">{{item.name}}</view>
+										<text class="rq">{{item.rq}}</text>
+									</view>
+									<view class="icor"><text class="iconfont icon-dianzan"></text>164</view>
+								</view>
+								<view style="font-size: 30rpx;" class="item-text">{{item.text}}</view>
+								<view class="right">
+									<view class="imrt" v-for="(item,index) in imgtL">
+										<image :src="item"></image>
+									</view>
+								</view>
 							</view>
-							<view class="float">{{item.name}}</view>
-							<text class="rq">{{item.rq}}</text>
-						</view>
-						<view class="icor"><text class="iconfont icon-dianzan"></text>164</view>
+						</scroll-view>
+						<view class="pinlun">更多评论<text class="iconfont icon-you"></text></view>
 					</view>
-					<view style="font-size: 30rpx;" class="item-text">{{item.text}}</view>
-					<view class="right">
-						<view class="imrt" v-for="(item,index) in imgtL">
-							<image :src="item"></image>
+					<!-- 商品外观预览 -->
+					<view style="margin-top: 40rpx;">
+						<view v-for="(item,index) in shoppt" class="exterior">
+							<image :src="item.url" style="height: 950rpx;width:750rpx;"></image>
 						</view>
 					</view>
-				</view>
-			</scroll-view>
-			<view class="pinlun">更多评论<text class="iconfont icon-you"></text></view>
-		</view>
-		<!-- 为你推荐 -->
-		<text class="text">为你推荐</text>
-		<view class="textrt">
-			<view v-for="(items,index) in newtext" :key="index" class="tuijian">
-				<tuijian :item="items" :index="index"></tuijian>
-			</view>
-		</view>
+					<!-- 为你推荐 -->
+					<text class="text">为你推荐</text>
+					<view class="textrt">
+						<view v-for="(items,index) in newtexts" :key="index" class="tuijian">
+							<tuijian :item="items" :index="index"></tuijian>
+						</view>
+					</view>
+					<view class="load-more">{{loadtext}}</view>
+				</scroll-view>
+			</swiper-item>
+		</swiper>
 		<view class="goumai">
 			<goumai></goumai>
 		</view>
@@ -80,57 +94,16 @@
 		},
 		data() {
 			return {
-				type:'',// 弹出层类型
-				tktype:'',//具体弹出层
-				newtext: [{
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}, {
-					img: '/static/images/demo/list/4.jpg',
-					name: '米家空调',
-					nameone: '1.5匹支流变频',
-					pic: '2199',
-					price: '2699'
-				}],
+				shoppt: '', //商品预览
+				loadtext: "上拉加载更多", //加载更多
+				swiperheight_s: 1120, //定义滚动高度
+				swiperheight_all: 1120, //定义滚动高度
+				cupr: '', //cpu
+				shuddd: [], //商品信息
+				type: '', // 弹出层类型
+				tktype: '', //具体弹出层
+				newtext: '', //为您推荐
+				newtexts: [], //为您推荐
 				tabBars: [{
 					img: '/static/images/demo/demo6.jpg',
 					name: '楚锦',
@@ -152,36 +125,52 @@
 					rq: '2019-06-20',
 					text: '支持迪沙IT学院继续出uni-app实战教程'
 				}],
-				imgtL: ['/static/images/demo/list/4.jpg', '/static/images/demo/list/4.jpg', '/static/images/demo/list/4.jpg'],
-				shop: {
-					img: '/static/images/demo/list/2.jpg',
-					name: '小米MIX3 6GB+128GB',
-					text: '磁动力滑盖全面屏/前后旗舰AI双摄/四曲面彩色陶瓷机身/高效10W无线充电',
-					monye: '3299'
-				},
-				list: [{
-					cpu: 'CPU',
-					name: '蛟龙845八核'
-				}, {
-					cpu: 'CPU',
-					name: '蛟龙845八核'
-				}, {
-					cpu: 'CPU',
-					name: '蛟龙845八核'
-				}, {
-					cpu: 'CPU',
-					name: '蛟龙845八核'
-				}]
+				imgtL: ['/static/images/demo/list/4.jpg', '/static/images/demo/list/4.jpg', '/static/images/demo/list/4.jpg']
 			}
 		},
+		created() {
+			this.shuj(); //调用方法周期里获取API的函数
+		},
 		methods: {
+			async shuj() {
+				let [error, res] = await uni.request({
+					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
+				})
+				console.log(res.data.data.hotComments)
+				this.cupr = res.data.data.goodsAttrs //CPU数据
+				this.newtext = res.data.data.hotList //推荐数据
+				this.shoppt = res.data.data.goodsBanner //外观预览
+
+				for (let i in this.newtext) { //推荐数据循环遍历
+					this.newtexts.push(this.newtext[i])
+				}
+			},
+			loadmore(index) { //下拉加载更多
+				// console.log(this.loadtext)
+				if (this.loadtext == "上拉加载更多") {
+					//修改状态
+					this.loadtext = "加载中..."
+					//获取数据
+					let that = this
+					setTimeout(() => {
+						let obj = that.newtexts;
+						// console.log(obj)
+						//每次刷新加载数据，把新数据加进去
+						that.newtexts = that.newtexts.concat(obj.slice(0, 6))
+						// console.log(that.selectedss)
+						that.loadtext = "上拉加载更多";
+					}, 1000)
+				} else {
+					return
+				}
+			},
 			change(e) {
-				console.log(e.show)
+				// console.log(e.show)
 			},
 			//编辑弹出框
-			togglePopup(type, open,tktype) {
+			togglePopup(type, open, tktype) {
 				//具体弹出层类型
-				this.tktype=tktype
+				this.tktype = tktype
 				this.type = type
 				if (open === 'tip') {
 					this.show = true
@@ -189,17 +178,28 @@
 					this.$refs[open].open()
 				}
 			},
+		},
+		onLoad(position) {
+			// console.log(opston)
+			this.shuddd = JSON.parse(position.data) //接收传过来的字符串并且用JSON.parse转换为对象
+			// console.log(this.shuddd)
 		}
 	}
 </script>
 
 <style scoped>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
 	/* 弹出层 */
-	.bjbox{
+	.bjbox {
 		position: fixed;
 		z-index: 1000;
 		bottom: 0;
 	}
+
 	/* 商品价格 */
 	.textr {
 		font-size: 25upx;
@@ -345,13 +345,13 @@
 
 	.textrt {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		flex-wrap: wrap;
 	}
 
 	.tuijian {
 		width: 49%;
-		padding: 10rpx 0rpx;
+		padding: 10rpx 5rpx;
 	}
 
 	/* 购买 */
@@ -359,5 +359,19 @@
 		width: 100%;
 		position: fixed;
 		bottom: 0px;
+	}
+
+	/* //加载更多 */
+	.load-more {
+		text-align: center;
+		height: 60rpx;
+		line-height: 60rpx;
+		font-size: 20rpx;
+	}
+
+	/* 外观 */
+	.exterior {
+		height: 920rpx;
+		overflow: hidden;
 	}
 </style>
