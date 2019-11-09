@@ -23,8 +23,15 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 	export default {
 		name: 'UniGoodsNav',
+		computed: {
+			...mapState(['good','goodList'])},
 		props: {
 			options: {
 				type: Array,
@@ -61,7 +68,8 @@
 					content: item
 				})
 			},
-			buttonClick(index, item) {
+			//点击加入购物车
+			buttonClick(index, item,obj) {
 				if (uni.report) {
 					uni.report(item.text, item.text)
 				}
@@ -69,6 +77,19 @@
 					index,
 					content: item
 				})
+				//通过cover判断商品是否存在，存在即数量加1，不存在存入购物车数组
+				let exist=this.goodList.map(item=>item.obj.cover).indexOf(this.good.cover)
+				if(exist==-1){
+					var obj={
+						obj:this.good,
+						number:1,
+						action:false
+					}
+					this.goodList.push(obj);
+				}else{
+					this.goodList[exist].number++;
+				}
+				console.log(this.goodList)
 			}
 		}
 	}

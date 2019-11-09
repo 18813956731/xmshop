@@ -85,6 +85,12 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	
 	import tuijian from '@/components/home/tuijian.vue'
 	import goumai from '@/components/home/goumai.vue'
 	import uniPopup from "@/components/shopping/uni-popup.vue"
@@ -131,7 +137,6 @@
 			}
 		},
 		created() {
-			
 			this.shuj(); //调用方法周期里获取API的函数
 		},
 		methods: {

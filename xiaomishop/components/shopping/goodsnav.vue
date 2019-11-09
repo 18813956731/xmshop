@@ -2,12 +2,12 @@
 	<view class="content">
 		<!-- 底部占位 -->
 		<view class="footer">
-			<view class="icon" @click="allChek" :class="{active:allcheks}">
+			<view class="icon" @click="allChek" :class="{active:allchek}">
 			</view>
 			<view class="ftsc" v-if="!editor">
 				<view class="total">
 					<text>合计:</text>
-					<text class="yen">￥3232</text>
+					<text class="yen">￥{{total}}</text>
 				</view>
 				<view class="close">
 					<text>结算</text>
@@ -26,20 +26,34 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {  
+	        mapState,  
+	        mapMutations  
+	} from 'vuex';
 	export default {
 		data(){
 		return {
-			allcheks:false//全选状态
+			
 		}
 		},
-		props:['editor'],
+		 computed: {  
+		            ...mapState(['total','editor','allchek','goodList']),
+					total(){
+					 	var sum = this.goodList.filter(item=>item.action).reduce((totals,item)=>{
+							return totals + item.number*item.obj.pprice
+						},0)
+						this.$store.commit("gettotal",sum)
+						 return sum
+					}
+		        }, 
 		methods: {
 			//全选或全不选
 			allChek(){
-				this.allcheks=!this.allcheks
-				this.$emit("allChek",this.allcheks)
-			}
-		}
+				this.$store.commit("getallchek",!this.allchek)
+			} 
+		},
+		
 	}
 </script>
 

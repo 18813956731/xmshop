@@ -57,6 +57,12 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	
 	import swiperTabHead from "@/components/home/tabBars.vue"
 	import caroUsel from "@/components/home/carousel.vue"
 	export default {
@@ -81,7 +87,11 @@
 		},
 		created() {
 			this.shuj();//调用方法周期里获取API的函数
+			this.remend();//调用方法周期里获取API的函数
 		},
+		computed: {
+		           ...mapState(['recommend'])
+		       }, 
 		methods: {
 			async shuj() {
 				let [error, res] = await uni.request({
@@ -98,6 +108,18 @@
 				}
 				// console.log(res.data.data.data[0].data)
 				// console.log(this.imgrg)
+			},
+			async remend() {
+				let [error, res] = await uni.request({
+					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
+				})
+				let obj = res.data.data.hotList //推荐数据
+				let arr=[]
+				for (let i in obj) { //推荐数据循环遍历
+					arr.push(obj[i])
+				}
+				//推荐数据存入状态管理
+				this.$store.commit("getrecommend",arr)
 			},
 			loadmore(index) { //下拉加载更多
 				// console.log(this.loadtext)
@@ -125,6 +147,7 @@
 				this.tabIndex = index;
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
+				this.$store.commit("getgood",e)
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
 					url: "/components/home/xqing?data="+e.id
