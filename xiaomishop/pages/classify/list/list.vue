@@ -40,7 +40,7 @@
 		<view class="conter">
 			<!-- 商品 -->
 			<view >
-				<view class="dl" v-for="(item, index) in datas" @click="Jump(index)" :key="index">
+				<view class="dl" v-for="(item, index) in datas" @click="Jump(item)" :key="index">
 					<view class="dt"><image :src="item.cover"></image></view>
 					<view class="dd">
 						<!-- 商品名 -->
@@ -52,9 +52,8 @@
 						</view>
 						<!-- 销量-->
 						<span class="span">销量:{{ item.num }}</span>
-						<view class="pinglun">{{ item.comments_count}}条评论 98%满意</view>
-						<span class="span">综合:{{item.comprehensive}}</span>
-					</view>
+						<view class="pinglun">{{ item.comments_count}}条评论 {{item.comprehensive}}%满意</view>
+						</view>
 				</view>
 			</view>
 		</view>
@@ -78,56 +77,56 @@ export default {
 			sortIndex: 0,
 			datas: [
 				{
-					comprehensive:9,//综合排序
-					num:1,//数量
+					comprehensive:99,//综合排序
+					num:1000,//销量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "220.00",//价格
-					"comments_count": 0,
+					"min_price": "680.00",//价格
+					"comments_count": 1000,
 					"comments_good_count": 0
 				},{
-					comprehensive:5,//综合排序
-					num:2,//数量
+					comprehensive:95,//综合排序
+					num:6582,//销量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "155.00",//价格
-					"comments_count": 0,
+					"min_price": "998.00",//价格
+					"comments_count": 2450,
 					"comments_good_count": 0
 				},{
-					comprehensive:7,//综合排序
-					num:3,//数量
+					comprehensive:97,//综合排序
+					num:3365,//销量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "85.00",//价格
-					"comments_count": 0,
+					"min_price": "885.00",//价格
+					"comments_count": 4780,
 					"comments_good_count": 0
-				},{comprehensive:20,//综合排序
-					num:4,//数量
+				},{comprehensive:90,//综合排序
+					num:844,//销量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "27.00",//价格
-					"comments_count": 0,
+					"min_price": "627.00",//价格
+					"comments_count": 1080,
 					"comments_good_count": 0
-				},{comprehensive:15,//综合排序
-					num:30,//数量
+				},{comprehensive:85,//综合排序
+					num:390,//销量
 					pinglun: '1348',
 					"id": 28,
 					"title": "小米空调",
 					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "29.00",//价格
-					"comments_count": 0,
+					"min_price": "290.00",//价格
+					"comments_count": 980,
 					"comments_good_count": 0
 				}
 			],
-			click:["comprehensive","num","min_price"]
+			click:["comprehensive","num","min_price"]//综合销量价格排序
 		};
 	},
 	methods: {
@@ -138,11 +137,11 @@ export default {
 			for (let i = 0; i < _this.head.length; i++) {
 				if (e == i) {//当前字体图标
 					if (_this.head[i].judge == 0) {
-						this.datas=this.datas.sort(this.compareB(this.click[e]))//小到大
+						this.datas=this.datas.sort(this.compareB(this.click[e]))//小到大排序
 						console.log(this.datas)
 						_this.head[i].judge = 1;//向上字体图标的颜色变色
 					} else {
-						this.datas=this.datas.sort(this.compareT(this.click[e]))//大到小
+						this.datas=this.datas.sort(this.compareT(this.click[e]))//大到小排序
 						console.log(this.datas)
 						_this.head[i].judge = 0;//向下字体图标的颜色变色
 					}
@@ -161,10 +160,12 @@ export default {
 		classD(e) {
 			this.classB = e;
 		},
-		Jump() {
+		Jump(e) {
 			//跳转详情页面
+			let id=e.id
+			console.log(id)
 			uni.navigateTo({
-				url: '/components/home/xqing'
+				url: '/components/home/xqing?data='+id
 			});
 		},
 		res() {
@@ -214,6 +215,14 @@ export default {
 			},
 			success(res) {
 				// console.log(res)
+			}
+		})
+		uni.request({//获取数据
+			url: 'http://ceshi3.dishait.cn/api/goods/28',
+			success(res) {
+				// 分类da
+				
+				console.log(res.data);
 			}
 		})
 		// console.log(arr.sort(compare('age')))
