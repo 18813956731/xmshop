@@ -5,13 +5,15 @@
 				<!-- class="list" -->
 				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore(index)">
 					<!-- 商品介绍价格 -->
-					<view>
+					<view class="shopping">
+					<view v-for="(item,index) in shuddd">
 						<view class="img">
-							<image :src="shuddd.cover" style="width: 500upx;"></image>
+							<image :src="item.cover" style="width: 500upx;"></image>
 						</view>
-						<view class="shop">{{shuddd.title}}</view>
-						<view class="textr shop">{{shuddd.desc}}</view>
-						<view class="item-name shop">¥{{shuddd.pprice}}</view>
+						<view class="shop">{{item.title}}</view>
+						<view class="textr shop">{{item.desc}}</view>
+						<view class="item-name shop">¥{{item.min_price}}</view>
+					</view>
 					</view>
 					<!-- 商品cpu -->
 					<view class="ico">
@@ -129,6 +131,7 @@
 			}
 		},
 		created() {
+			
 			this.shuj(); //调用方法周期里获取API的函数
 		},
 		methods: {
@@ -186,9 +189,19 @@
 			},
 		},
 		onLoad(position) {
+			let _this=this
+			let id=parseInt(position.data) 
+			console.log(id)
+			uni.request({
+				url:"http://ceshi3.dishait.cn/api/goods/"+id+"",
+				success(res) {
+					_this.shuddd.push(res.data.data)
+					console.log(res.data.data)
+				}
+			})
+			
 			// console.log(opston)
-			this.shuddd = JSON.parse(position.data) //接收传过来的字符串并且用JSON.parse转换为对象
-			// console.log(this.shuddd)
+			
 		}
 	}
 </script>

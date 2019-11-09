@@ -127,7 +127,7 @@
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
-					url: "/components/home/xqing?data=" + JSON.stringify(e)
+					url: "/components/home/xqing?data="+e.id
 				})
 			},
 			navigateTow() {
@@ -190,9 +190,8 @@
 	}
 
 	.imageview {
-		width: 46%;
-		margin-left: 14rpx;
-		margin-right: 14rpx;
+		width: 48%;
+		padding: 0rpx 7.5rpx;
 		margin-top: 40rpx;
 	}
 
