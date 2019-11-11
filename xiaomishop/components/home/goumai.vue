@@ -89,6 +89,7 @@
 				}else{
 					this.$store.commit("getgoodnum",indexs);
 				}
+				this.$store.commit("getztchek")//购物车改变全选状态改变
 			}
 		}
 	}

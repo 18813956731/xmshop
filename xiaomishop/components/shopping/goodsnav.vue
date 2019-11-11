@@ -38,7 +38,7 @@
 		}
 		},
 		 computed: {
-		            ...mapState(['total','editor','allchek','goodList']),
+		            ...mapState(['total','editor','allchek','goodList','clearinggoods']),
 					total(){
 					 	var sum = this.goodList.filter(item=>item.action).reduce((totals,item)=>{
 							return totals + item.number*item.obj.min_price
@@ -51,18 +51,21 @@
 			//全选或全不选
 			allChek(){
 				this.$store.commit("getallchek",!this.allchek)
+				this.$store.commit("getztchek")//购物车改变全选状态改变
 			},
 			//点击结算
 			close(){
-				console.log('点击结算')
+				this.$store.commit("getclearinggoods")
+				uni.navigateTo({
+					url:"/pages/mine/deliver/confimindent"
+				})
+				console.log(this.clearinggoods);
+				this.$store.commit("getztchek")//购物车改变全选状态改变
 			},
 			//点击删除
 			del(){
-				this.goodList.forEach((item,index)=>{
-					if(item.action){
-						this.$store.commit("getdel",index)
-					}
-				})
+				this.$store.commit("getdel")
+				this.$store.commit("getztchek")//购物车改变全选状态改变
 			}
 		},
 		
