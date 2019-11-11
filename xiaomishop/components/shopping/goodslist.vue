@@ -88,7 +88,15 @@
 			// 点击选中
 			action(index) {
 				this.$store.commit("getaction",index)
-				this.$store.commit("getztchek")//购物车改变全选状态改变
+				let allchek=true;//全选状态
+				for (var item of this.goodList) {
+					if(!item.action){
+						allchek=false;
+						break;
+					}
+				}
+				//改变全选状态
+				this.$store.commit("getallcheks",allchek)
 			},
 			//改变购物车对应商品数量
 			change(event,index){
