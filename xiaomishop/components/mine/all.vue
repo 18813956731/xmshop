@@ -81,8 +81,6 @@
 	}
 
 	.time {
-		display: flex;
-		justify-content: space-between;
 		padding: 0upx 30upx;
 		height: 80upx;
 		line-height: 80upx;

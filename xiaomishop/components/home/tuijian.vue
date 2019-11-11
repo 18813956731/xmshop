@@ -76,15 +76,4 @@
 	}
 	
 	/* 为你推荐 */
-	.textr{
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		width: 100%;
-	}
-	
-	.tuijian {
-		width: 48%;
-		padding: 10rpx 5rpx;
-	}
 </style>
