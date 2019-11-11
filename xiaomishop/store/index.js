@@ -13,12 +13,21 @@ const store = new Vuex.Store({
 		jxlist:[],//精选商品列表
 		tjlist:[],//精选商品列表
 		recommend:[],//推荐商品列表
-		goodList:[]//购物车列表
+		goodList:[],//购物车列表
+		txt_Pasd:[["小黄","123456"]],//账号密码
+		logon_Status:false//登录状态
 	},
 	getters:{
 		
 	},
 	mutations: {
+		// 获取账号密码
+		gettxt_Pasd(state,txt_Pasd){
+			state.txt_Pasd.push(txt_Pasd)
+		},
+		login(state,logon_Status){
+			state.logon_Status=logon_Status
+		},
 		//获取推荐商品列表
 		getrecommend(state,recommend){
 			state.recommend=recommend

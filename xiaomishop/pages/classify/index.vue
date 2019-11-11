@@ -14,9 +14,9 @@
 			<scroll-view scroll-y="false" class="scroll-yr" :style="{height:phoneHeights+'px'}">
 				<ul class="commodity-ul" v-for="(item,indexs) in 6">
 					<!-- 商品品牌种类 -->
-					<li class="li-item" v-for="(val,index) in list_img" @tap="Jumps(index)">
-						<image :src="val"></image>
-						<view class="Trade-Name">分类{{classif}}商品{{index+1+(indexs*6)}}</view>
+					<li class="li-item" v-for="(val,index) in category_items" @tap="Jumps(index)">
+						<image :src="val.cover"></image>
+						<view class="Trade-Name">{{val.name}}</view>
 					</li>
 				</ul>
 			</scroll-view>
@@ -32,17 +32,10 @@
 				tabcss:0,
 				// index下标商品类别
 				classif:0,
-				"phoneHeight": 0,//左边栏高度
-				"phoneHeights": 0,//右边栏高度
-				"classification":'',//类别
-				"list_img": [
-					"/static/images/demo/list/1.jpg",
-					"/static/images/demo/list/2.jpg",
-					"/static/images/demo/list/3.jpg",
-					"/static/images/demo/list/4.jpg",
-					"/static/images/demo/list/5.jpg",
-					"/static/images/demo/list/6.jpg"
-				]
+				phoneHeight: 0,//左边栏高度
+				phoneHeights: 0,//右边栏高度
+				classification:'',//类别
+				category_items:[]//类别1
 			}
 		},
 		onLoad() {
@@ -56,13 +49,15 @@
 				}
 			});
 			uni.request({//获取数据
-				url: 'http://ceshi3.dishait.cn/api/index_category/data',
+				url: 'http://ceshi3.dishait.cn/api/category/app_category',
 				success(res) {
 					// 分类
-					_this.classification=res.data.data.category
+					_this.classification=res.data.data
+					_this.category_items=_this.classification[0].app_category_items
 					console.log(res.data.data);
 				}
 			})
+			
 		},
 		methods: {
 			// 切换样式
@@ -70,7 +65,7 @@
 				let _this=this
 				_this.tabcss=e;
 				_this.classif=e;
-				
+				_this.category_items=_this.classification[_this.classif].app_category_items
 			},
 			// 跳转列表页
 			Jumps(e){

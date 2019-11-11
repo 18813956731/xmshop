@@ -1,15 +1,14 @@
 <template>
 	<view class="container">
 		<h1>密码登录</h1>
-		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" /></view>
-		<view class="password"><input type="password" class="txt" placeholder="请输入密码" /></view>
+		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" v-model="txt"/></view>
+		<view class="password"><input type="password" class="txt" placeholder="请输入密码" v-model="pasd"/></view>
 		<view class="tishi" @click="phone">
 			用手机短信登录
 			<span class="iconfont icon-you"></span>
 		</view>
-		<view class="button"><button>登录</button></view>
+		<view class="button"><button @tap="login">登录</button></view>
 		<view class="checkbox">
-			<checkbox value="cb" />
 			<span>已阅读并同意小米</span>
 			<b>账号协议、隐私政策</b>
 			<span>和</span>
@@ -23,18 +22,42 @@
 </template>
 
 <script>
-export default{
+import { mapState, mapMutations } from 'vuex';
+export default {
+	computed: {
+		...mapState(['txt_Pasd','logon_Status'])
+	},
 	data(){
 		return{
-			
+			txt: '',
+			pasd: ''
 		}
 	},
 	methods:{
 		phone(){
-			// uni.navigateTo({
-			// 	url:""
-			// })
+			uni.navigateTo({
+				url:"/pages/mine/phone"
+			})
 			console.log("跳转手机号登录")
+		},
+		login(){
+			let _this=this
+			console.log(_this.logon_Status)
+			
+			let arr=[_this.txt,_this.pasd]
+			console.log(_this.txt_Pasd)
+			for(var i=0;i<_this.txt_Pasd.length;i++){
+				var txts=_this.txt_Pasd[i].indexOf(arr[0])!=-1
+				var pasd=_this.txt_Pasd[i].indexOf(arr[1])!=-1
+				if(txts&&pasd){
+					_this.$store.commit("login",true)
+					console.log("登录成功")
+					console.log(_this.logon_Status)
+				}else{
+					console.log("账号或者密码错误")
+				}
+			}
+			
 		}
 
 	}

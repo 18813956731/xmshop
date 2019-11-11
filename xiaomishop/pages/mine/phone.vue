@@ -1,18 +1,16 @@
 <template>
 	<view class="container">
-		<h1>手机号登录</h1>
-		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号" /></view>
+		<h1>注册</h1>
+		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/账号" v-model="txt" /></view>
 		<view class="password">
-			<input type="text" class="txt2" placeholder="请输入验证码" />
-			<span>获取验证码</span>
-			</view>
+			<input type="text" class="txt2" placeholder="请输入密码" v-model="pasd" />
+		</view>
 		<view class="tishi" @click="login">
-			用账号密码登录
+			已有账号前往密码登录
 			<span class="iconfont icon-you"></span>
 		</view>
-		<view class="button"><button>登录</button></view>
+		<view class="button"><button @click="gettxt_Pasd">注册</button></view>
 		<view class="checkbox">
-			<checkbox value="cb" />
 			<span>已阅读并同意小米</span>
 			<b>账号协议、隐私政策</b>
 			<span>和</span>
@@ -26,22 +24,40 @@
 </template>
 
 <script>
-export default{
-	data(){
-		return{
-			
-		}
+import { mapState, mapMutations } from 'vuex';
+export default {
+	computed: {
+		...mapState(['txt_Pasd'])
 	},
-	methods:{
-		login(){
-			// uni.navigateTo({
-			// 	url:""
-			// })
-			console.log("跳转账号密码登录")
+	data() {
+		return {
+			txt: '',
+			pasd: ''
+		};
+	},
+	methods: {
+		login() {
+			uni.navigateTo({
+				url: '/pages/mine/login'
+			});
+			console.log('跳转账号密码登录');
+		},
+		gettxt_Pasd() {
+			let _this=this
+			let arr=[_this.txt,_this.pasd]//账号密码存到一个数组里
+			for(let i=0;i<_this.txt_Pasd.length;i++){
+				// 循环判断账号是否为空或者账号重复
+				if(_this.txt_Pasd[i].indexOf(arr[0])==-1&&arr[0]!=""&&arr[1]!=""){
+					_this.$store.commit("gettxt_Pasd",arr)//条件成立注册成功
+					console.log('注册成功');
+				}else{
+					console.log('账号重复或者账号密码为空');
+				}
+			}
+			console.log(_this.txt_Pasd)
 		}
-
 	}
-}
+};
 </script>
 
 <style scoped>
@@ -63,7 +79,7 @@ h1 {
 	height: 60rpx;
 	border: none;
 }
-.password span{
+.password span {
 	margin-left: 100rpx;
 }
 .input {
