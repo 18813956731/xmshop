@@ -1,44 +1,44 @@
 <template>
 	<view>
-			<view class="textr">
-				<view class="tuijian" v-for="(item,index) in recommend" :key="index" @click="navigateTo(item)">
-					<view>
-						<image :src="item.cover"></image>
-					</view>
-					<view class="text">{{item.title}}</view>
-					<view class="text_tow">{{item.desc}}</view>
-					<view class="text">
-						<text class="text-Four">￥{{item.min_price}}</text>
-						<text class="text-three">￥{{item.min_oprice}}</text>
-					</view>
+		<view class="textr">
+			<view class="tuijian" v-for="(item,index) in recommend" :key="index" @click="navigateTo(item)">
+				<view>
+					<image :src="item.cover"></image>
+				</view>
+				<view class="text">{{item.title}}</view>
+				<view class="text_tow">{{item.desc}}</view>
+				<view class="text">
+					<text class="text-Four">￥{{item.min_price}}</text>
+					<text class="text-three">￥{{item.min_oprice}}</text>
 				</view>
 			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-//导入状态管理
-	import {  
-	        mapState,  
-	        mapMutations  
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
 	} from 'vuex';
 	export default {
 		data() {
 			return {
-				recommend:[]
+				recommend: []
 			}
 		},
-		created(){
-			this.recommend=this.tjlist
+		created() {
+			this.recommend = this.tjlist
 		},
 		computed: {
-		           ...mapState(['tjlist'])
-		       }, 
+			...mapState(['tjlist'])
+		},
 		methods: {
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
-					url: "/components/home/xqing?data="+e.id
+					url: "/components/home/xqing?data=" + e.id
 				})
 			},
 		}
@@ -46,6 +46,18 @@
 </script>
 
 <style scoped>
+	.textr {
+		width: 750rpx;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.tuijian {
+		width: 48%;
+		padding: 0rpx 8rpx;
+	}
+
 	.tuijian image {
 		width: 100%;
 		height: 300rpx;
@@ -61,7 +73,7 @@
 		font-size: 25rpx !important;
 		color: #999999;
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
@@ -74,6 +86,6 @@
 		color: #8F8F94;
 		text-decoration: line-through;
 	}
-	
+
 	/* 为你推荐 */
 </style>
