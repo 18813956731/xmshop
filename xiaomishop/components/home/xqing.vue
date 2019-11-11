@@ -67,11 +67,7 @@
 					</view>
 					<!-- 为你推荐 -->
 					<text class="text">为你推荐</text>
-					<view class="textrt">
-						<view v-for="(items,index) in newtexts" :key="index" class="tuijian" @tap="navigateTo(items)">
-							<tuijian :item="items" :index="index"></tuijian>
-						</view>
-					</view>
+					<tuijian ></tuijian>
 					<view class="load-more">{{loadtext}}</view>
 				</scroll-view>
 			</swiper-item>
@@ -197,9 +193,11 @@
 			let _this=this
 			let id=parseInt(position.data) 
 			console.log(id)
+			
 			uni.request({
 				url:"http://ceshi3.dishait.cn/api/goods/"+id+"",
 				success(res) {
+					_this.$store.commit("getgood",res.data.data)
 					_this.shuddd.push(res.data.data)
 					console.log(res.data.data)
 				}

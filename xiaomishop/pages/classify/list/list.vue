@@ -52,7 +52,7 @@
 						</view>
 						<!-- 销量-->
 						<span class="span">销量:{{ item.num }}</span>
-						<view class="pinglun">{{ item.comments_count}}条评论 {{item.comprehensive}}%满意</view>
+						<view class="pinglun">{{ item.pinglun}}条评论 {{item.comprehensive}}%满意</view>
 						</view>
 				</view>
 			</view>
@@ -61,11 +61,19 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 export default {
 	components: {
 		uniDrawer
 	},
+computed: {
+		           ...mapState(['shoplist'])
+		       }, 
 	data() {
 		return {
 			service: ['促销', '分期', '仅看有货'],
@@ -75,58 +83,8 @@ export default {
 			showRigth: false, //筛选
 			head: [{ txt: '综合', judge: 0 }, { txt: '销量', judge: 0 }, { txt: '价格', judge: 0 }],
 			sortIndex: 0,
-			datas: [
-				{
-					comprehensive:99,//综合排序
-					num:1000,//销量
-					pinglun: '1348',
-					"id": 28,
-					"title": "小米空调",
-					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "680.00",//价格
-					"comments_count": 1000,
-					"comments_good_count": 0
-				},{
-					comprehensive:95,//综合排序
-					num:6582,//销量
-					pinglun: '1348',
-					"id": 28,
-					"title": "小米空调",
-					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "998.00",//价格
-					"comments_count": 2450,
-					"comments_good_count": 0
-				},{
-					comprehensive:97,//综合排序
-					num:3365,//销量
-					pinglun: '1348',
-					"id": 28,
-					"title": "小米空调",
-					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "885.00",//价格
-					"comments_count": 4780,
-					"comments_good_count": 0
-				},{comprehensive:90,//综合排序
-					num:844,//销量
-					pinglun: '1348',
-					"id": 28,
-					"title": "小米空调",
-					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "627.00",//价格
-					"comments_count": 1080,
-					"comments_good_count": 0
-				},{comprehensive:85,//综合排序
-					num:390,//销量
-					pinglun: '1348',
-					"id": 28,
-					"title": "小米空调",
-					"cover": "https://tangzhe123-com.oss-cn-shenzhen.aliyuncs.com/public/5d8834543784d.jpg",
-					"min_price": "290.00",//价格
-					"comments_count": 980,
-					"comments_good_count": 0
-				}
-			],
-			click:["comprehensive","num","min_price"]//综合销量价格排序
+			click:["comprehensive","num","min_price"],//综合销量价格排序
+			datas:[]
 		};
 	},
 	methods: {
@@ -137,12 +95,12 @@ export default {
 			for (let i = 0; i < _this.head.length; i++) {
 				if (e == i) {//当前字体图标
 					if (_this.head[i].judge == 0) {
-						this.datas=this.datas.sort(this.compareB(this.click[e]))//小到大排序
-						console.log(this.datas)
+						_this.datas=_this.datas.sort(_this.compareB(_this.click[e]))//小到大排序
+				
 						_this.head[i].judge = 1;//向上字体图标的颜色变色
 					} else {
-						this.datas=this.datas.sort(this.compareT(this.click[e]))//大到小排序
-						console.log(this.datas)
+						_this.datas=_this.datas.sort(_this.compareT(_this.click[e]))//大到小排序
+				
 						_this.head[i].judge = 0;//向下字体图标的颜色变色
 					}
 				} else {//其他字体图标
@@ -203,6 +161,7 @@ export default {
 		}
 	},
 	created() {
+		this.datas=this.shoplist;
 		uni.request({
 			url:"http://ceshi3.dishait.cn/api/goods/search",
 			data:{

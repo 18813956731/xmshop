@@ -1,15 +1,15 @@
 <template>
 	<view>
 			<view class="textr">
-				<view class="tuijian" v-for="(item,index) in recommend" :key="index">
+				<view class="tuijian" v-for="(item,index) in recommend" :key="index" @click="navigateTo(item)">
 					<view>
 						<image :src="item.cover"></image>
 					</view>
 					<view class="text">{{item.title}}</view>
 					<view class="text_tow">{{item.desc}}</view>
 					<view class="text">
-						<text class="text-Four">￥{{item.min_oprice}}</text>
-						<text class="text-three">￥{{item.min_price}}</text>
+						<text class="text-Four">￥{{item.min_price}}</text>
+						<text class="text-three">￥{{item.min_oprice}}</text>
 					</view>
 				</view>
 			</view>
@@ -25,17 +25,22 @@
 	export default {
 		data() {
 			return {
-				
+				recommend:[]
 			}
 		},
 		created(){
-
+			this.recommend=this.tjlist
 		},
 		computed: {
-		           ...mapState(['recommend'])
+		           ...mapState(['tjlist'])
 		       }, 
 		methods: {
-			
+			navigateTo(e) { //点击商品跳转到商品详情购买页
+				// console.log(e) 
+				uni.navigateTo({ //跳转传参到商品详情页
+					url: "/components/home/xqing?data="+e.id
+				})
+			},
 		}
 	}
 </script>

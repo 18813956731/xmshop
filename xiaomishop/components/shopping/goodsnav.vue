@@ -37,11 +37,11 @@
 			
 		}
 		},
-		 computed: {  
+		 computed: {
 		            ...mapState(['total','editor','allchek','goodList']),
 					total(){
 					 	var sum = this.goodList.filter(item=>item.action).reduce((totals,item)=>{
-							return totals + item.number*item.obj.pprice
+							return totals + item.number*item.obj.min_price
 						},0)
 						this.$store.commit("gettotal",sum)
 						 return sum
