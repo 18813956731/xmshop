@@ -15,7 +15,8 @@ const store = new Vuex.Store({
 		recommend:[],//推荐商品列表
 		goodList:[],//购物车列表
 		txt_Pasd:[],//账号密码
-		logon_Status:false//登录状态
+		logon_Status:false,//登录状态
+		clearinggoods:[]//结算商品
 	},
 	getters:{
 		
@@ -49,8 +50,8 @@ const store = new Vuex.Store({
 			state.goodList[index].action=!state.goodList[index].action
 		},
 		//删除商品
-		getdel(state,index){
-			state.goodList.splice(index,1)
+		getdel(state){
+			state.goodList=state.goodList.filter(item=>!item.action)
 		},
 		//获取购物车对应商品数量
 		getchange(state,arr){
@@ -65,9 +66,24 @@ const store = new Vuex.Store({
 			state.goodList.forEach(item=>item.action=allchek)
 			state.allchek=allchek
 		},
-		//单选改全选状态
-		getallcheks(state,allchek){
-			state.allchek=allchek
+		//购物车状态改变，全选改变
+		getztchek(state){
+			let chek=true;//每项状态
+				for (var item of state.goodList) {
+					if(!item.action){
+						chek=false;
+						break;
+					}
+				}
+				//购物车为空时 全选也要变为空
+				if( state.goodList.length==0){
+					chek=false;
+				}
+			if(chek){
+				state.allchek=true;
+			}else{
+				state.allchek=false;
+			}
 		},
 		//获取分类商品列表
 		getshoplist(state,obj){
@@ -87,6 +103,10 @@ const store = new Vuex.Store({
 		//获取详情页商品
 		getgood(state,good){
 			state.good=good
+		},
+		//获取结算商品
+		getclearinggoods(state){
+			state.clearinggoods=state.goodList.filter(item=>item.action);
 		}
 	},
 	actions: {
