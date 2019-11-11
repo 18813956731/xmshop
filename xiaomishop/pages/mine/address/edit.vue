@@ -3,8 +3,8 @@
 		<!-- 头部导航 -->
 		<view class="hreder">
 			<span class="iconfont icon-2fanhui" @click="returni"></span>
-			<view class="text">编辑收货地址</view>
-			<view class="text-right">删除</view>
+			<view class="text" >{{title}}</view>
+			<view class="text-right" @click="deleteindex">删除</view>
 		</view>
 		<!-- 主体 -->
 		<view class="main">
@@ -13,60 +13,127 @@
 				<!-- 收货人 -->
 				<view class="flex">
 					<label>收货人:</label>
-					<input type="text" value="" name="input1" />
+					<input type="text" :value="item.name" name="name" placeholder="收货人姓名" />
 				</view>
 				<!-- 手机号码 -->
 				<view class="flex">
 					<label>手机号码:</label>
-					<input type="text" value="" name="input2" />
+					<input type="text" :value="item.phone" name="phone" placeholder="收货人手机号码" />
 				</view>
 				<!-- 所在地区 -->
 				<view class="hr"></view>
 				<view class="flex">
 					<label>所在地区:</label>
-					<input type="text" value="" name="input3"/>
+					<input type="text" :value="item.Location" name="Location"  placeholder="地址选择" placeholder-style="color:#000000;"/>
+					<text class="iconfont icon-dingwei" @click.stop="chooseLocation"></text>
 				</view>
 				<!-- 详细地址 -->
 				<view class="flex">
 					<label>详细地址:</label>
-					<input type="text" value="" name="input4"/>
+					<input type="text" :value="item.detailed" name="detailed" placeholder="楼号、门牌" />
 				</view>
 				<view class="hr"></view>
 				<!-- 设置默认地址 -->
 				<view class="flex">
 					<label>设置默认地址:</label>
-					<switch checked="flase" @change="switchchange" name="switch" color="#FD6801" />
+					<switch :checked="bure" @change="switchchange" name="switch" color="#FD6801" />
 				</view>
 				<button form-type="submit" class="footer">保存</button>
-			</form>	
+			</form>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex'
+	import Json from '@/Json'
 	export default {
 		data() {
 			return {
-
+				item:{//空数据
+				Location:''//地址接收
+				},
+				bure: false,//提交条件
+				index: 0,//数据下标
+				title:"编辑收货地址"//导航
 			}
 		},
 		methods: {
 			//设置默认地址
 			switchchange(e) {
+				
 				console.log('switch1 发生 change 事件，携带值为', e.target.value)
 			},
 			//返回上一层
-			returni(){
+			returni() {
 				uni.navigateBack({
-					delta:1
+					delta: 1
+				})
+			},
+			//地图选择地址
+			chooseLocation(){
+				let _this=this
+				uni.chooseLocation({
+					success: (data)=> {
+				       _this.item.Location=data.name
+					   // console.log(_this.item.Location)
+					    console.log(data.name)
+					}
+				})
+			},
+			//删除
+			deleteindex() {
+				let _this=this
+				uni.showModal({
+					title: '提示',
+					content: '确认删除收货地址',
+					success: function(res) {
+						if (res.confirm) {
+							_this.$api.msg("删除成功")
+							Json.address.splice(_this.index, 1)
+							setTimeout(()=>{
+								uni.navigateTo({
+									url: "/pages/mine/address/address"
+								})
+							},1000)
+							
+						} else if (res.cancel) {
+							_this.$api.msg("取消删除成功")
+						}
+					}
 				})
 			},
 			//提交
-			fomsubmit(e){
-				console.log("1123")
-				console.log(JSON.stringify(e.detail.value))
+			fomsubmit(e) {
+				let index = this.index
+				if (this.bure) {
+					Json.address.push(e.detail.value)
+					console.log(Json.address)
+				} else {
+					Json.address[this.index] = e.detail.value
+				}
+				uni.navigateTo({
+					url: "/pages/mine/address/address"
+				})
 			}
+		},
+		//加载获取数据
+		onLoad(option) {
+			this.index =parseInt(option.index) 
+			console.log(this.index)
+			if (option.index != null) {
+				this.item = Json.address[this.index]
+			} else {
+				this.bure = true
+				this.title="新增收货地址"
+			}
+
+
 		}
+
 	}
 </script>
 
@@ -76,7 +143,8 @@
 		line-height: 100rpx;
 		display: flex;
 		justify-content: space-between;
-
+        background-color: #F5F5F5;
+		font-size: 32rpx;
 		.icon-2fanhui {
 			font-size: 40rpx;
 			text-indent: 25rpx;
@@ -105,9 +173,9 @@
 			width: 100%;
 			display: inline-block;
 			padding-bottom: 5rpx;
-
+            position: relative;
 			label {
-				text-indent: 35rpx;
+				text-indent: 32rpx;
 				width: 250rpx;
 				float: left;
 				line-height: 100rpx;
@@ -119,7 +187,14 @@
 				height: 100rpx;
 				line-height: 100rpx;
 			}
-
+          .icon-dingwei{
+			  position: absolute;
+			  right: 20rpx;
+			  top: 50%;
+			  transform: translateY(-50%);
+			  font-size: 40rpx;;
+			  color: red;
+		  }
 			switch {
 				float: right;
 				height: 100rpx;

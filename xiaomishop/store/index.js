@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 		tjlist:[],//精选商品列表
 		recommend:[],//推荐商品列表
 		goodList:[],//购物车列表
-		txt_Pasd:[["小黄","123456"]],//账号密码
+		txt_Pasd:[["小米","123456"]],//账号密码
 		logon_Status:false//登录状态
 	},
 	getters:{
@@ -25,6 +25,7 @@ const store = new Vuex.Store({
 		gettxt_Pasd(state,txt_Pasd){
 			state.txt_Pasd.push(txt_Pasd)
 		},
+		//登录状态
 		login(state,logon_Status){
 			state.logon_Status=logon_Status
 		},

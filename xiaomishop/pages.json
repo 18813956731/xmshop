@@ -211,6 +211,12 @@
 				"navigationBarTitleText": "申请售后"
 			}
 		},
+		{ //收货步骤
+			"path": "pages/mine/steps/steps",
+			"style": {
+				"navigationBarTitleText": "物流"
+			}
+		},
 		{ //我的订单
 			"path": "pages/mine/myorder/myorder",
 			"style": {

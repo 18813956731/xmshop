@@ -27,7 +27,7 @@
 				<view class="" style="float: right;">
 					<view class="total-price">共3件商品,合计: ￥299.00</view>
 					<view class="logistics">
-						<text>查看物流</text>
+						<text @click="steps">查看物流</text>
 						<text>确认收货</text>
 					</view>
 				</view>
@@ -54,6 +54,14 @@
 				}]
 			}
 		},
+		methods:{
+			steps(){
+				// 跳转物流
+				uni.navigateTo({
+					url:"/pages/mine/steps/steps"
+				})
+			}
+		}
 	}
 </script>
 <style lang="scss">

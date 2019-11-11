@@ -294,7 +294,9 @@
 		height: 100rpx;
 		line-height: 100rpx;
 		border-bottom: 3rpx solid #F1F1F1;
-
+        text{
+			font-size:33rpx;
+		}
 		.icon-you {
 			float: right;
 			margin-right: 40rpx;

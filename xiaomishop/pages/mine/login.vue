@@ -38,23 +38,20 @@ export default {
 			uni.navigateTo({
 				url:"/pages/mine/phone"
 			})
-			console.log("跳转手机号登录")
 		},
 		login(){
 			let _this=this
-			console.log(_this.logon_Status)
-			
 			let arr=[_this.txt,_this.pasd]
 			console.log(_this.txt_Pasd)
-			for(var i=0;i<_this.txt_Pasd.length;i++){
-				var txts=_this.txt_Pasd[i].indexOf(arr[0])!=-1
-				var pasd=_this.txt_Pasd[i].indexOf(arr[1])!=-1
+			for(let i=0;i<_this.txt_Pasd.length;i++){
+				let txts=_this.txt_Pasd[i].indexOf(arr[0])!=-1
+				let pasd=_this.txt_Pasd[i].indexOf(arr[1])!=-1
 				if(txts&&pasd){
 					_this.$store.commit("login",true)
-					console.log("登录成功")
+					_this.$api.msg("登录成功")
 					console.log(_this.logon_Status)
 				}else{
-					console.log("账号或者密码错误")
+					_this.$api.msg("账号或者密码错误")
 				}
 			}
 			
