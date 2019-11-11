@@ -77,19 +77,18 @@
 					index,
 					content: item
 				})
-				//通过cover判断商品是否存在，存在即数量加1，不存在存入购物车数组
-				let exist=this.goodList.map(item=>item.obj.cover).indexOf(this.good.cover)
-				if(exist==-1){
+				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
+				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.id)
+				if(indexs==-1){
 					var obj={
 						obj:this.good,
 						number:1,
 						action:false
 					}
-					this.goodList.push(obj);
+					this.$store.commit("getgoodList",obj);
 				}else{
-					this.goodList[exist].number++;
+					this.$store.commit("getgoodnum",indexs);
 				}
-				console.log(this.goodList)
 			}
 		}
 	}

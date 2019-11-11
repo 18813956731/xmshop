@@ -36,9 +36,21 @@ const store = new Vuex.Store({
 		geteditor(state,editor){
 			state.editor=editor
 		},
+		//获取购物车商品信息
+		getgoodList(state,obj){
+			state.goodList.push(obj)
+		},
+		//已加入购物车商品，在加入数量加1
+		getgoodnum(state,index){
+			state.goodList[index].number++;
+		},
 		//获取商品选中状态
 		getaction(state,index){
 			state.goodList[index].action=!state.goodList[index].action
+		},
+		//删除商品
+		getdel(state,index){
+			state.goodList.splice(index,1)
 		},
 		//获取购物车对应商品数量
 		getchange(state,arr){

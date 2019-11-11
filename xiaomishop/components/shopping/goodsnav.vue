@@ -10,7 +10,7 @@
 					<text class="yen">￥{{total}}</text>
 				</view>
 				<view class="close">
-					<text>结算</text>
+					<text @click="close">结算</text>
 				</view>
 			</view>
 			<view class="ftsc" v-if="editor">
@@ -18,7 +18,7 @@
 					<text>移入收藏</text>
 				</view>
 				<view class="del">
-					<text>删除</text>
+					<text @click="del">删除</text>
 				</view>
 			</view>
 		</view>
@@ -51,7 +51,19 @@
 			//全选或全不选
 			allChek(){
 				this.$store.commit("getallchek",!this.allchek)
-			} 
+			},
+			//点击结算
+			close(){
+				console.log('点击结算')
+			},
+			//点击删除
+			del(){
+				this.goodList.forEach((item,index)=>{
+					if(item.action){
+						this.$store.commit("getdel",index)
+					}
+				})
+			}
 		},
 		
 	}

@@ -4,7 +4,7 @@
 			<h3>为你推荐</h3>
 			<view class="tlt">
 				<view class="line"></view>
-				<view class="text">买了人还买了1</view>
+				<view class="text">买了人还买了</view>
 			</view>
 			<view class="goodslist">
 				<view class="uni-product-list">
