@@ -42,18 +42,23 @@ export default {
 			});
 			console.log('跳转账号密码登录');
 		},
-		gettxt_Pasd() {
+		gettxt_Pasd() {//注册
 			let _this=this
 			let arr=[_this.txt,_this.pasd]//账号密码存到一个数组里
-			for(let i=0;i<_this.txt_Pasd.length;i++){
-				// 循环判断账号是否为空或者账号重复
-				if(_this.txt_Pasd[i].indexOf(arr[0])==-1&&arr[0]!=""&&arr[1]!=""){
-					_this.$store.commit("gettxt_Pasd",arr)//条件成立注册成功
-					console.log('注册成功');
-				}else{
-					console.log('账号重复或者账号密码为空');
+			if(_this.txt_Pasd.length==0){
+				_this.$store.commit("gettxt_Pasd",arr)//条件成立注册成功
+			}else{
+				for(let i=0;i<_this.txt_Pasd.length;i++){
+					// 循环判断账号是否为空或者账号重复
+					if(_this.txt_Pasd[i].indexOf(arr[0])==-1&&arr[0]!=""&&arr[1]!=""){
+						_this.$store.commit("gettxt_Pasd",arr)//条件成立注册成功
+						console.log('注册成功');
+					}else{
+						console.log('账号重复或者账号密码为空');
+					}
 				}
 			}
+			
 			console.log(_this.txt_Pasd)
 		}
 	}

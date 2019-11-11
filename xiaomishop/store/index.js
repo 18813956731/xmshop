@@ -14,7 +14,7 @@ const store = new Vuex.Store({
 		tjlist:[],//精选商品列表
 		recommend:[],//推荐商品列表
 		goodList:[],//购物车列表
-		txt_Pasd:[["小黄","123456"]],//账号密码
+		txt_Pasd:[],//账号密码
 		logon_Status:false//登录状态
 	},
 	getters:{
@@ -25,6 +25,7 @@ const store = new Vuex.Store({
 		gettxt_Pasd(state,txt_Pasd){
 			state.txt_Pasd.push(txt_Pasd)
 		},
+		//登录状态
 		login(state,logon_Status){
 			state.logon_Status=logon_Status
 		},
@@ -36,21 +37,9 @@ const store = new Vuex.Store({
 		geteditor(state,editor){
 			state.editor=editor
 		},
-		//获取购物车商品信息
-		getgoodList(state,obj){
-			state.goodList.push(obj)
-		},
-		//已加入购物车商品，在加入数量加1
-		getgoodnum(state,index){
-			state.goodList[index].number++;
-		},
 		//获取商品选中状态
 		getaction(state,index){
 			state.goodList[index].action=!state.goodList[index].action
-		},
-		//删除商品
-		getdel(state,index){
-			state.goodList.splice(index,1)
 		},
 		//获取购物车对应商品数量
 		getchange(state,arr){
