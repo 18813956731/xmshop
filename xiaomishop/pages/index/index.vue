@@ -272,10 +272,8 @@
 		font-size: 20upx;
 		color: #8F8F94;
 		overflow: hidden;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
+		text-overflow:ellipsis;
+		white-space: nowrap;
 	}
 
 		.selected {
@@ -292,6 +290,7 @@
 	.text-tow {
 		font-size: 20upx;
 		color: #8F8F94;
+		text-decoration: line-through;
 	}
 
 	/* 类别 */
