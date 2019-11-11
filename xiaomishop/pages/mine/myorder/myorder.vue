@@ -2,18 +2,20 @@
 	<view id="mine-myorder">
 
 		<!-- 导航 -->
-		<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
-		 :id="index">{{item.title}}</view>
+		<view class="flex">
+			<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
+			 :id="index">{{item.title}}</view>
+		</view>
 		<!-- 滑动 -->
 		<swiper :current="tabIndex" :class="heighttactive?'swiper-box-active':'swiper-box'" duration="300" @change="ontabchange">
 			<swiper-item class="tab-content" v-for="(tabItem,tabIndex) in order" :key="tabIndex">
 				<!-- 纵向滚动 -->
 				<scroll-view class="list-scroll-content" scroll-y @scrolltolower="loadData">
 					<!-- 空白页 -->
-					<blank v-if="heighttactive" :nothing="blank" ></blank>
+					<blank v-if="heighttactive" :nothing="blank"></blank>
 					<!-- 列表内容 -->
 					<all v-else></all>
-					
+
 
 
 
@@ -26,11 +28,7 @@
 				<view class="text">猜你喜欢</view>
 				<view class="text-flex">实时推荐你的爱</view>
 			</view>
-			<view class="footer-mian">
-				<view class="footer-box" v-for="(item,index) in newtext">
-					<tuijian :item="item" :index="index"></tuijian>
-				</view>
-			</view>
+		<tuijian :item="item" :index="index"></tuijian>
 		</view>
 	</view>
 </template>
@@ -47,7 +45,7 @@
 		},
 		data() {
 			return {
-				blank:[],//空页面要渲染数据
+				blank: [], //空页面要渲染数据
 				order: [{ //导航数据
 						title: "全部",
 						index: 0, //根据下标渲染
@@ -64,7 +62,7 @@
 						title: "待收货",
 						index: 2,
 						nothing: [{
-							name:1
+							name: 1
 						}]
 					},
 					{
@@ -73,9 +71,9 @@
 						nothing: []
 					}
 				],
-                 //空白数据渲染
+				//空白数据渲染
 				nothing: [{
-						ime:"/static/images/nothing/no_pay.png",
+						ime: "/static/images/nothing/no_pay.png",
 						title: "您还没有待付款订单"
 					},
 					{
@@ -144,7 +142,7 @@
 			loadData(source) {
 				let index = this.tabIndex
 				let tab = this.order[index].nothing.length
-				this.blank=this.nothing[index-1]
+				this.blank = this.nothing[index - 1]
 				if (tab == 0) {
 					this.heighttactive = true
 				} else {
@@ -170,10 +168,12 @@
 	}
 
 	.swiper-box {
+		margin: 100rpx 0rpx 0rpx 0rpx ;
 		height: 1380rpx;
 	}
 
 	.swiper-box-active {
+		margin: 100rpx 0rpx 0rpx 0rpx ;
 		background-color: #f5f5f5;
 		height: 600rpx;
 	}
@@ -214,6 +214,14 @@
 
 	.nav {
 		width: 100%;
+	}
+
+	.flex {
+		position: fixed;
+		width: 100%;
+		top: 80rpx;
+		z-index: 999;
+		background-color: white;
 	}
 
 	.tab-item {
