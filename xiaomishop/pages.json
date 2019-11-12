@@ -41,11 +41,7 @@
 				"enablePullDownRefresh": true //开启下拉刷新
 			}
 		}, {
-			"path": "components/home/xqing",
-			"style": {
-				"navigationBarTitleText": "详情页", //设置页面标题文字
-				"enablePullDownRefresh": true //开启下拉刷新
-			}
+			"path": "components/home/xqing"
 		}, {
 			"path": "pages/mine/about/about",
 			"style": {
@@ -86,7 +82,7 @@
 						"buttons": [{
 							"color": "#555555",
 							"float": "right",
-							"fontSize": "40rpx",
+							"fontSize": "50rpx",
 							"fontSrc": "/static/icon/iconfont.ttf",
 							"text": "\ue64c"
 						}]
