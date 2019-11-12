@@ -48,7 +48,7 @@
 					}
 		        }, 
 		methods: {
-			//全选或全不选
+			//全选或者全不选
 			allChek(){
 				this.$store.commit("getallchek",!this.allchek)
 				this.$store.commit("getztchek")//购物车改变全选状态改变

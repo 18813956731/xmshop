@@ -16,7 +16,7 @@ const store = new Vuex.Store({
 		goodList:[],//购物车列表
 		txt_Pasd:[],//账号密码
 		logon_Status:false,//登录状态
-		clearinggoods:[]//结算商品
+		clearinggoods:[]//结算的商品
 	},
 	getters:{
 		

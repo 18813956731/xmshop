@@ -27,7 +27,7 @@
 	import {
 		mapState,
 		mapMutations
-	} from 'vuex';
+	} from 'vuex'
 	export default {
 		name: 'UniGoodsNav',
 		computed: {

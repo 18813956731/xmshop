@@ -217,7 +217,7 @@
 				"navigationBarTitleText": "物流"
 			}
 		},
-		{ //订单结算
+		{ //订单结算1
 			"path": "pages/mine/deliver/confimindent",
 			"style": {
 				"navigationBarTitleText": "订单结算"

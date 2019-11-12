@@ -66,7 +66,7 @@
 			return {
 				phoneHeight: 0,
 				show: false,
-				type: '', //弹出层类型
+				type: '', //弹出层的类型
 				tktype: '' //具体弹出层
 			}
 		},
