@@ -4,10 +4,10 @@
 		<view class="uni-tab-bar">
 			<swiper class="swiper-box" :current="tabIndex" @change="tabChange">
 				<swiper-item v-for="(items,index) in 4" :key="index">
-					<scroll-view scroll-y class="list" show-scrollbar="false">
+					<scroll-view scroll-y class="list" show-scrollbar="false" @scrolltolower="loadmore(indexz)">
 						<!-- 图文列表 -->
 						<view>
-							<view class="tab-list" v-for="(item,index) in newslist" :key='index'>
+							<view class="tab-list" v-for="(item,index) in jxlist" :key='index'>
 								<view>
 									<image :src="item.cover"></image>
 								</view>
@@ -16,11 +16,12 @@
 										<view>{{item.title}}</view>
 										<view class="item.one">{{item.desc}}</view>
 									</view>
-									<view class="goumai">去购买</view>
+									<view class="purchase">去购买</view>
 								</view>
-								<view class="liaojie">了解更多<text class="iconfont icon-you"></text></view>
+								<view class="understand">了解更多<text class="iconfont icon-you"></text></view>
 							</view>
 						</view>
+						<view class="load-more">{{loadtext}}</view>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
@@ -29,19 +30,25 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
 	import swiperTabHead from "@/components/home/tabBars.vue"
-	import tabList from "@/components/home/tab-list.vue"
 	export default {
+		computed: {
+			...mapState(['recommend', 'jxlist'])
+		},
 		components: {
-			swiperTabHead,
-			tabList
+			swiperTabHead
 		},
 		data() {
 			return {
 				tabIndex: 0,
 				tabBars: [{
 					name: '最新热品',
-					n: 'zuixinrepin'
+					id: 'zuixinrepin'
 				}, {
 					name: '最新上架',
 					id: 'zuixinshangjia'
@@ -52,13 +59,30 @@
 					name: '新品手机',
 					id: 'xinpinshouji'
 				}],
-				newslist: ''
+				loadtext: '上拉加载更多'
 			}
 		},
 		created() {
 			this.shuj();
 		},
 		methods: {
+			loadmore(index) { //下拉加载更多
+				// console.log(this.loadtext)
+				if (this.loadtext == "上拉加载更多") {
+					//修改状态
+					this.loadtext = "加载中..."
+					//获取数据
+					let that = this
+					setTimeout(() => {
+						let obj = that.jxlist;
+						//每次刷新加载数据，把新数据加进去
+						that.$store.commit("getwxlist", obj)
+						that.loadtext = "上拉加载更多";
+					}, 1000)
+				} else {
+					return
+				}
+			},
 			async shuj() {
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
@@ -96,7 +120,7 @@
 
 	.tab-list image {
 		width: 700rpx;
-		height: 300rpx;
+		height: 400rpx;
 	}
 
 	.zuixin {
@@ -118,7 +142,7 @@
 		white-space: nowrap;
 	}
 
-	.goumai {
+	.purchase {
 		padding: 10rpx 40rpx;
 		border-radius: 50px;
 		background: #FD7112;
@@ -128,10 +152,16 @@
 		font-size: 30rpx;
 	}
 
-	.liaojie {
+	.understand {
 		text-align: center;
 		padding: 30rpx 0rpx;
 		color: #555555;
 		font-size: 30rpx;
+	}
+	.load-more {
+		text-align: center;
+		height: 60rpx;
+		line-height: 60rpx;
+		font-size: 20rpx;
 	}
 </style>

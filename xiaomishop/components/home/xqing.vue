@@ -8,7 +8,7 @@
 					<view class="shopping">
 						<view v-for="(item,index) in shuddd">
 							<view class="img">
-								<image :src="item.cover" style="width: 500upx;"></image>
+								<image :src="item.cover"></image>
 							</view>
 							<view class="shop">{{item.title}}</view>
 							<view class="textr shop">{{item.desc}}</view>
@@ -200,6 +200,11 @@
 
 	.img {
 		text-align: center;
+	}
+
+	.img image {
+		width: 750rpx;
+		height: 600rpx;
 	}
 
 	.shop {

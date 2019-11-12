@@ -303,16 +303,17 @@
 	}
 
 	.category {
+		padding: 20rpx 0rpx;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 	}
 
 	.category-one {
-		width: 20%;
+		width: 16.9%;
 		font-size: 20upx;
 		text-align: center;
-		padding: 30rpx 0rpx;
+		margin: 18rpx 0rpx;
 		color: #555555;
 	}
 
