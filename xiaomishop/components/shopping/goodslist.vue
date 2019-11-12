@@ -78,7 +78,7 @@
 			//弹出模态框
 			togglePopup(type,open,tktype,item) {
 				//传入编辑的商品入状态管理
-				this.$store.commit("getedgood",item);
+				this.$store.commit("getgood",item);
 				this.tktype = tktype;
 				this.type = type
 				if (open === 'tip') {

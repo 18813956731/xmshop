@@ -96,6 +96,8 @@
 			goumai,
 			uniPopup
 		},
+		computed: {
+			...mapState(['good','goodList'])},
 		data() {
 			return {
 				shoppt: '', //商品预览
@@ -151,8 +153,10 @@
 			change(e) {
 				// console.log(e.show)
 			},
+			
 			//编辑弹出框
 			togglePopup(type, open, tktype) {
+				
 				//具体弹出层类型
 				this.tktype = tktype
 				this.type = type
@@ -170,7 +174,12 @@
 			uni.request({
 				url: "http://ceshi3.dishait.cn/api/goods/" + id + "",
 				success(res) {
-					_this.$store.commit("getgood", res.data.data)
+					let obj={
+						obj:res.data.data,
+						number:1,
+						action:false
+					}
+					_this.$store.commit("getgood",obj)
 					_this.shuddd.push(res.data.data)
 					console.log(res.data.data)
 				}

@@ -8,9 +8,9 @@
 					<view class="edmain">
 						<view class="editor">
 							<view class="tltmg">
-								<view class="edimg"><image :src="edgood.obj.cover"></image></view>
+								<view class="edimg"><image :src="good.obj.cover"></image></view>
 								<view class="edlb">
-									<view  class="edprice"><text>￥</text><text>{{edgood.obj.min_price}}</text></view>
+									<view  class="edprice"><text>￥</text><text>{{good.obj.min_price}}</text></view>
 									<view><text class="edlx">火焰红 64G 标配</text></view>
 								</view>
 							</view>
@@ -39,10 +39,10 @@
 							</view>
 							<view class="gmnum">
 								<view><text>购买数量</text></view>
-								<amount :value="edgood.number" @change="change($event)"></amount>
+								<amount :value="good.number" @change="change($event)"></amount>
 							</view>
 						</view>
-						<view class="grgwc" >加入购物车</view>
+						<view class="grgwc" @click="grgwc(true)">加入购物车</view>
 					</view>
 				</view>
 					<!-- 地址 -->
@@ -112,7 +112,7 @@ import amount from "@/components/shopping/amount.vue"
 			amount
 		},
 		computed: {
-			...mapState(['edgood'])},
+			...mapState(['good','goodList'])},
 		props: {
 			// 开启动画
 			animation: {
@@ -173,6 +173,20 @@ import amount from "@/components/shopping/amount.vue"
 			//套餐选择
 			getmeal(index){
 				this.meal=index
+			},
+			//加入购物车
+			grgwc(type){
+				//隐藏
+				this.close(type);
+				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
+				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.obj.id)
+				if(indexs==-1){
+					this.$store.commit("getgoodList",this.good);
+				}
+				else{
+					this.$store.commit("getgoodnum",indexs);
+				}
+				this.$store.commit("getztchek")//购物车改变全选状态改变
 			},
 			clear(){
 				console.log("1")

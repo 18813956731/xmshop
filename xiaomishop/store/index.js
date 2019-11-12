@@ -26,6 +26,11 @@ const store = new Vuex.Store({
 		gettxt_Pasd(state,txt_Pasd){
 			state.txt_Pasd.push(txt_Pasd)
 		},
+		// 退出登录
+		sign(state){
+			state.token=""
+		},
+		// 登录
 		login(state,e){
 			state.token=e
 		},
@@ -59,7 +64,7 @@ const store = new Vuex.Store({
 		},
 		//获取编辑商品对应商品数量
 		getedchange(state,number){
-			state.edgood.number=number
+			state.good.number=number
 		},
 		//获取合计金额
 		gettotal(state,total){
@@ -107,10 +112,6 @@ const store = new Vuex.Store({
 		//获取详情页商品
 		getgood(state,good){
 			state.good=good
-		},
-		//获取点击编辑的商品
-		getedgood(state,item){
-			state.edgood=item
 		},
 		//获取结算商品
 		getclearinggoods(state){

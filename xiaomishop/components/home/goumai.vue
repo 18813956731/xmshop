@@ -78,14 +78,9 @@
 					content: item
 				})
 				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
-				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.id)
+				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.obj.id)
 				if(indexs==-1){
-					var obj={
-						obj:this.good,
-						number:1,
-						action:false
-					}
-					this.$store.commit("getgoodList",obj);
+					this.$store.commit("getgoodList",this.good);
 				}else{
 					this.$store.commit("getgoodnum",indexs);
 				}
