@@ -16,7 +16,8 @@
 				</view>
 			</view>
 			<view :class="{'uni-tab__right':fill}" class="flex uni-tab__cart-sub-box ">
-				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}" class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)">{{ item.text }}</view>
+				<view v-for="(item,index) in buttonGroup" :key="index" :style="{backgroundColor:item.backgroundColor,color:item.color}"
+				 class="flex uni-tab__cart-button-right" @click="buttonClick(index,item)">{{ item.text }}</view>
 			</view>
 		</view>
 	</view>
@@ -31,7 +32,8 @@
 	export default {
 		name: 'UniGoodsNav',
 		computed: {
-			...mapState(['good','goodList'])},
+			...mapState(['good', 'goodList'])
+		},
 		props: {
 			options: {
 				type: Array,
@@ -49,11 +51,10 @@
 				type: Array,
 				default () {
 					return [{
-							text: '加入购物车',
-							backgroundColor: '#FD6801',
-							color: '#fff'
-						}
-					]
+						text: '加入购物车',
+						backgroundColor: '#FD6801',
+						color: '#fff'
+					}]
 				}
 			},
 			fill: {
@@ -67,9 +68,16 @@
 					index,
 					content: item
 				})
+				if (item.text == "购物车") {
+					uni.switchTab({
+
+						url: '/pages/shopping/index'
+					})
+				}
+
 			},
 			//点击加入购物车
-			buttonClick(index, item,obj) {
+			buttonClick(index, item, obj) {
 				if (uni.report) {
 					uni.report(item.text, item.text)
 				}
@@ -78,13 +86,13 @@
 					content: item
 				})
 				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
-				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.obj.id)
-				if(indexs==-1){
-					this.$store.commit("getgoodList",this.good);
-				}else{
-					this.$store.commit("getgoodnum",indexs);
+				let indexs = this.goodList.map(item => item.obj.id).indexOf(this.good.obj.id)
+				if (indexs == -1) {
+					this.$store.commit("getgoodList", this.good);
+				} else {
+					this.$store.commit("getgoodnum", indexs);
 				}
-				this.$store.commit("getztchek")//购物车改变全选状态改变
+				this.$store.commit("getztchek") //购物车改变全选状态改变
 			}
 		}
 	}
