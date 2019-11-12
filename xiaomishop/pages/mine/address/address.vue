@@ -76,7 +76,6 @@
 			...mapState(["whether"])
 		},
 		onLoad(option) {
-			
 			this.list = Json.address //进入接收数据
 		}
 	}

@@ -4,7 +4,7 @@
 		<view class="hreder">
 			<view class="title">
 				<text class="iconfont icon-2fanhui" @click="fanhui"></text>
-				<text class="text">订单配送至</text>
+				<text class="text">订单详情</text>
 			</view>
 			<!-- 收货地址 -->
 			<view class="site" @click="replace">
@@ -71,7 +71,7 @@
 			<view class="right">
 				合计:
 				<text style="color: #FD6801;">￥{{total}}</text>
-				<view class="btn">去付款</view>
+				<view class="btn" @click="payment">去付款</view>
 			</view>
 
 		</view>
@@ -121,6 +121,13 @@
 		     uni.navigateTo({
 		     	url:"/pages/mine/deliver/invoice?phone="+phone+""
 		     })
+			},
+			//跳转支付订单
+			payment(){
+			let total=this.total
+			  uni.navigateTo({
+			  	url:"/pages/mine/confirmpayment/confirmpayment?total="+total+""
+			  })	
 			}
 		},
 		computed: {

@@ -9,8 +9,8 @@
 					<text>合计:</text>
 					<text class="yen">￥{{total}}</text>
 				</view>
-				<view class="close">
-					<text @click="close">结算</text>
+				<view class="close" @click="close">
+					<text >结算</text>
 				</view>
 			</view>
 			<view class="ftsc" v-if="editor">

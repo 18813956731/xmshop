@@ -225,6 +225,18 @@
 			   "navigationBarTitleText":"发票"
 			}
 		},
+		{ //确认支付订单
+			"path": "pages/mine/confirmpayment/confirmpayment",
+			"style": {
+			   "navigationBarTitleText":"支付"
+			}
+		},
+		{ //支付完成
+			"path": "pages/mine/confirmpayment/paysuccess",
+			"style": {
+			   "navigationBarTitleText":"支付成功"
+			}
+		},
 		{ //我的订单
 			"path": "pages/mine/myorder/myorder",
 			"style": {
