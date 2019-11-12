@@ -4,7 +4,7 @@
 		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" v-model="txt"/></view>
 		<view class="password"><input type="password" class="txt" placeholder="请输入密码" v-model="pasd"/></view>
 		<view class="tishi" @click="phone">
-			用手机短信登录
+			没有账号前往注册页面
 			<span class="iconfont icon-you"></span>
 		</view>
 		<view class="button"><button @tap="login">登录</button></view>
@@ -42,13 +42,14 @@ export default {
 		login(){
 			let _this=this
 			let arr=[_this.txt,_this.pasd]
-			console.log(_this.txt_Pasd)
 			for(let i=0;i<_this.txt_Pasd.length;i++){
 				let txts=_this.txt_Pasd[i].indexOf(arr[0])!=-1
 				let pasd=_this.txt_Pasd[i].indexOf(arr[1])!=-1
 				if(txts&&pasd){
 					_this.$store.commit("login",true)
-					_this.$api.msg("登录成功")
+					uni.switchTab({
+						url:"/pages/mine/index/index"
+					});
 					console.log(_this.logon_Status)
 				}else{
 					_this.$api.msg("账号或者密码错误")

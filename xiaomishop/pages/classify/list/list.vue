@@ -160,37 +160,12 @@ computed: {
 		    }
 		}
 	},
-	created() {
-		this.datas=this.shoplist;
-		uni.request({
-			url:"http://ceshi3.dishait.cn/api/goods/search",
-			data:{
-				page:1,
-				title:"小米空调"
-			},
-			method:"POST",
-			header: {
-				'content-type': 'application/x-www-form-urlencoded',
-			},
-			success(res) {
-				// console.log(res)
-			}
-		})
-		uni.request({//获取数据
-			url: 'http://ceshi3.dishait.cn/api/goods/28',
-			success(res) {
-				// 分类da
-				
-				console.log(res.data);
-			}
-		})
-		// console.log(arr.sort(compare('age')))
-	},
+	created() {this.datas=this.shoplist;},
 	onNavigationBarButtonTap(e) {
 		if (e.index == 0) {
-			// uni.navigateTo({
-			// 	url: '/pages/shopping/index'
-			// });
+			uni.switchTab({
+				url: '/pages/shopping/index'
+			});
 			console.log('购物');
 		}
 	}
