@@ -9,7 +9,7 @@ import { mapState, mapMutations } from 'vuex';
 			uni.getStorage({
 			    key: 'storage_key',
 			    success: function (res) {
-					if(res.data==""){
+					if(res.data!="token"){
 						uni.navigateTo({
 							url:"/pages/mine/login"
 						})

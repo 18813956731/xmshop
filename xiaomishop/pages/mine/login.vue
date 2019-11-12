@@ -57,7 +57,7 @@ export default {
 					});
 					uni.setStorage({
 					    key: 'storage_key',
-					    data:token,
+					    data:"token",
 					    success: function () {
 							
 					    }
