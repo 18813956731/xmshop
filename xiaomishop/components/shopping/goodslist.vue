@@ -36,7 +36,7 @@
 			<!-- 没有商品信息 -->
 			<view class="cart" v-else>
 				<view>
-					<span class="iconfont icons">&#xe64c;</span>
+					<span class="iconfont icons  icon-gouwuche"></span>
 				</view>
 				<view>
 					<text class="txt">购物车还是空的</text>

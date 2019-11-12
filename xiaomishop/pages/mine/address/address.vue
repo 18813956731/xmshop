@@ -76,7 +76,7 @@
 			...mapState(["whether"])
 		},
 		onLoad(option) {
-			this.whether = option.whether //从订单地址进入改变状态
+			
 			this.list = Json.address //进入接收数据
 		}
 	}

@@ -207,7 +207,7 @@
 	}
 
 	.confimindent-bottom {
-		height: 500rpx;
+		height: 600rpx;
 		width: 100%;
 		background-color: white;
 		border-top-left-radius: 20rpx;

@@ -25,7 +25,7 @@
 				<view class="flex">
 					<label>所在地区:</label>
 					<input type="text" :value="item.Location" name="Location"  placeholder="地址选择" placeholder-style="color:#000000;"/>
-					<text class="iconfont icon-dingwei" @click.stop="chooseLocation"></text>
+					<view class="iconfont icon-dingwei" @click="coation"></view>
 				</view>
 				<!-- 详细地址 -->
 				<view class="flex">
@@ -74,13 +74,11 @@
 				})
 			},
 			//地图选择地址
-			chooseLocation(){
-				let _this=this
+			coation(){
+				this.$api.msg("地图")
 				uni.chooseLocation({
 					success: (data)=> {
-				       _this.item.Location=data.name
-					   // console.log(_this.item.Location)
-					    console.log(data.name)
+				       this.item.Location=data.name
 					}
 				})
 			},
@@ -191,9 +189,13 @@
 			  position: absolute;
 			  right: 20rpx;
 			  top: 50%;
+			  background-color: white;
+			  height: 100rpx;
+			  line-height: 100rpx;
 			  transform: translateY(-50%);
-			  font-size: 40rpx;;
+			  font-size: 80rpx;;
 			  color: red;
+			  z-index: 999;
 		  }
 			switch {
 				float: right;
