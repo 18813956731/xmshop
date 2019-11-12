@@ -1,8 +1,8 @@
 <template>
 	<view class="container">
 		<h1>密码登录</h1>
-		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" v-model="txt"/></view>
-		<view class="password"><input type="password" class="txt" placeholder="请输入密码" v-model="pasd"/></view>
+		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" v-model="txt" /></view>
+		<view class="password"><input type="password" class="txt" placeholder="请输入密码" v-model="pasd" /></view>
 		<view class="tishi" @click="phone">
 			没有账号前往注册页面
 			<span class="iconfont icon-you"></span>
@@ -27,42 +27,42 @@ export default {
 	computed: {
 		...mapState(['token'])
 	},
-	data(){
-		return{
+	data() {
+		return {
 			txt: '',
 			pasd: ''
-		}
+		};
 	},
-	methods:{
-		phone(){
+	methods: {
+		phone() {
 			uni.navigateTo({
-				url:"/pages/mine/phone"
-			})
+				url: '/pages/mine/phone'
+			});
 		},
-		login(){
-			let _this=this
-			uni.request({//登录
+		login() {
+			let _this = this;
+			uni.request({
+				//登录
 				url: 'http://ceshi3.dishait.cn/api/login',
-				method:"POST",
-				data:{
-					username:_this.txt,
-					password:_this.pasd
+				method: 'POST',
+				data: {
+					username: _this.txt,
+					password: _this.pasd
 				},
-				success(res) { 
-				let token=res.data.data.token
-				_this.$store.commit("login",token)
-				console.log(_this.token)
-				uni.switchTab({
-					url:"/pages/mine/index/index"
-				});
+				success(res) {
+					let token = res.data.data.token;
+					_this.$store.commit('login', token);
+					console.log(res);
+					uni.switchTab({
+						url: '/pages/mine/index/index'
+					});
 				}
-			})
+			});
 			
-			
-		}
-
+		},
 	}
-}
+		
+};
 </script>
 
 <style scoped>

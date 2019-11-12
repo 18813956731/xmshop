@@ -54,7 +54,7 @@
 					// 分类
 					_this.classification=res.data.data
 					_this.category_items=_this.classification[0].app_category_items
-					console.log(res.data.data);
+					// console.log(res.data.data);
 				}
 			})
 			

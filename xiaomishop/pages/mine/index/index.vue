@@ -53,7 +53,7 @@
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 	export default {
 		computed: {
-				           ...mapState(['logon_Status'])
+				           ...mapState(['token'])
 	 }, 
 		data() {
 			return {
@@ -136,11 +136,11 @@
 			//跳转我的订单
 			requer(e) {
 				let index = parseInt(e.currentTarget.dataset.index)//页面下标
-				// if(this.logon_Status==false){
-				// 	uni.navigateTo({
-				// 		url:"/pages/mine/login"
-				// 	})
-				// }else{
+				if(this.token==""){
+					uni.navigateTo({
+						url:"/pages/mine/login"
+					})
+				}else{
 					if (isNaN(index)) {
 					uni.navigateTo({
 						url: "/pages/mine/myorder/myorder?steat=0"
@@ -160,7 +160,7 @@
 
 
 				}
-				// }
+				}
 				
 			}
 		},

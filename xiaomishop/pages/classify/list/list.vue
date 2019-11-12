@@ -121,7 +121,7 @@ computed: {
 		Jump(e) {
 			//跳转详情页面
 			let id=e.id
-			console.log(id)
+			// console.log(id)
 			uni.navigateTo({
 				url: '/components/home/xqing?data='+id
 			});
@@ -131,7 +131,7 @@ computed: {
 			let _this=this
 			_this.serviceB=0
 			_this.classB=0
-			console.log('取消');
+			// console.log('取消');
 			// this.showRigth = false;
 		},
 		show(e) {
@@ -166,7 +166,7 @@ computed: {
 			uni.switchTab({
 				url: '/pages/shopping/index'
 			});
-			console.log('购物');
+			// console.log('购物');
 		}
 	}
 };
