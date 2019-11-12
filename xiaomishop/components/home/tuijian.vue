@@ -40,7 +40,7 @@
 				uni.navigateTo({ //跳转传参到商品详情页
 					url: "/components/home/xqing?data=" + e.id
 				})
-			},
+			}
 		}
 	}
 </script>

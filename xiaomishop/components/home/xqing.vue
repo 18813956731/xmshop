@@ -2,18 +2,18 @@
 	<view style="height: 90%;">
 		<swiper :style="{ height: swiperheight_s + 'rpx' }">
 			<swiper-item>
-				<!-- class="list" -->
-				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore(index)">
+				<!-- @scrolltolower="loadmore(index)" -->
+				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }">
 					<!-- 商品介绍价格 -->
 					<view class="shopping">
-					<view v-for="(item,index) in shuddd">
-						<view class="img">
-							<image :src="item.cover" style="width: 500upx;"></image>
+						<view v-for="(item,index) in shuddd">
+							<view class="img">
+								<image :src="item.cover" style="width: 500upx;"></image>
+							</view>
+							<view class="shop">{{item.title}}</view>
+							<view class="textr shop">{{item.desc}}</view>
+							<view class="item-name shop">¥{{item.min_price}}</view>
 						</view>
-						<view class="shop">{{item.title}}</view>
-						<view class="textr shop">{{item.desc}}</view>
-						<view class="item-name shop">¥{{item.min_price}}</view>
-					</view>
 					</view>
 					<!-- 商品cpu -->
 					<view class="ico">
@@ -67,7 +67,7 @@
 					</view>
 					<!-- 为你推荐 -->
 					<text class="text">为你推荐</text>
-					<tuijian ></tuijian>
+					<tuijian></tuijian>
 					<view class="load-more">{{loadtext}}</view>
 				</scroll-view>
 			</swiper-item>
@@ -86,7 +86,7 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
-	
+
 	import tuijian from '@/components/home/tuijian.vue'
 	import goumai from '@/components/home/goumai.vue'
 	import uniPopup from "@/components/shopping/uni-popup.vue"
@@ -106,8 +106,6 @@
 				shuddd: [], //商品信息
 				type: '', // 弹出层类型
 				tktype: '', //具体弹出层
-				newtext: '', //为您推荐
-				newtexts: [], //为您推荐
 				tabBars: [{
 					img: '/static/images/demo/demo6.jpg',
 					name: '楚锦',
@@ -148,31 +146,7 @@
 				})
 				console.log(res.data.data.hotComments)
 				this.cupr = res.data.data.goodsAttrs //CPU数据
-				this.newtext = res.data.data.hotList //推荐数据
 				this.shoppt = res.data.data.goodsBanner //外观预览
-
-				for (let i in this.newtext) { //推荐数据循环遍历
-					this.newtexts.push(this.newtext[i])
-				}
-			},
-			loadmore(index) { //下拉加载更多
-				// console.log(this.loadtext)
-				if (this.loadtext == "上拉加载更多") {
-					//修改状态
-					this.loadtext = "加载中..."
-					//获取数据
-					let that = this
-					setTimeout(() => {
-						let obj = that.newtexts;
-						// console.log(obj)
-						//每次刷新加载数据，把新数据加进去
-						that.newtexts = that.newtexts.concat(obj.slice(0, 6))
-						// console.log(that.selectedss)
-						that.loadtext = "上拉加载更多";
-					}, 1000)
-				} else {
-					return
-				}
 			},
 			change(e) {
 				// console.log(e.show)
@@ -190,21 +164,17 @@
 			},
 		},
 		onLoad(position) {
-			let _this=this
-			let id=parseInt(position.data) 
+			let _this = this
+			let id = parseInt(position.data)
 			console.log(id)
-			
 			uni.request({
-				url:"http://ceshi3.dishait.cn/api/goods/"+id+"",
+				url: "http://ceshi3.dishait.cn/api/goods/" + id + "",
 				success(res) {
-					_this.$store.commit("getgood",res.data.data)
+					_this.$store.commit("getgood", res.data.data)
 					_this.shuddd.push(res.data.data)
 					console.log(res.data.data)
 				}
 			})
-			
-			// console.log(opston)
-			
 		}
 	}
 </script>
@@ -258,6 +228,7 @@
 		height: 100rpx;
 		border-bottom: 0.5rpx solid #BBBBBB;
 		line-height: 100rpx;
+		color: #3B4144;
 	}
 
 	.huohon {
