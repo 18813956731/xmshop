@@ -80,11 +80,17 @@
 			//退出登录
 			sign() {
 				let _this=this;
-				// console.log(this.token)
-				_this.$store.commit('sign');
-				uni.switchTab({
-					url: '/pages/mine/index/index'
+				uni.setStorage({
+				    key: 'storage_key',
+				    data:"",
+				    success: function () {
+						uni.navigateTo({
+							url:"/pages/mine/login"
+						})
+				    }
 				});
+				
+				
 				uni.showToast({
 					title: '点击协',
 					icon: 'none'

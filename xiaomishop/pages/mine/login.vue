@@ -51,15 +51,23 @@ export default {
 				},
 				success(res) {
 					let token = res.data.data.token;
-					_this.$store.commit('login', token);
 					console.log(res);
 					uni.switchTab({
-						url: '/pages/mine/index/index'
+						url: '/pages/index/index'
+					});
+					uni.setStorage({
+					    key: 'storage_key',
+					    data:token,
+					    success: function () {
+							
+					    }
 					});
 				}
 			});
 			
 		},
+	},
+	onLoad(){
 	}
 		
 };
@@ -108,6 +116,7 @@ h1 {
 .checkbox {
 	margin-top: 30rpx;
 	height: 80rpx;
+	width:750rpx;
 	line-height: 80rpx;
 	font-size: 25rpx;
 }

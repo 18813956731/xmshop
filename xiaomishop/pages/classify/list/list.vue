@@ -179,7 +179,7 @@ computed: {
 	line-height:100rpx;
 	border-top: #999999 1px solid;
 	border-bottom: #999999 1px solid;
-	overflow: hidden;
+	overflow: hidden; 
 }
 .itemst {
 	float:left;

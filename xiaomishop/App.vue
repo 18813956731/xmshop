@@ -1,7 +1,25 @@
 <script>
+import { mapState, mapMutations } from 'vuex';
 	export default {
+		computed: {
+			...mapState(['token'])
+		},
 		onLaunch: function() {
-			console.log('App Launch')
+			
+			uni.getStorage({
+			    key: 'storage_key',
+			    success: function (res) {
+					if(res.data==""){
+						uni.navigateTo({
+							url:"/pages/mine/login"
+						})
+						console.log('App Launch')
+					}
+			        console.log(res.data);
+			    }
+			});
+			
+			
 		},
 		onShow: function() {
 			console.log('App Show')
