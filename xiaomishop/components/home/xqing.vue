@@ -1,17 +1,9 @@
 <template>
 	<view style="height: 90%;">
-
-		<swiper :style="{ height: swiperheight_s + 'rpx' }" class="uni-app">
+		<swiper :style="{ height: swiperheight_s + 'rpx' }">
 			<swiper-item>
-				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore()">
-					<view class="back">
-						<view class="backlist" @tap="navtow">
-							<uni-icon type="back" size="45rpx" color='#FFFFFF'></uni-icon>
-						</view>
-						<view class="backlist">
-							<uni-icon type="more-filled" size="45rpx" color='#FFFFFF'></uni-icon>
-						</view>
-					</view>
+				<scroll-view scroll-y show-scrollbar="false"  :style="{ height: swiperheight_s + 'rpx' }"
+					 @scrolltolower="loadmore()">
 					<!-- 商品介绍价格 -->
 					<view class="shopping">
 						<view v-for="(item,index) in shuddd" :key="index">
@@ -90,7 +82,6 @@
 
 <script>
 	//导入状态管理
-	import uniIcon  from '@/components/mine/uni-icons.vue'
 	import {
 		mapState,
 		mapMutations
@@ -103,12 +94,10 @@
 		components: {
 			tuijian,
 			goumai,
-			uniPopup,
-			uniIcon 
+			uniPopup
 		},
 		computed: {
-			...mapState(['good', 'goodList', "tjlist"])
-		},
+			...mapState(['good','goodList',"tjlist"])},
 		data() {
 			return {
 				shoppt: '', //商品预览
@@ -178,32 +167,26 @@
 					setTimeout(() => {
 						let obj = that.tjlist;
 						//每次刷新加载数据，把新数据加进去
-						that.$store.commit("getwxtjlist", obj)
+						that.$store.commit("getwxtjlist",obj)
 						that.loadtext = "上拉加载更多";
 					}, 1000)
 				} else {
 					return
 				}
-			},
-			navtow(){
-				uni.navigateBack({
-					
-				})
 			}
 		},
 		onLoad(position) {
 			let _this = this
 			let id = parseInt(position.data)
-			console.log(id)
 			uni.request({
 				url: "http://ceshi3.dishait.cn/api/goods/" + id + "",
 				success(res) {
-					let obj = {
-						obj: res.data.data,
-						number: 1,
-						action: false
+					let obj={
+						obj:res.data.data,
+						number:1,
+						action:false
 					}
-					_this.$store.commit("getgood", obj)
+					_this.$store.commit("getgood",obj)
 					_this.shuddd.push(res.data.data)
 					console.log(res.data.data)
 				}
@@ -216,29 +199,6 @@
 	* {
 		margin: 0;
 		padding: 0;
-	}
-
-	.uni-app {
-		position: relative;
-	}
-
-	/* 点击返回 */
-	.back {
-		width: 100%;
-		height: 100rpx;
-		display: flex;
-		justify-content: space-between;
-		position: absolute;
-	}
-
-	.backlist {
-		width: 80rpx;
-		height: 80rpx;
-		background-color: rgba(0, 0, 0, 0.5);
-		border-radius: 50rpx;
-		text-align: center;
-		line-height: 80rpx;
-		margin: 10rpx 10rpx;
 	}
 
 	/* 弹出层 */
@@ -382,6 +342,10 @@
 	}
 
 	/* tab */
+
+
+
+
 	.pinlun {
 		color: #0A98D5;
 		text-align: center;

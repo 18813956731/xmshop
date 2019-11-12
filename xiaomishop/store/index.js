@@ -47,9 +47,9 @@ const store = new Vuex.Store({
 		getgoodList(state,obj){
 			state.goodList.push(obj)
 		},
-		//已加入购物车商品，在加入数量加1
+		//已加入购物车商品，在加入数量
 		getgoodnum(state,index){
-			state.goodList[index].number++;
+			state.goodList[index].number=state.goodList[index].number+state.good.number;
 		},
 		//获取商品选中状态
 		getaction(state,index){

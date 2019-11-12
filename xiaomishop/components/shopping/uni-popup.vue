@@ -55,7 +55,7 @@
 								</view>
 							</view>
 						</view>
-						<view class="newAddress">选择新的地址</view>
+						<view class="newAddress" @click="close(true)">选择新的地址</view>
 					</view>
 					<!-- 服务详情  setviceNote-->
 					<view v-if="tktype=='setviceNote'">
@@ -91,7 +91,7 @@
 								</view>
 							</view>
 						</view>
-						<view class="newAddress">确定</view>
+						<view class="newAddress" @click="close(true)">确定</view>
 					</view>
 			</view>
 		</view>
@@ -181,6 +181,8 @@ import amount from "@/components/shopping/amount.vue"
 				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
 				let indexs=this.goodList.map(item=>item.obj.id).indexOf(this.good.obj.id)
 				if(indexs==-1){
+					// var newObj = JSON.parse(JSON.stringify(this.good));
+					// newObj.number=1;
 					this.$store.commit("getgoodList",this.good);
 				}
 				else{
