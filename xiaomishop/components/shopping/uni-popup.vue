@@ -17,32 +17,32 @@
 							<view>
 								<view class="color"><text>颜色</text></view>
 								<view class="jtfl">
-									<view><text>火焰红</text></view>
-									<view><text>炭黑</text></view>
-									<view><text>冰川蓝</text></view>
+									<view @click="getcolor(0)" :class="{jtaction:color==0}"><text>火焰红</text></view>
+									<view @click="getcolor(1)" :class="{jtaction:color==1}"><text>炭黑</text></view>
+									<view @click="getcolor(2)" :class="{jtaction:color==2}"><text>冰川蓝</text></view>
 								</view>
 							</view>
 							<view>
 								<view class="color"><text>容量</text></view>
 								<view class="jtfl">
-									<view><text>64GB</text></view>
-									<view><text>128GB</text></view>
+									<view @click="getmemory(0)" :class="{jtaction:memory==0}"><text>64GB</text></view>
+									<view @click="getmemory(1)" :class="{jtaction:memory==1}"><text>128GB</text></view>
 								</view>
 							</view>
 							<view>
 								<view class="color"><text>套餐</text></view>
 								<view class="jtfl">
-									<view><text>标配</text></view>
-									<view><text>套餐一</text></view>
-									<view><text>套餐二</text></view>
+									<view @click="getmeal(0)" :class="{jtaction:meal==0}"><text >标配</text></view>
+									<view @click="getmeal(1)" :class="{jtaction:meal==1}"><text>套餐一</text></view>
+									<view @click="getmeal(2)" :class="{jtaction:meal==2}"><text>套餐二</text></view>
 								</view>
 							</view>
 							<view class="gmnum">
 								<view><text>购买数量</text></view>
-								<amount :value="edgood.number" @change="change($event,edgood.index)"></amount>
+								<amount :value="edgood.number" @change="change($event)"></amount>
 							</view>
 						</view>
-						<view class="grgwc">加入购物车</view>
+						<view class="grgwc" >加入购物车</view>
 					</view>
 				</view>
 					<!-- 地址 -->
@@ -146,7 +146,10 @@ import amount from "@/components/shopping/amount.vue"
 		data() {
 			return {
 				ani: '',
-				showPopup: false
+				showPopup: false,
+				color:0,
+				memory:0,
+				meal:0
 			}
 		},
 		watch: {
@@ -159,6 +162,18 @@ import amount from "@/components/shopping/amount.vue"
 			}
 		},
 		methods: {
+			//颜色选择
+			getcolor(index){
+				this.color=index
+			},
+			//内存选择
+			getmemory(index){
+				this.memory=index
+			},
+			//套餐选择
+			getmeal(index){
+				this.meal=index
+			},
 			clear(){
 				console.log("1")
 			},
@@ -179,9 +194,9 @@ import amount from "@/components/shopping/amount.vue"
 					}, 300)
 				})
 			},
-			//改变购物车对应商品数量
-			change(event,index){
-				this.$store.commit("getchange",[event,index])
+			//改变编辑商品的对应商品数量
+			change(event){
+				this.$store.commit("getedchange",event)
 			}
 		}
 	}

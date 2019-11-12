@@ -10,12 +10,12 @@
 						<view class='goods-info-inner'>
 							<view class='checkbox' @click="action(index)">
 							</view>
-							<view class='goods-image' @click="togglePopup('bottom', 'popup','type',index)">
+							<view class='goods-image' @click="togglePopup('bottom', 'popup','type',item)">
 								<image :src="item.obj.cover"></image>
 							</view>
 							<view class='good-info' >
-								<view class='name' @click="togglePopup('bottom', 'popup','type',index)">{{item.obj.title}}</view>
-								<view class='lx' :class="{bjaction:editor}" @click="togglePopup('bottom', 'popup','type',index)">
+								<view class='name' @click="togglePopup('bottom', 'popup','type',item)">{{item.obj.title}}</view>
+								<view class='lx' :class="{bjaction:editor}" @click="togglePopup('bottom', 'popup','type',item)">
 									<view class="lxtext">
 										{{item.obj.desc}}
 									</view>
@@ -24,7 +24,7 @@
 									</view>
 								</view>
 								<view class="infobox">
-									<view class='price' @click="togglePopup('bottom', 'popup','type',index)">￥{{item.obj.min_price}}</view>
+									<view class='price' @click="togglePopup('bottom', 'popup','type',item)">￥{{item.obj.min_price}}</view>
 									<amount class="numbers" :value="item.number" @change="change($event,index)"></amount>
 								</view>
 
@@ -76,9 +76,9 @@
 		},
 		methods: {
 			//弹出模态框
-			togglePopup(type,open,tktype,index) {
+			togglePopup(type,open,tktype,item) {
 				//传入编辑的商品入状态管理
-				this.$store.commit("getedgood",index);
+				this.$store.commit("getedgood",item);
 				this.tktype = tktype;
 				this.type = type
 				if (open === 'tip') {

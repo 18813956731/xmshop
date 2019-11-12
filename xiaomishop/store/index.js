@@ -57,6 +57,10 @@ const store = new Vuex.Store({
 		getchange(state,arr){
 			state.goodList[arr[1]].number=arr[0]
 		},
+		//获取编辑商品对应商品数量
+		getedchange(state,number){
+			state.edgood.number=number
+		},
 		//获取合计金额
 		gettotal(state,total){
 			 state.total=total
@@ -105,9 +109,8 @@ const store = new Vuex.Store({
 			state.good=good
 		},
 		//获取点击编辑的商品
-		getedgood(state,index){
-			state.edgood=state.goodList[index]
-			state.edgood.index=index
+		getedgood(state,item){
+			state.edgood=item
 		},
 		//获取结算商品
 		getclearinggoods(state){
