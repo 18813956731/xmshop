@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<scroll-view scroll-y show-scrollbar="false" :key='index' :style="{ height: swiperheight_s + 'rpx' }"
+		 @scrolltolower="loadmore(indexz)">
 		<view class="textr">
 			<view class="tuijian" v-for="(item,index) in recommend" :key="index" @click="navigateTo(item)">
 				<view>
@@ -13,6 +15,7 @@
 				</view>
 			</view>
 		</view>
+		</scroll-view>
 	</view>
 </template>
 

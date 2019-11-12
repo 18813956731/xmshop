@@ -136,12 +136,6 @@
 			this.shuj(); //调用方法周期里获取API的函数
 		},
 		methods: {
-			navigateTo(e) { //点击商品跳转到商品详情购买页
-				// console.log(e) 
-				uni.navigateTo({ //跳转传参到商品详情页
-					url: "/components/home/xqing?data=" + JSON.stringify(e)
-				})
-			},
 			async shuj() {
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
@@ -153,10 +147,8 @@
 			change(e) {
 				// console.log(e.show)
 			},
-			
 			//编辑弹出框
 			togglePopup(type, open, tktype) {
-				
 				//具体弹出层类型
 				this.tktype = tktype
 				this.type = type

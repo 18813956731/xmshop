@@ -8,7 +8,8 @@
 			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
 				<swiper-item v-for="(itemz,indexz) in 10" :key='indexz'>
 					<!-- class="list" -->
-					<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore(indexz)">
+					<scroll-view scroll-y show-scrollbar="false" :key='index' :style="{ height: swiperheight_s + 'rpx' }"
+					 @scrolltolower="loadmore(indexz)">
 						<!-- 轮播 -->
 						<caroUsel />
 						<!-- 类别 -->
@@ -35,6 +36,7 @@
 									<image :src="selecteds.cover" style="width: 750rpx;height: 350rpx;"></image>
 								</view>
 							</view>
+							<!-- 商品-->
 							<view class="productlist">
 								<view v-for="(item,index) in jxlist" class="imageview" :key='index' @tap="navigateTo(item)">
 									<view>
@@ -61,10 +63,13 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
-	
+
 	import swiperTabHead from "@/components/home/tabBars.vue"
 	import caroUsel from "@/components/home/carousel.vue"
 	export default {
+		computed: {
+			...mapState(['recommend', 'jxlist'])
+		},
 		components: {
 			swiperTabHead,
 			caroUsel
@@ -78,45 +83,43 @@
 				selecteds: '', //每日精选
 				tabBars: [], //tab导航数据存放数组
 				newslist: '', //类别
-				initial:[
-					{
-						comprehensive:99,//综合排序
-						num:1000,//销量
+				initial: [{
+						comprehensive: 99, //综合排序
+						num: 1000, //销量
 						pinglun: '1348',
 						ids: 25
-					},{
-						comprehensive:95,//综合排序
-						num:6582,//销量
+					}, {
+						comprehensive: 95, //综合排序
+						num: 6582, //销量
 						pinglun: '1348',
 						ids: 26
-					},{
-						comprehensive:97,//综合排序
-						num:3365,//销量
+					}, {
+						comprehensive: 97, //综合排序
+						num: 3365, //销量
 						pinglun: '1348',
 						ids: 27
-					},{comprehensive:90,//综合排序
-						num:844,//销量
+					}, {
+						comprehensive: 90, //综合排序
+						num: 844, //销量
 						pinglun: '1348',
 						ids: 28
 					},
 					{
-						comprehensive:85,//综合排序
-						num:390,//销量
+						comprehensive: 85, //综合排序
+						num: 390, //销量
 						pinglun: '1348',
 						ids: 29
 					}
-				]//自定义初始数组
+				] //自定义初始数组
 
 			}
 		},
 		created() {
-			this.shuj();//调用方法周期里获取API的函数
-			this.remend();//调用方法周期里获取API的函数
+			this.shuj(); //调用方法周期里获取API的函数
+			this.remend(); //调用方法周期里获取API的函数
 			this.getshoplist();
 		},
-		computed: {
-		           ...mapState(['recommend','jxlist'])
-		       }, 
+
 		methods: {
 			async shuj() {
 				let [error, res] = await uni.request({
@@ -133,34 +136,34 @@
 					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
 				})
 				let obj = res.data.data.hotList //推荐数据
-				let arr=[]
+				let arr = []
 				for (let i in obj) { //推荐数据循环遍历
 					arr.push(obj[i])
 				}
 				//推荐数据存入状态管理
-				this.$store.commit("getrecommend",arr)
+				this.$store.commit("getrecommend", arr)
 			},
 			//精选分类商品列表数据存入状态管理
 			async getshoplist() {
-				let that=this
-				that.initial.forEach(item=>{
-				uni.request({
-					url:"http://ceshi3.dishait.cn/api/goods/"+item.ids+"",
-					success(res) {
-						let obj=res.data.data;
-						for (var i in item) {
-							obj[i]=item[i]
+				let that = this
+				that.initial.forEach(item => {
+					uni.request({
+						url: "http://ceshi3.dishait.cn/api/goods/" + item.ids + "",
+						success(res) {
+							let obj = res.data.data;
+							for (var i in item) {
+								obj[i] = item[i]
+							}
+							//分类商品列表数据存入状态管理
+							that.$store.commit("getshoplist", obj)
+							//精选商品列表数据存入状态管理
+							that.$store.commit("getjxlist", obj)
+							//推荐商品列表数据存入状态管理
+							that.$store.commit("gettjlist", obj)
 						}
-						//分类商品列表数据存入状态管理
-						that.$store.commit("getshoplist",obj)
-						//精选商品列表数据存入状态管理
-						that.$store.commit("getjxlist",obj)
-						//推荐商品列表数据存入状态管理
-						that.$store.commit("gettjlist",obj)
-					}
+					})
 				})
-				})		
-				},
+			},
 			loadmore(index) { //下拉加载更多
 				// console.log(this.loadtext)
 				if (this.loadtext == "上拉加载更多") {
@@ -169,9 +172,9 @@
 					//获取数据
 					let that = this
 					setTimeout(() => {
-						 let obj = that.jxlist;
+						let obj = that.jxlist;
 						//每次刷新加载数据，把新数据加进去
-						that.$store.commit("getwxlist",obj)
+						that.$store.commit("getwxlist", obj)
 						that.loadtext = "上拉加载更多";
 					}, 1000)
 				} else {
@@ -179,15 +182,15 @@
 				}
 			},
 			tabChange(e) {
-				this.tabIndex = e.detail.current;//滑块
+				this.tabIndex = e.detail.current; //滑块
 			},
 			tabtap(index) {
-				this.tabIndex = index;//顶部tab
+				this.tabIndex = index; //顶部tab
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
-					url: "/components/home/xqing?data="+e.id
+					url: "/components/home/xqing?data=" + e.id
 				})
 			},
 			navigateTow() {
@@ -264,14 +267,14 @@
 		font-size: 20upx;
 		color: #8F8F94;
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 
-		.selected {
-			padding: 10rpx 0rpx;
-			font-size: 35rpx;
-		}
+	.selected {
+		padding: 10rpx 0rpx;
+		font-size: 35rpx;
+	}
 
 	/* 价格 */
 	.text-one {
