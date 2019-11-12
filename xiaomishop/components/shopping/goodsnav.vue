@@ -56,11 +56,12 @@
 			//点击结算
 			close(){
 				this.$store.commit("getclearinggoods")
-				uni.navigateTo({
-					url:"/pages/mine/deliver/confimindent"
-				})
-				console.log(this.clearinggoods);
-				this.$store.commit("getztchek")//购物车改变全选状态改变
+				if(this.clearinggoods.length>0){
+					uni.navigateTo({
+						url:"/pages/mine/deliver/confimindent"
+					})
+					this.$store.commit("getztchek")//购物车改变全选状态改变
+				}				
 			},
 			//点击删除
 			del(){

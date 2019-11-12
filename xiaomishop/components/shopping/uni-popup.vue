@@ -8,9 +8,9 @@
 					<view class="edmain">
 						<view class="editor">
 							<view class="tltmg">
-								<view class="edimg"><image src="../../static/images/demo/list/1.jpg"></image></view>
+								<view class="edimg"><image :src="edgood.obj.cover"></image></view>
 								<view class="edlb">
-									<view  class="edprice"><text>￥</text><text>3369</text></view>
+									<view  class="edprice"><text>￥</text><text>{{edgood.obj.min_price}}</text></view>
 									<view><text class="edlx">火焰红 64G 标配</text></view>
 								</view>
 							</view>
@@ -39,7 +39,7 @@
 							</view>
 							<view class="gmnum">
 								<view><text>购买数量</text></view>
-								<amount></amount>
+								<amount :value="edgood.number" @change="change($event,edgood.index)"></amount>
 							</view>
 						</view>
 						<view class="grgwc">加入购物车</view>
@@ -99,12 +99,20 @@
 </template>
 
 <script>
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	
 import amount from "@/components/shopping/amount.vue"
 	export default {
 		name: 'UniPopup',
 		components:{
 			amount
 		},
+		computed: {
+			...mapState(['edgood'])},
 		props: {
 			// 开启动画
 			animation: {
@@ -170,6 +178,10 @@ import amount from "@/components/shopping/amount.vue"
 						this.showPopup = false
 					}, 300)
 				})
+			},
+			//改变购物车对应商品数量
+			change(event,index){
+				this.$store.commit("getchange",[event,index])
 			}
 		}
 	}

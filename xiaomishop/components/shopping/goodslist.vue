@@ -10,21 +10,21 @@
 						<view class='goods-info-inner'>
 							<view class='checkbox' @click="action(index)">
 							</view>
-							<view class='goods-image'>
+							<view class='goods-image' @click="togglePopup('bottom', 'popup','type',index)">
 								<image :src="item.obj.cover"></image>
 							</view>
-							<view class='good-info'>
-								<view class='name'>{{item.obj.title}}</view>
-								<view class='lx' :class="{bjaction:editor}">
+							<view class='good-info' >
+								<view class='name' @click="togglePopup('bottom', 'popup','type',index)">{{item.obj.title}}</view>
+								<view class='lx' :class="{bjaction:editor}" @click="togglePopup('bottom', 'popup','type',index)">
 									<view class="lxtext">
 										{{item.obj.desc}}
 									</view>
 									<view>
-										<span v-show="editor" class="iconfont" @click="togglePopup('bottom', 'popup','type')">&#xe65d;</span>
+										<span v-show="editor" class="iconfont" >&#xe65d;</span>
 									</view>
 								</view>
 								<view class="infobox">
-									<view class='price'>￥{{item.obj.min_price}}</view>
+									<view class='price' @click="togglePopup('bottom', 'popup','type',index)">￥{{item.obj.min_price}}</view>
 									<amount class="numbers" :value="item.number" @change="change($event,index)"></amount>
 								</view>
 
@@ -76,7 +76,9 @@
 		},
 		methods: {
 			//弹出模态框
-			togglePopup(type, open, tktype) {
+			togglePopup(type,open,tktype,index) {
+				//传入编辑的商品入状态管理
+				this.$store.commit("getedgood",index);
 				this.tktype = tktype;
 				this.type = type
 				if (open === 'tip') {

@@ -8,6 +8,7 @@ const store = new Vuex.Store({
 		allchek:false,//全选状态
 		total:0,//合计金额
 		good:"",//详情商品
+		edgood:"",//点击编辑的商品
 		editor:false,//编辑状态
 		shoplist:[],//分类商品列表
 		jxlist:[],//精选商品列表
@@ -103,6 +104,11 @@ const store = new Vuex.Store({
 		//获取详情页商品
 		getgood(state,good){
 			state.good=good
+		},
+		//获取点击编辑的商品
+		getedgood(state,index){
+			state.edgood=state.goodList[index]
+			state.edgood.index=index
 		},
 		//获取结算商品
 		getclearinggoods(state){
