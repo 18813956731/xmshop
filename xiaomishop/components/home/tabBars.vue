@@ -1,9 +1,9 @@
 <template>
 	<!-- tab导航组件 -->
 	<view class="one">
-		<scroll-view class="tow" :scroll-x="true" show-scrollbar="false">
-			<view v-for="(tab,index) in tabBars" :key="tab.id" class="trr" :style="scrollStyle">
-				<view class="swiper-tab-list" :class="{'active' : tabIndex==index}" @tap="tabtap(index)" :style="scrollItemStyle">
+		<scroll-view class="tow" id="tab-bar" :scroll-x="true" show-scrollbar="false" scroll-x :scroll-left="scrollLeft">
+			<view v-for="(tab,index) in tabBars" :key="index"  class="trr" :style="scrollStyle" :id="tab.id" >
+				<view class="swiper-tab-list" :class="{'active' : tabIndexr==index}" @tap="tabtap(index)" :style="scrollItemStyle">
 					{{tab.name}} {{tab.num?tab.num:""}}
 					<view class="swiper-tab-line"></view>
 				</view>
@@ -14,7 +14,7 @@
 
 <script>
 	export default {
-		props: {
+		props: {//组件传参是实时更新的，数据及时变化！
 			tabBars: Array,
 			tabIndex: Number,
 			scrollStyle: {
@@ -28,9 +28,9 @@
 		},
 		methods: {
 			//点击切换导航
-			tabtap(index) {
+			async tabtap(index) {
 				// this.tabIndex = index;
-				this.$emit('tabtap', index)
+				this.$emit('tabtap', index)//触发自定义的tabtap事件
 			}
 		}
 	}

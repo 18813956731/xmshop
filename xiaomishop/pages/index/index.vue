@@ -1,9 +1,8 @@
 <template>
 	<view id="box" :style="{height:swiperheight_all + 'rpx' }">
 		<!-- 顶导航tab切换  -->
-		<!-- <view class="position"> -->
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
-		<!-- </view> -->
+		<!-- :tabBars绑定tab渲染数据 -->
 		<view>
 			<!-- class="swiper-item" -->
 			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
@@ -72,8 +71,8 @@
 		},
 		data() {
 			return {
-				swiperheight_s: 1070, //定义滚动高度
-				swiperheight_all: 1070, //定义滚动高度
+				swiperheight_s: 1055, //定义滚动高度
+				swiperheight_all: 1055, //定义滚动高度
 				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
 				tabIndex: 0,
@@ -187,10 +186,10 @@
 				}
 			},
 			tabChange(e) {
-				this.tabIndex = e.detail.current;
+				this.tabIndex = e.detail.current;//滑块
 			},
 			tabtap(index) {
-				this.tabIndex = index;
+				this.tabIndex = index;//顶部tab
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
