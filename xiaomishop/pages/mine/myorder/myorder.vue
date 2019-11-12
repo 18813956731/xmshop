@@ -1,9 +1,8 @@
 <template>
 	<view id="mine-myorder">
-
 		<!-- 导航 -->
 		<view class="flex">
-			<view class="tab-item" v-for="(item,index) in order" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
+			<view class="tab-item" v-for="(item,index) in order" :key="index" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
 			 :id="index">{{item.title}}</view>
 		</view>
 		<!-- 滑动 -->
@@ -12,12 +11,9 @@
 				<!-- 纵向滚动 -->
 				<scroll-view class="list-scroll-content" scroll-y @scrolltolower="loadData">
 					<!-- 空白页 -->
-					<blank v-if="heighttactive" :nothing="blank"></blank>
+					 <blank v-if="heighttactive" :nothing="blank"></blank>
 					<!-- 列表内容 -->
 					<all v-else></all>
-
-
-
 
 				</scroll-view>
 			</swiper-item>
@@ -28,7 +24,7 @@
 				<view class="text">猜你喜欢</view>
 				<view class="text-flex">实时推荐你的爱</view>
 			</view>
-		<tuijian :item="item" :index="index"></tuijian>
+		<tuijian></tuijian>
 		</view>
 	</view>
 </template>
@@ -48,26 +44,26 @@
 				blank: [], //空页面要渲染数据
 				order: [{ //导航数据
 						title: "全部",
-						index: 0, //根据下标渲染
+						indexa: 0, //根据下标渲染
 						nothing: [{
 							name: 1
 						}] //空数据渲染
 					},
 					{
 						title: "待付款",
-						index: 1,
+						indexa: 1,
 						nothing: []
 					},
 					{
 						title: "待收货",
-						index: 2,
+						indexa: 2,
 						nothing: [{
 							name: 1
 						}]
 					},
 					{
 						title: "待评价",
-						index: 3,
+						indexa: 3,
 						nothing: []
 					}
 				],
@@ -85,48 +81,6 @@
 						title: "您还没有待评价订单"
 					}
 				],
-				//猜你喜欢数据
-				newtext: [{
-						cover: '/static/images/demo/list/1.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					},
-					{
-						cover: '/static/images/demo/list/4.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					},
-					{
-						cover: '/static/images/demo/list/3.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					},
-					{
-						cover: '/static/images/demo/list/2.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					}, {
-						cover: '/static/images/demo/list/5.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					}, {
-						cover: '/static/images/demo/list/6.jpg',
-						title: '米家空调',
-						desc: '1.5匹支流变频',
-						min_oprice: '2199',
-						min_price: '2699'
-					}
-				],
 				tabIndex: 0, //条件渲染
 				heighttactive: true //样式渲染
 
@@ -135,14 +89,17 @@
 		methods: {
 			//点击导航内容一起
 			tabactive(e) {
-				this.tabIndex = parseInt(e.currentTarget.id) || parseInt(e.target.id)
-				this.loadData()
+				let _this=this
+				_this.tabIndex = parseInt(e.currentTarget.id) || parseInt(e.target.id)
+				_this.loadData()
 			},
 			//获取订单列表
 			loadData(source) {
 				let index = this.tabIndex
-				let tab = this.order[index].nothing.length
+				console.log(index)
+				let tab = this.order[index].nothing.length//获取数据长度
 				this.blank = this.nothing[index - 1]
+				//
 				if (tab == 0) {
 					this.heighttactive = true
 				} else {

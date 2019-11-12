@@ -217,10 +217,10 @@
 				"navigationBarTitleText": "物流"
 			}
 		},
-		{ //订单结算1
+		{ //订单结算
 			"path": "pages/mine/deliver/confimindent",
 			"style": {
-				"navigationBarTitleText": "订单结算"
+				"navigationStyle":"custom"
 			}
 		},
 		{ //我的订单

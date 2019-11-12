@@ -28,7 +28,7 @@
 					<view class="total-price">共3件商品,合计: ￥299.00</view>
 					<view class="logistics">
 						<text @click="steps">查看物流</text>
-						<text>确认收货</text>
+						<text @click="confirm">确认收货</text>
 					</view>
 				</view>
 			</view>
@@ -60,6 +60,16 @@
 				uni.navigateTo({
 					url:"/pages/mine/steps/steps"
 				})
+			},
+			confirm(){
+				uni.request({
+				    url: 'http://ceshi3.dishait.cn/api/login',
+					method:"POST",
+				    success: (res) => {
+				        console.log(res.data);
+				        this.text = 'request success';
+				    }
+				});
 			}
 		}
 	}

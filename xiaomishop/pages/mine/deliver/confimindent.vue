@@ -1,6 +1,6 @@
 <template>
 	<view id="user-confimindent">
-		<view class="confimindent-top">
+		<view class="hreder">
 			<view class="title">
 				<text class="iconfont icon-2fanhui" @click="fanhui"></text>
 				<text class="text">订单配送至</text>
@@ -16,7 +16,7 @@
 					<image src="/static/images/demo/demo6.jpg" class="mypic"></image>
 					<image src="/static/images/demo/demo6.jpg" class="mypic"></image>
 				</view>
-				<view class="right">共三件 <text class="iconfont icon-you"></text> </view>
+				<view class="right">共{{}}件 <text class="iconfont icon-you"></text> </view>
 			</view>
 			<view v-for="(item,index) in listText" :key="index">
 				<view class="list">
@@ -49,7 +49,7 @@
 			return {
 				listText: [{
 					tesleft: "商品总价",
-					price: 20.00
+					price:"￥20.00"
 				}, {
 					tesleft: "运费",
 					price: "包邮"
@@ -59,6 +59,9 @@
 				}]
 			}
 		},
+		onLoad(option) {
+			console.log(option)
+		}
 
 	}
 </script>
@@ -68,14 +71,15 @@
 		position: relative;
 	}
 
-	.confimindent-top {
+	.hreder{
 		height: 400rpx;
 		width: 100%;
 		background-color: #FD6801;
 
 		.title {
-			height: 80rpx;
-			line-height: 80rpx;
+			
+			height: 100rpx;
+			line-height: 100rpx;
 			color: white;
 			text-align: center;
 

@@ -47,7 +47,14 @@
 </template>
 
 <script>
+	//导入状态管理
+		import {mapState,Mutations
+		} from 'vuex';
+	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 	export default {
+		computed: {
+				           ...mapState(['logon_Status'])
+	 }, 
 		data() {
 			return {
 				imge: false, //图片渲染条件
@@ -129,7 +136,12 @@
 			//跳转我的订单
 			requer(e) {
 				let index = parseInt(e.currentTarget.dataset.index)//页面下标
-				if (isNaN(index)) {
+				// if(this.logon_Status==false){
+				// 	uni.navigateTo({
+				// 		url:"/pages/mine/login"
+				// 	})
+				// }else{
+					if (isNaN(index)) {
 					uni.navigateTo({
 						url: "/pages/mine/myorder/myorder?steat=0"
 					})
@@ -140,6 +152,7 @@
 							url:"/pages/mine/sales/after-sales"
 						})
 					} else {
+						
 						uni.navigateTo({
 							url: "/pages/mine/myorder/myorder?steat=" + index + ""
 						})
@@ -147,6 +160,8 @@
 
 
 				}
+				// }
+				
 			}
 		},
 
