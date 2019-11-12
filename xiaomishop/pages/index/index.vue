@@ -1,9 +1,8 @@
 <template>
-	<view id="box" :style="{height:swiperheight_all + 'rpx' }">
+	<view id="box">
 		<!-- 顶导航tab切换  -->
-		<!-- <view class="position"> -->
 		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
-		<!-- </view> -->
+		<!-- :tabBars绑定tab渲染数据 -->
 		<view>
 			<!-- class="swiper-item" -->
 			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
@@ -72,15 +71,12 @@
 		},
 		data() {
 			return {
-				swiperheight_s: 1070, //定义滚动高度
-				swiperheight_all: 1070, //定义滚动高度
+				swiperheight_s: 1055, //定义滚动高度
 				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
 				tabIndex: 0,
 				selecteds: '', //每日精选
 				tabBars: [], //tab导航数据存放数组
-				selected: [], //每日精选商品类
-				selectedss: [], //循环每日精选商品类
 				newslist: '', //类别
 				initial:[
 					{
@@ -129,12 +125,8 @@
 				// console.log(res)
 				this.tabBars = res.data.data.category //tab导航
 				this.selecteds = res.data.data.data[3].data //每日精选
-				this.selected = res.data.data.data[4].data //每日精选商品
 				this.imgr = res.data.data.data[2].data //广告图
 				this.newslist = res.data.data.data[1].data //类别
-				for (let i in this.selected) { //循环遍历
-					this.selectedss.push(this.selected[i])
-				}
 			},
 			async remend() {
 				let [error, res] = await uni.request({
@@ -187,10 +179,10 @@
 				}
 			},
 			tabChange(e) {
-				this.tabIndex = e.detail.current;
+				this.tabIndex = e.detail.current;//滑块
 			},
 			tabtap(index) {
-				this.tabIndex = index;
+				this.tabIndex = index;//顶部tab
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
