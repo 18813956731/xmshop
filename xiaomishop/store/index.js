@@ -10,6 +10,7 @@ const store = new Vuex.Store({
 		good:"",//详情商品
 		edgood:"",//点击编辑的商品
 		editor:false,//编辑状态
+		whether:false,//地址状态
 		shoplist:[],//分类商品列表
 		jxlist:[],//精选商品列表
 		tjlist:[],//精选商品列表
@@ -119,6 +120,10 @@ const store = new Vuex.Store({
 		//获取结算商品
 		getclearinggoods(state){
 			state.clearinggoods=state.goodList.filter(item=>item.action);
+		},
+		//改变地址内点击
+		change(state){
+			state.whether=true
 		}
 	},
 	actions: {

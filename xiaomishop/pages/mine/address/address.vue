@@ -8,8 +8,9 @@
 		</view>
 		<!-- 地址列表 -->
 		<view class="mina">
+			<!-- 循环收货地址 -->
 			<view class="from-mina" v-for="(item,index) in list" :key="index">
-				<view class="from-mina-left">
+				<view class="from-mina-left" @click="onfirm(index)">
 					<view class="hred">
 						<view class="text">{{item.name}}</view>
 						<view class="phone">{{item.phone}}</view>
@@ -23,12 +24,17 @@
 </template>
 
 <script>
-  import Json from "@/Json"
+	//导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	import Json from "@/Json" //引入地址数据
 	export default {
 		data() {
 			return {
-				index:0,
-				list: []
+				index: 0, //下标传值
+				list: [] //进入页面接收渲染数据
 			}
 		},
 		methods: {
@@ -41,24 +47,37 @@
 			//跳转编辑地址页面
 			plus(e) {
 				let index = e.currentTarget.dataset.index
-				this.index=index
+				this.index = index
 				console.log(this.index)
-				if(index==null){
+				if (index == null) {
 					uni.navigateTo({
 						url: "/pages/mine/address/edit?id=1"
 					})
-				}else{
+				} else {
 					uni.navigateTo({
-						url: "/pages/mine/address/edit?id=1&index="+index+""
+						url: "/pages/mine/address/edit?id=1&index=" + index + ""
 					})
 				}
-				
+
+			},
+			//确认收货地址
+			onfirm(e) {
+				console.log(e)
+				if (this.whether) {
+					uni.navigateTo({
+						url: "/pages/mine/deliver/confimindent?index=" + e + ""
+					})
+				} else {
+
+				}
 			}
 		},
+		computed: {
+			...mapState(["whether"])
+		},
 		onLoad(option) {
-			// this.index=option.index
-			// this.list[this.index]=JSON.parse(option.item)
-			this.list=Json.address
+			this.whether = option.whether //从订单地址进入改变状态
+			this.list = Json.address //进入接收数据
 		}
 	}
 </script>

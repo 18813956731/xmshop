@@ -223,6 +223,12 @@
 				"navigationStyle":"custom"
 			}
 		},
+		{ //发票详情
+			"path": "pages/mine/deliver/invoice",
+			"style": {
+			   "navigationBarTitleText":"发票"
+			}
+		},
 		{ //我的订单
 			"path": "pages/mine/myorder/myorder",
 			"style": {
