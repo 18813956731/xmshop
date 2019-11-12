@@ -109,6 +109,9 @@ const store = new Vuex.Store({
 		getwxlist(state,obj){
 			state.jxlist = state.jxlist.concat(obj.slice(0, 6))
 		},
+		getwxtjlist(state,obj){
+			state.tjlist = state.tjlist.concat(obj.slice(0, 6))
+		},
 		//获取详情页商品
 		getgood(state,good){
 			state.good=good

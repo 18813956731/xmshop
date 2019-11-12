@@ -1,9 +1,8 @@
 <template>
 	<view>
-		<scroll-view scroll-y show-scrollbar="false" :key='index' :style="{ height: swiperheight_s + 'rpx' }"
-		 @scrolltolower="loadmore(indexz)">
+		
 		<view class="textr">
-			<view class="tuijian" v-for="(item,index) in recommend" :key="index" @click="navigateTo(item)">
+			<view class="tuijian" v-for="(item,index) in tjlist" :key="index" @click="navigateTo(item)">
 				<view>
 					<image :src="item.cover"></image>
 				</view>
@@ -15,7 +14,7 @@
 				</view>
 			</view>
 		</view>
-		</scroll-view>
+		
 	</view>
 </template>
 
@@ -26,14 +25,6 @@
 		mapMutations
 	} from 'vuex';
 	export default {
-		data() {
-			return {
-				recommend: []
-			}
-		},
-		created() {
-			this.recommend = this.tjlist
-		},
 		computed: {
 			...mapState(['tjlist'])
 		},

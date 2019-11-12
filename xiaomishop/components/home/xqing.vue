@@ -2,11 +2,11 @@
 	<view style="height: 90%;">
 		<swiper :style="{ height: swiperheight_s + 'rpx' }">
 			<swiper-item>
-				<!-- @scrolltolower="loadmore(index)" -->
-				<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }">
+				<scroll-view scroll-y show-scrollbar="false"  :style="{ height: swiperheight_s + 'rpx' }"
+					 @scrolltolower="loadmore()">
 					<!-- 商品介绍价格 -->
 					<view class="shopping">
-						<view v-for="(item,index) in shuddd">
+						<view v-for="(item,index) in shuddd" :key="index">
 							<view class="img">
 								<image :src="item.cover"></image>
 							</view>
@@ -97,13 +97,13 @@
 			uniPopup
 		},
 		computed: {
-			...mapState(['good','goodList'])},
+			...mapState(['good','goodList',"tjlist"])},
 		data() {
 			return {
 				shoppt: '', //商品预览
 				loadtext: "上拉加载更多", //加载更多
-				swiperheight_s: 1120, //定义滚动高度
-				swiperheight_all: 1120, //定义滚动高度
+				swiperheight_s: 1050, //定义滚动高度
+				swiperheight_all: 1050, //定义滚动高度
 				cupr: '', //cpu
 				shuddd: [], //商品信息
 				type: '', // 弹出层类型
@@ -156,6 +156,22 @@
 					this.show = true
 				} else {
 					this.$refs[open].open()
+				}
+			},
+			loadmore() { //下拉加载更多
+				if (this.loadtext == "上拉加载更多") {
+					//修改状态
+					this.loadtext = "加载中..."
+					//获取数据
+					let that = this
+					setTimeout(() => {
+						let obj = that.tjlist;
+						//每次刷新加载数据，把新数据加进去
+						that.$store.commit("getwxtjlist",obj)
+						that.loadtext = "上拉加载更多";
+					}, 1000)
+				} else {
+					return
 				}
 			},
 		},

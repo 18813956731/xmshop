@@ -1,5 +1,7 @@
 <template>
 	<view class="content">
+		<scroll-view scroll-y show-scrollbar="false"  :style="{ height: swiperheight_s + 'rpx' }"
+			 @scrolltolower="loadmore()">
 			<view class="uni-navbar">
 				<view class="navb">
 					<view><text>购物车</text></view>
@@ -21,6 +23,7 @@
 					<tuijian></tuijian>
 			</view>
 		</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -41,11 +44,13 @@
 				name:"我的购物车",
 				productList: [],
 				renderImage: false,
-				rightText:"编辑"
+				rightText:"编辑",
+				loadtext: "上拉加载更多", //加载更多
+				swiperheight_s: 1150 //定义滚动高度
 			}
 		},
 		computed: {
-			...mapState(['editor'])
+			...mapState(['editor','tjlist'])
 			},
 		components:{
 			goodslist,
@@ -62,6 +67,22 @@
 			onClickRight(){
 				this.editor?this.rightText='编辑':this.rightText='完成'
 				this.$store.commit("geteditor", !this.editor)
+			},
+			loadmore() { //下拉加载更多
+				if (this.loadtext == "上拉加载更多") {
+					//修改状态
+					this.loadtext = "加载中..."
+					//获取数据
+					let that = this
+					setTimeout(() => {
+						let obj = that.tjlist;
+						//每次刷新加载数据，把新数据加进去
+						that.$store.commit("getwxtjlist",obj)
+						that.loadtext = "上拉加载更多";
+					}, 1000)
+				} else {
+					return
+				}
 			}
 		},
 		onLoad() {

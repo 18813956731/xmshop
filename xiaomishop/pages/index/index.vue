@@ -8,7 +8,7 @@
 			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
 				<swiper-item v-for="(itemz,indexz) in 10" :key='indexz'>
 					<!-- class="list" -->
-					<scroll-view scroll-y show-scrollbar="false" :key='index' :style="{ height: swiperheight_s + 'rpx' }"
+					<scroll-view scroll-y show-scrollbar="false"  :style="{ height: swiperheight_s + 'rpx' }"
 					 @scrolltolower="loadmore(indexz)">
 						<!-- 轮播 -->
 						<caroUsel />
