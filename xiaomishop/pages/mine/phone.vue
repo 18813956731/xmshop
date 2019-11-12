@@ -11,7 +11,7 @@
 		<view class="checkbox">
 			<span>已阅读并同意小米</span>
 			<b>账号协议、隐私政策</b>
-			<span>和</span>
+			<span> 和 </span>
 			<b>小米商城用户协议</b>
 		</view>
 		<view class="icon">
@@ -40,29 +40,7 @@ export default {
 				url: '/pages/mine/login'
 			});
 		},
-		gettxt_Pasd() {
-			//注册
-			let _this = this;
-			let arr = [_this.txt, _this.pasd]; //账号密码存到一个数组里
-			if (_this.txt_Pasd.length == 0) {
-				_this.$store.commit('gettxt_Pasd', arr); //条件成立注册成功
-			} else {
-				for (let i = 0; i < _this.txt_Pasd.length; i++) {
-					// 循环判断账号是否为空或者账号重复
-					if (_this.txt_Pasd[i].indexOf(arr[0]) == -1 && arr[0] != '' && arr[1] != '') {
-						_this.$store.commit('gettxt_Pasd', arr); //条件成立注册成功
-						console.log('注册成功');
-						uni.navigateTo({
-							url: '/pages/mine/login'
-						});
-					} else {
-						console.log('账号重复或者账号密码为空');
-					}
-				}
-			}
-
-			console.log(_this.txt_Pasd);
-		}
+		gettxt_Pasd() {}
 	}
 };
 </script>

@@ -25,7 +25,7 @@
 import { mapState, mapMutations } from 'vuex';
 export default {
 	computed: {
-		...mapState(['txt_Pasd','logon_Status'])
+		...mapState(['token'])
 	},
 	data(){
 		return{
@@ -41,20 +41,23 @@ export default {
 		},
 		login(){
 			let _this=this
-			let arr=[_this.txt,_this.pasd]
-			for(let i=0;i<_this.txt_Pasd.length;i++){
-				let txts=_this.txt_Pasd[i].indexOf(arr[0])!=-1
-				let pasd=_this.txt_Pasd[i].indexOf(arr[1])!=-1
-				if(txts&&pasd){
-					_this.$store.commit("login",true)
-					uni.switchTab({
-						url:"/pages/mine/index/index"
-					});
-					console.log(_this.logon_Status)
-				}else{
-					_this.$api.msg("账号或者密码错误")
+			uni.request({//登录
+				url: 'http://ceshi3.dishait.cn/api/login',
+				method:"POST",
+				data:{
+					username:_this.txt,
+					password:_this.pasd
+				},
+				success(res) { 
+				let token=res.data.data.token
+				_this.$store.commit("login",token)
+				console.log(_this.token)
+				uni.switchTab({
+					url:"/pages/mine/index/index"
+				});
 				}
-			}
+			})
+			
 			
 		}
 
