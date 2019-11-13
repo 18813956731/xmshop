@@ -115,7 +115,22 @@
 
 			}
 		}, {
-			"path": "pages/mine/login"
+			"path": "pages/mine/login",
+			"style":{
+				"app-plus":{
+					"titleNView":{
+						"autoBackButton":false,
+						"buttons": [{
+							"color": "#555555",
+							"float": "right",
+							"fontSize": "50rpx",
+							"fontSrc": "/static/icon/iconfont.ttf",
+							"text": "\ue653"
+						}]
+					}
+				}
+			}
+			
 		}, {
 			"path": "pages/mine/phone"
 		},

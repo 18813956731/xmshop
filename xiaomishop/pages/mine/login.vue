@@ -73,6 +73,16 @@ export default {
 	},
 	onLoad(options){
 		console.log(options)
+	},
+	onNavigationBarButtonTap(e){
+		console.log(e.index)
+		if(e.index==0){
+			uni.switchTab({
+				url:"/pages/index/index"
+			})
+		}else{
+			console.log("123")
+		}
 	}
 		
 };
