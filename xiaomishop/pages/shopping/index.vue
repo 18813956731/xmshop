@@ -85,8 +85,18 @@
 				}
 			}
 		},
-		onLoad() {
-		   
+		onShow() {
+			uni.getStorage({//获取本地缓存
+				key:"storage_key",
+				success(res){
+					if(res.data==""){
+						uni.navigateTo({
+							url:"/pages/mine/login"
+						})
+					}else{
+						console.log("已在登录状态")
+					}
+				}})
 		}
 }
 </script>

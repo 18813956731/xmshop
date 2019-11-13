@@ -108,6 +108,17 @@
 			this.my=this.token
 		},
 		onShow() {
+			uni.getStorage({//获取本地缓存
+				key:"storage_key",
+				success(res){
+					if(res.data==""){
+						uni.navigateTo({
+							url:"/pages/mine/login"
+						})
+					}else{
+						console.log("已在登录状态")
+					}
+				}})
          this.my=this.token
 		},
 		methods: {
@@ -140,15 +151,6 @@
 			//跳转我的订单
 			requer(e) {
 				let index = parseInt(e.currentTarget.dataset.index)//页面下标
-				uni.getStorage({//获取本地缓存
-					key:"storage_key",
-					success(res){
-						console.log(res.data)
-						if(res.data==""){
-							uni.navigateTo({
-								url:"/pages/mine/login"
-							})
-						}else{
 							if (isNaN(index)) {
 								uni.navigateTo({
 									url: "/pages/mine/myorder/myorder?steat=0"
@@ -165,9 +167,8 @@
 									})
 								}
 							}
-						}
-					}
-				})
+						
+				
 				
 			}
 		},
