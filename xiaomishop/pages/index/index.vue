@@ -7,7 +7,7 @@
 		</scroll-view>
 		<view>
 			<!-- class="swiper-item" -->
-			<swiper :current="tabCurrentIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
+			<swiper :current="tabCurrentIndex" @change="changeTab" :style="{ height: swiperheight_s + 'rpx' }">
 				<swiper-item v-for="tabItem in tabBars" :key="tabItem.id">
 					<!-- class="list" -->
 					<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore">
@@ -72,19 +72,19 @@
 	import swiperTabHead from "@/components/home/tabBars.vue"
 	import caroUsel from "@/components/home/carousel.vue"
 	export default {
+		components: {//注册组件
+			swiperTabHead,
+			caroUsel
+		},
+		computed: {//状态管理
+			...mapState(['recommend', 'jxlist'])
+		},
 		async onLoad() {
 			// 获取屏幕宽度
 			windowWidth = uni.getSystemInfoSync().windowWidth;
 			this.loadTabbars();
 		},
-		computed: {
-			...mapState(['recommend', 'jxlist'])
-		},
-		components: {
-			swiperTabHead,
-			caroUsel
-		},
-		data() {
+		data() {//data数据
 			return {
 				tabCurrentIndex: 0, //当前选项卡索引
 				scrollLeft: 0, //顶部选项卡左滑距离
@@ -92,9 +92,8 @@
 				swiperheight_s: 1055, //定义滚动高度
 				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
-				tabIndex: 0,
 				selecteds: '', //每日精选
-				tabBars: [], //tab导航数据存放数组
+				tabBars: [], //tab导航数据
 				newslist: '', //类别
 				initial: [{
 						comprehensive: 99, //综合排序
@@ -135,13 +134,23 @@
 
 		methods: {
 			//获取分类
-			loadTabbars() {
-				let tabList = json.tabList;
-				this.tabBars = tabList;
+			loadTabbars() {//获取json数据
+				let tabList = json.tabList;//获取
+				this.tabBars = tabList;//赋值给data定义的tabBars
 			},
 			//tab切换
-			async changeTab(e) {
+			async changeTab(e) {//顶部选项卡
+				if(scrollTimer){//每次切换执行最后一次
+					//多次切换只执行最后一次
+					clearTimeout(scrollTimer);
+					scrollTimer = false;
+				}
+				
 				let index = e;
+				if(typeof e === 'object'){//跟随变化
+					index = e.detail.current
+					this.tabCurrentIndex = e.detail.current; //滑块滑动跟随变化
+				}
 				//e=number为点击切换，e=object为swiper滑动切换
 				if (typeof tabBar !== 'object') {
 					tabBar = await this.getElSize("nav-bar")
@@ -242,9 +251,6 @@
 				} else {
 					return
 				}
-			},
-			tabChange(e) {
-				this.tabIndex = e.detail.current; //滑块
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
