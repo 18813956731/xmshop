@@ -109,7 +109,6 @@
 				let index = this.index
 				if (this.bure) {
 					Json.address.push(e.detail.value)
-					console.log(Json.address)
 				} else {
 					Json.address[this.index] = e.detail.value
 				}
@@ -174,16 +173,17 @@
             position: relative;
 			label {
 				text-indent: 32rpx;
-				width: 250rpx;
+				width: 208rpx;
 				float: left;
 				line-height: 100rpx;
 				color: #2C405A;
-				font-size: 35rpx;
+				font-size: 28rpx;
 			}
 
 			input {
 				height: 100rpx;
 				line-height: 100rpx;
+				font-size: 30rpx;
 			}
           .icon-dingwei{
 			  position: absolute;
@@ -193,7 +193,7 @@
 			  height: 100rpx;
 			  line-height: 100rpx;
 			  transform: translateY(-50%);
-			  font-size: 80rpx;;
+			  font-size: 50rpx;;
 			  color: red;
 			  z-index: 999;
 		  }

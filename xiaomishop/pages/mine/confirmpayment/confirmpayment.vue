@@ -29,29 +29,32 @@
 				</label>
 			</view>
 		</view>
-		<text class="mix-btn" @click="confirm">确认支付</text>
-		<text class="mix-btn max-btn" @click="confirm">取消支付</text>
+		<text class="mix-btn" @click="confirm(true)">确认支付</text>
+		<text class="mix-btn max-btn" @click="confirm(false)">取消支付</text>
 	</view>
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex' //导入状态管理
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex' //导入状态管理
 	export default {
 		computed: {
-			...mapState(['clearinggoods',"total"])
+			...mapState(['clearinggoods', "total"])
 		},
 		data() {
 			return {
 				payType: 1,
 				orderInfo: {},
-				total:0
+				total: 0
 			};
 		},
 		computed: {
-		
+
 		},
 		onLoad(options) {
-		  this.total=options.total
+			this.total = options.total
 		},
 
 		methods: {
@@ -60,10 +63,17 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 				this.payType = type;
 			},
 			//确认支付
-			confirm: async function() {
-				uni.redirectTo({
-					url: '/pages/money/paySuccess'
-				})
+			confirm: async function(e) {
+				if (e) {
+					uni.redirectTo({
+						url: '/pages/mine/confirmpayment/paysuccess'
+					})
+				} else {
+					uni.switchTab({
+						url: '/pages/shopping/index'
+					})
+				}
+
 			},
 		}
 	}
@@ -84,11 +94,12 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 		font-size: 28rpx;
 		color: #909399;
 
-		.price{
+		.price {
 			font-size: 50rpx;
 			color: #303133;
 			margin-top: 12rpx;
-			&:before{
+
+			&:before {
 				content: '￥';
 				font-size: 40rpx;
 			}
@@ -99,8 +110,8 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 		margin-top: 20rpx;
 		background-color: #fff;
 		padding-left: 60rpx;
-		
-		.type-item{
+
+		.type-item {
 			height: 120rpx;
 			padding: 20rpx 0;
 			display: flex;
@@ -108,25 +119,29 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 			align-items: center;
 			padding-right: 60rpx;
 			font-size: 30rpx;
-			position:relative;
+			position: relative;
 		}
-		
-		.iconfont{
+
+		.iconfont {
 			width: 100rpx;
 			font-size: 52rpx;
 		}
+
 		.icon-zhifubao {
 			color: #007AFF;
 		}
+
 		.icon-weixinzhifu {
 			color: #36cb59;
 		}
-		.tit{
+
+		.tit {
 			/* font-size: $font-lg;
 			color: $font-color-dark; */
 			margin-bottom: 4rpx;
 		}
-		.con{
+
+		.con {
 			flex: 1;
 			display: flex;
 			flex-direction: column;
@@ -134,6 +149,7 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 			color: $font-color-light; */
 		}
 	}
+
 	.mix-btn {
 		display: flex;
 		align-items: center;
@@ -141,15 +157,16 @@ import {mapState,mapMutations} from 'vuex' //导入状态管理
 		width: 630rpx;
 		height: 80rpx;
 		margin: 30rpx auto 30rpx;
-		font-size:33rpx;
+		font-size: 33rpx;
 		color: #fff;
-		background-color:#de207a;
+		background-color: #de207a;
 		border-radius: 10rpx;
 		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 	}
-    .max-btn{
+
+	.max-btn {
 		opacity: 0.8;
-		background-color:#BAE3E5;
+		background-color: #BAE3E5;
 		color: #3B4144;
 	}
 </style>
