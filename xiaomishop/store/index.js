@@ -17,7 +17,8 @@ const store = new Vuex.Store({
 		recommend:[],//推荐商品列表
 		goodList:[],//购物车列表
 		token:"",//登录令牌
-		clearinggoods:[]//结算的商品
+		clearinggoods:"",//订单结算的商品
+		allorders:[]//全部订单
 	},
 	getters:{
 		
@@ -117,9 +118,14 @@ const store = new Vuex.Store({
 		getgood(state,good){
 			state.good=good
 		},
-		//获取结算商品
-		getclearinggoods(state){
-			state.clearinggoods=state.goodList.filter(item=>item.action);
+		//获取结算订单对象，并存入全部订单
+		getclearinggoods(state,cleargoods){
+			//结算后的购物车商品列表
+			state.goodList=state.goodList.filter(item=>!item.action);
+			//获取结算订单对象
+			state.clearinggoods=cleargoods
+			//存入全部订单
+			state.allorders.push(cleargoods)
 		},
 		//改变地址内点击
 		change(state){

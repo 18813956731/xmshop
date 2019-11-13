@@ -55,19 +55,54 @@
 			},
 			//点击结算
 			close(){
-				this.$store.commit("getclearinggoods")
-				if(this.clearinggoods.length>0){
+				//获取选择的结算商品的数组
+				let arr=this.goodList.filter(item=>item.action);
+				if(arr.length>0){
+					//结算订单对象
+					let cleargoods={
+						arr,//购物车商品详情表
+						total:this.total,//本单合计金额
+						paystatus:false,//本单支付状态
+						taketatus:false,//本单收货状态
+						observerstatus:false,//本单评论状态
+						orderdata:this.getNowFormatDate()//本单结算日期
+					}
+					this.$store.commit("getclearinggoods",cleargoods)
 					uni.navigateTo({
 						url:"/pages/mine/deliver/confimindent"
 					})
 					this.$store.commit("getztchek")//购物车改变全选状态改变
+					console.log(this.clearinggoods)
 				}				
 			},
 			//点击删除
 			del(){
 				this.$store.commit("getdel")
 				this.$store.commit("getztchek")//购物车改变全选状态改变
-			}
+			},
+			//日期函数
+			getNowFormatDate(){
+			    var date = new Date();
+			    var seperator1 = "-";
+			    var seperator2 = ":";
+			    var month = date.getMonth() + 1;
+			    var strDate = date.getDate();
+			    var hours=date.getHours();
+			    var minutes=date.getMinutes();
+			    if (month >= 1 && month <= 9) {
+			        month = "0" + month;
+			    }
+			    if (strDate >= 0 && strDate <= 9) {
+			        strDate = "0" + strDate;
+			    }
+			    if (hours >= 0 && hours <= 9) {
+			        hours = "0" + hours;
+			    }
+			    if (minutes >= 0 && minutes <= 9) {
+			        minutes = "0" + minutes;
+			    }
+			    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +" "+ hours+ seperator2 + minutes;
+			    return currentdate}
 		},
 		
 	}
