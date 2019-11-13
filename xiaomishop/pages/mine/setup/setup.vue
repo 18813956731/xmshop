@@ -84,13 +84,13 @@
 				    key: 'storage_key',
 				    data:"",
 				    success: function () {
-						uni.navigateTo({
-							url:"/pages/mine/login"
-						})
+						uni.navigateBack({
+						    delta: 1,
+						    animationType: 'pop-out',
+						    animationDuration: 500
+						});
 				    }
 				});
-				
-				
 				uni.showToast({
 					title: '点击协',
 					icon: 'none'

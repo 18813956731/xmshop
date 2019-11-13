@@ -5,21 +5,6 @@ import { mapState, mapMutations } from 'vuex';
 			...mapState(['token'])
 		},
 		onLaunch: function() {
-			
-			uni.getStorage({
-			    key: 'storage_key',
-			    success: function (res) {
-					if(res.data!="token"){
-						uni.navigateTo({
-							url:"/pages/mine/login"
-						})
-						console.log('App Launch')
-					}
-			        console.log(res.data);
-			    }
-			});
-			
-			
 		},
 		onShow: function() {
 			console.log('App Show')

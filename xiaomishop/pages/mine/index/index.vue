@@ -5,9 +5,9 @@
 			<img class="image" src="/static/images/bg.jpg" mode="widthFix" />
 			<span class="iconfont font" @click="notice">&#xe67a;</span>
 			<view class="name">
-				<img src="/static/images/demo/demo6.jpg" mode="widthFix" />
+				<img :src="my.avatar" mode="widthFix" />
 			</view>
-			<text class="text">厨师</text>
+			<text class="text">{{my.username}}</text>
 			<view class="integral">
 				<span class="iconfont">&#xe7eb;</span>
 				<text>会员积分1.99</text>
@@ -53,10 +53,11 @@
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 	export default {
 		computed: {
-		...mapState(['logon_Status'])
+		...mapState(['token'])
 	 }, 
 		data() {
 			return {
+				my:"",
 				imge: false, //图片渲染条件
 				datas: [{ //标签数据
 						name: '待付款',
@@ -103,8 +104,11 @@
 				]
 			}
 		},
-		onLoad() {
-
+		onLoad(){
+			this.my=this.token
+		},
+		onShow() {
+         this.my=this.token
 		},
 		methods: {
 			//设置
@@ -136,31 +140,34 @@
 			//跳转我的订单
 			requer(e) {
 				let index = parseInt(e.currentTarget.dataset.index)//页面下标
-				// if(this.logon_Status==false){
-				// 	uni.navigateTo({
-				// 		url:"/pages/mine/login"
-				// 	})
-				// }else{
-					if (isNaN(index)) {
-					uni.navigateTo({
-						url: "/pages/mine/myorder/myorder?steat=0"
-					})
-				} else {
-					index++
-					if (index == 4) {
-						uni.navigateTo({
-							url:"/pages/mine/sales/after-sales"
-						})
-					} else {
-						
-						uni.navigateTo({
-							url: "/pages/mine/myorder/myorder?steat=" + index + ""
-						})
+				uni.getStorage({//获取本地缓存
+					key:"storage_key",
+					success(res){
+						console.log(res.data)
+						if(res.data==""){
+							uni.navigateTo({
+								url:"/pages/mine/login"
+							})
+						}else{
+							if (isNaN(index)) {
+								uni.navigateTo({
+									url: "/pages/mine/myorder/myorder?steat=0"
+								})
+							} else {
+								index++
+								if (index == 4) {
+									uni.navigateTo({
+										url:"/pages/mine/sales/after-sales"
+									})
+								} else {
+									uni.navigateTo({
+										url: "/pages/mine/myorder/myorder?steat=" + index + ""
+									})
+								}
+							}
+						}
 					}
-
-
-				}
-				// }
+				})
 				
 			}
 		},

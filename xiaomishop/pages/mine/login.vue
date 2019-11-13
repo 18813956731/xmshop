@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<h1>密码登录</h1>
+		<h1>用户登录</h1>
 		<view class="input"><input type="text" class="txt" name="text" placeholder="请输入手机号/邮箱/小米号" v-model="txt" /></view>
 		<view class="password"><input type="password" class="txt" placeholder="请输入密码" v-model="pasd" /></view>
 		<view class="tishi" @click="phone">
@@ -35,9 +35,9 @@ export default {
 	},
 	methods: {
 		phone() {
-			uni.navigateTo({
-				url: '/pages/mine/phone'
-			});
+			// uni.navigateTo({
+			// 	url: '/pages/mine/phone'
+			// });
 		},
 		login() {
 			let _this = this;
@@ -45,29 +45,34 @@ export default {
 				//登录
 				url: 'http://ceshi3.dishait.cn/api/login',
 				method: 'POST',
-				data: {
+				data: {//账号密码
 					username: _this.txt,
 					password: _this.pasd
 				},
 				success(res) {
-					let token = res.data.data.token;
-					console.log(res);
-					uni.switchTab({
-						url: '/pages/index/index'
-					});
-					uni.setStorage({
+					let data=res.data.data
+					_this.$store.commit("login",data)
+					// let token = res.data.data.token;
+					
+					uni.setStorage({//本地存储
 					    key: 'storage_key',
 					    data:"token",
 					    success: function () {
-							
-					    }
+							console.log(_this.token);
+						}
+					});
+					uni.navigateBack({
+					    delta: 1,
+					    animationType: 'pop-out',
+					    animationDuration: 200
 					});
 				}
 			});
 			
 		},
 	},
-	onLoad(){
+	onLoad(options){
+		console.log(options)
 	}
 		
 };
@@ -78,6 +83,7 @@ export default {
 	padding: 5%;
 }
 h1 {
+	text-align: center;
 	margin: 60rpx 0rpx;
 }
 .txt {
@@ -125,11 +131,11 @@ h1 {
 }
 .icon {
 	width: 100%;
-	height: 200rpx;
+	height: 100rpx;
 	overflow: hidden;
 }
 .icon-zhifubao {
-	line-height: 200rpx;
+	line-height: 100rpx;
 	display: block;
 	float: left;
 	width: 40%;
@@ -137,7 +143,7 @@ h1 {
 	padding-right: 50rpx;
 }
 .icon-weixinzhifu {
-	line-height: 200rpx;
+	line-height: 100rpx;
 	display: block;
 	float: left;
 	width: 40%;
