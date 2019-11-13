@@ -34,7 +34,7 @@
 	export default {
 		data(){
 		return {
-			
+			id:0//订单对象ID唯一值
 		}
 		},
 		 computed: {
@@ -57,11 +57,16 @@
 			close(){
 				//获取选择的结算商品的数组
 				let arr=this.goodList.filter(item=>item.action);
+				let numbers=arr.reduce((sum,item)=>{
+					return sum+item.number
+				},0)
 				if(arr.length>0){
 					//结算订单对象
 					let cleargoods={
 						arr,//购物车商品详情表
+						id:this.id++,
 						total:this.total,//本单合计金额
+						numbers,//商品总数量
 						paystatus:false,//本单支付状态
 						taketatus:false,//本单收货状态
 						observerstatus:false,//本单评论状态

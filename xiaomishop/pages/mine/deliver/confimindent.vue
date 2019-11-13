@@ -15,7 +15,7 @@
 					</view>
 					<view class="address">{{list.Location}}<br />{{list.detailed}}</view>
 				</view>
-				<view class="from-mina-right" >
+				<view class="from-mina-right">
 					<span class="iconfont icon-you"></span>
 				</view>
 			</view>
@@ -25,7 +25,7 @@
 			<view class="user">
 				<view class="uni-list">
 					<!-- 循环结算商品 -->
-					<view class="uni-list-cell" v-for="(item,index) in clearinggoods" :key="index">
+					<view class="uni-list-cell" v-for="(item,index) in clearinggoods.arr" :key="index">
 						<view class="uni-list-cell-navigate">
 							<!-- 商品图片 -->
 							<view class="image">
@@ -54,7 +54,7 @@
 			</view>
 			<view class="list fexi">
 				<text class="left" style="color: #FD6801;">小计</text>
-				<text class="right" style="color: #FD6801;">￥{{total}}</text>
+				<text class="right" style="color: #FD6801;">￥{{clearinggoods.total}}</text>
 			</view>
 			<!-- 分割线 -->
 			<view class="hr"></view>
@@ -70,7 +70,7 @@
 		<view class="total">
 			<view class="right">
 				合计:
-				<text style="color: #FD6801;">￥{{total}}</text>
+				<text style="color: #FD6801;">￥{{clearinggoods.total}}</text>
 				<view class="btn" @click="payment">去付款</view>
 			</view>
 
@@ -131,13 +131,13 @@
 			}
 		},
 		computed: {
-			...mapState(['clearinggoods',"total"])
+			...mapState(['clearinggoods'])
 		},
 		onLoad(option) {
 			if(option.index!=null){
 				this.listindex=option.index
 			}
-			this.listText[0].price = "￥" + this.total
+			this.listText[0].price = "￥" + this.clearinggoods.total
 			this.list = Json.address[this.listindex]
 
 		}

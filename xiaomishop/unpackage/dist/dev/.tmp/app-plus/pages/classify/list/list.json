@@ -1,0 +1,17 @@
+{
+  "titleNView": {
+    "titleText": "列表",
+    "buttons": [
+      {
+        "color": "#555555",
+        "float": "right",
+        "fontSize": "50rpx",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": ""
+      }
+    ]
+  },
+  "usingComponents": {
+    "uni-drawer": "/components/uni-drawer/uni-drawer"
+  }
+}

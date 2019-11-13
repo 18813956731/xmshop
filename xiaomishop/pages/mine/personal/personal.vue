@@ -10,14 +10,14 @@
 		<view class="headportrait fexi">
 			<view>头像</view>
 			<view class="img">
-				<img src="/static/images/demo/demo6.jpg" mode="widthFix" />
+				<img :src="token.avatar" mode="widthFix" />
 			</view>
 		</view>
 		<!-- 姓名 -->
 		<view class="naxil fexi">
 			<view>姓名</view>
 			<view class="text">
-				厨师
+				{{token.username}}
 				<span class="iconfont icon-you"></span>
 			</view>
 		</view>
@@ -46,7 +46,14 @@
 </template>
 
 <script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex' //导入状态管理
 	export default {
+		computed: {
+			...mapState(["token"])
+		},
 		data() {
 			return {
 
@@ -65,6 +72,9 @@
 					url:"/pages/mine/personal/psword?id=1"
 				})
 			}
+		},
+		onLoad() {
+			console.log(this.token)
 		}
 	}
 </script>
@@ -84,6 +94,7 @@
 		.text {
 			margin: auto;
 			text-align: center;
+			font-size: 33rpx;
 		}
 	}
 
@@ -97,6 +108,7 @@
 		justify-content: space-between;
 		padding: 20rpx 30rpx 20rpx 30rpx;
 		border-bottom: 1rpx solid #F1F1F1;
+		font-size: 32rpx;
 	}
 
 	.headportrait {

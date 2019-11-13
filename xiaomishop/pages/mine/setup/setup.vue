@@ -123,11 +123,12 @@
 		.text {
 			margin: auto;
 			text-align: center;
+			font-size: 33rpx;
 		}
 	}
 
 	.hreder-j {
-		font-size: 34rpx;
+		font-size: 32rpx;
 		text-indent: 25rpx;
 		color: #555555;
 		height: 100rpx;
@@ -138,7 +139,7 @@
 	.btn {
 		height: 100rpx;
 		line-height: 100rpx;
-		font-size: 36rpx;
+		font-size: 32rpx;
 		text-indent: 30rpx;
 		border-bottom: solid 2rpx #F1F1F1;
 
@@ -156,7 +157,7 @@
 		padding-top: 25rpx;
 
 		.text {
-			font-size: 37rpx;
+			font-size: 35rpx;
 			width: 88%;
 			margin: auto;
 			height: 100rpx;

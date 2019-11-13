@@ -32,7 +32,7 @@
 	export default {
 		name: 'UniGoodsNav',
 		computed: {
-			...mapState(['good', 'goodList'])
+			...mapState(['good', 'goodList',"token"])
 		},
 		props: {
 			options: {
@@ -78,21 +78,36 @@
 			},
 			//点击加入购物车
 			buttonClick(index, item, obj) {
-				if (uni.report) {
-					uni.report(item.text, item.text)
-				}
-				this.$emit('buttonClick', {
-					index,
-					content: item
+				let _this = this
+				uni.getStorage({ //获取本地缓存
+					key: "storage_key",
+					success(res) {
+						if (res.data == "" || _this.token == "") {
+							uni.navigateTo({
+								url: "/pages/mine/login"
+							})
+						} else {
+							_this.$api.msg("成功加入购物车")
+							if (uni.report) {
+								uni.report(item.text, item.text)
+							}
+							_this.$emit('buttonClick', {
+								index,
+								content: item
+							})
+							//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
+							let indexs = _this.goodList.map(item => item.obj.id).indexOf(_this.good.obj.id)
+							if (indexs == -1) {
+								_this.$store.commit("getgoodList", _this.good);
+							} else {
+								_this.$store.commit("getgoodnum", indexs);
+							}
+							_this.$store.commit("getztchek") //购物车改变全选状态改变
+						}
+					}
 				})
-				//通过id判断商品是否存在，存在即数量加1，不存在存入购物车数组
-				let indexs = this.goodList.map(item => item.obj.id).indexOf(this.good.obj.id)
-				if (indexs == -1) {
-					this.$store.commit("getgoodList", this.good);
-				} else {
-					this.$store.commit("getgoodnum", indexs);
-				}
-				this.$store.commit("getztchek") //购物车改变全选状态改变
+
+
 			}
 		}
 	}

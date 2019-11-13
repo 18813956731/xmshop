@@ -2,8 +2,8 @@
 	<view id="mine-myorder">
 		<!-- 导航 -->
 		<view class="flex">
-			<view class="tab-item" v-for="(item,index) in order" :key="index" :class="tabIndex==index?'tab-item-active':''" @click="tabactive"
-			 :id="index">{{item.title}}</view>
+			<view class="tab-item" v-for="(item,index) in order" :key="index" :class="tabIndex==index?'tab-item-active':''"
+			 @click="tabactive" :id="index">{{item.title}}</view>
 		</view>
 		<!-- 滑动 -->
 		<swiper :current="tabIndex" :class="heighttactive?'swiper-box-active':'swiper-box'" duration="300" @change="ontabchange">
@@ -11,9 +11,9 @@
 				<!-- 纵向滚动 -->
 				<scroll-view class="list-scroll-content" scroll-y @scrolltolower="loadData">
 					<!-- 空白页 -->
-					 <blank v-if="heighttactive" :nothing="blank"></blank>
+					<blank v-if="heighttactive" :nothing="blank"></blank>
 					<!-- 列表内容 -->
-					<all v-else></all>
+					<all v-else :tabIndex="tabIndex"></all>
 
 				</scroll-view>
 			</swiper-item>
@@ -24,7 +24,7 @@
 				<view class="text">猜你喜欢</view>
 				<view class="text-flex">实时推荐你的爱</view>
 			</view>
-		<tuijian></tuijian>
+			<tuijian></tuijian>
 		</view>
 	</view>
 </template>
@@ -33,42 +33,43 @@
 	import tuijian from "@/components/home/tuijian.vue"
 	import all from "@/components/mine/all.vue"
 	import blank from "@/components/mine/blank.vue"
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex'; //导入状态管理
 	export default {
 		components: {
 			tuijian,
 			all,
 			blank
 		},
+		computed: {
+			...mapState(['allorders', "clearinggoods","typeall"])
+		},
 		data() {
 			return {
 				blank: [], //空页面要渲染数据
 				order: [{ //导航数据
-						title: "全部",
-						indexa: 0, //根据下标渲染
-						nothing: [{
-							name: 1
-						}] //空数据渲染
+						title: "全部" //根据下标渲染
+						
 					},
 					{
-						title: "待付款",
-						indexa: 1,
-						nothing: []
+						title: "待付款"//待付款数据
 					},
 					{
-						title: "待收货",
-						indexa: 2,
-						nothing: [{
-							name: 1
-						}]
+						title: "待收货"//待收货数据
 					},
 					{
-						title: "待评价",
-						indexa: 3,
-						nothing: []
+						title: "待评价" //待评价数据
 					}
 				],
 				//空白数据渲染
-				nothing: [{
+				nothing: [
+					{
+							ime: "/static/images/nothing/no_pay.png",
+							title: "您还没有订单"
+					},
+					{
 						ime: "/static/images/nothing/no_pay.png",
 						title: "您还没有待付款订单"
 					},
@@ -89,17 +90,24 @@
 		methods: {
 			//点击导航内容一起
 			tabactive(e) {
-				let _this=this
+				let _this = this
 				_this.tabIndex = parseInt(e.currentTarget.id) || parseInt(e.target.id)
 				_this.loadData()
 			},
 			//获取订单列表
 			loadData(source) {
 				let index = this.tabIndex
-				console.log(index)
-				let tab = this.order[index].nothing.length//获取数据长度
-				this.blank = this.nothing[index - 1]
-				//
+				if(index==0){
+					this.$store.commit("gettypeall",index) 
+				}else if(index==1){
+					this.$store.commit("gettypeall",index)
+				}else if(index==2){
+					this.$store.commit("gettypeall",index)
+				}else{
+					this.$store.commit("gettypeall",index)
+				}
+				let tab = this.typeall.length //获取数据长度
+				this.blank = this.nothing[index]
 				if (tab == 0) {
 					this.heighttactive = true
 				} else {
@@ -114,6 +122,7 @@
 			onLoad(options) {
 				this.tabIndex = options.steat
 				this.loadData()
+				console.log(this.typeall)
 			}
 		}
 	}
@@ -125,12 +134,12 @@
 	}
 
 	.swiper-box {
-		margin: 100rpx 0rpx 0rpx 0rpx ;
-		height: 1380rpx;
+		margin: 100rpx 0rpx 0rpx 0rpx;
+		height: 600rpx;
 	}
 
 	.swiper-box-active {
-		margin: 100rpx 0rpx 0rpx 0rpx ;
+		margin: 100rpx 0rpx 0rpx 0rpx;
 		background-color: #f5f5f5;
 		height: 600rpx;
 	}
@@ -176,7 +185,7 @@
 	.flex {
 		position: fixed;
 		width: 100%;
-		top: 80rpx;
+		top: 0rpx;
 		z-index: 999;
 		background-color: white;
 	}

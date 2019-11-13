@@ -12,7 +12,7 @@
 <script>
 	export default {
 		props: {
-			nothing: Object
+			nothing: ""
 		},
 		data() {
 			return {}

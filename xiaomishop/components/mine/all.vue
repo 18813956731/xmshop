@@ -1,34 +1,42 @@
 <template>
 	<view>
-		<view v-for="(iter,index) in list" :key='index'>
+		<view v-for="(iter,index) in typeall" :key='index'>
 			<view class="line"></view>
 			<view class="time">
-				<view class="date">2019-06-07 10:20</view>
-				<view class="shipped">已发货</view>
+				<view class="date">{{iter.orderdata}}</view>
+				<view class="shipped">{{iter.paystatus?'已发货':'未发货'}}</view>
 			</view>
 			<view class="uni-list">
-				<view class="uni-list-cell" v-for="(item,index) in list" :key="index">
+				<view class="uni-list-cell" v-for="(item,index) in iter.arr" :key="index">
 					<view class="uni-list-cell-navigate">
 						<view class="image">
-							<img :src="item.image" mode="widthFix"/>
+							<img :src="item.obj.cover" mode="widthFix" />
 						</view>
 						<view class="text">
-							<view>{{item.title}}</view>
-							<view class="text-lasth">{{item.color}}</view>
+							<view>{{item.obj.title}}</view>
+							<view class="text-lasth">{{item.obj.desc}}</view>
 						</view>
 						<view class="txt">
-							<view>{{item.price}}</view>
-							<view class="text-x">X{{item.count}}</view>
+							<view>{{item.obj.min_price}}</view>
+							<view class="text-x">X{{item.number}}</view>
 						</view>
 					</view>
 				</view>
 			</view>
 			<view class="total">
 				<view class="" style="float: right;">
-					<view class="total-price">共3件商品,合计: ￥299.00</view>
-					<view class="logistics">
+					<view class="total-price">共{{iter.numbers}}件商品,合计: {{iter.total}}</view>
+					<view class="logistics" v-if="iter.paystatus && !iter.observerstatus && !iter.taketatus">
 						<text @click="steps">查看物流</text>
-						<text @click="confirm">确认收货</text>
+						<text @click="confirm(iter.id)">确认收货</text>
+					</view>
+					<view class="logistics" v-if="!iter.paystatus && !iter.observerstatus && !iter.taketatus">
+						<text @click="cancellation(iter.id)">取消订单</text>
+						<text @click="pay(iter.id)">去付款</text>
+					</view>
+					<view class="logistics" v-if="iter.paystatus && !iter.observerstatus && iter.taketatus">
+						<text @click="steps">查看物流</text>
+						<text @click="evaluated(iter.id)">待评价</text>
 					</view>
 				</view>
 			</view>
@@ -36,40 +44,55 @@
 	</view>
 </template>
 <script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex'; //导入状态管理
 	export default {
-		data() {
-			return {
-				list: [{//全部订单数据
-					image: "/static/images/demo/list/3.jpg",
-					title: "小米8",
-					color: "金色",
-					price: "￥1999.00",
-					count: "1"
-				}, {
-					image: "/static/images/demo/list/5.jpg",
-					title: "小米8",
-					color: "金色",
-					price: "￥1999.00",
-					count: "1"
-				}]
-			}
+		computed: {
+			...mapState(['typeall'])
 		},
-		methods:{
-			steps(){
+		props:["tabIndex"],
+		methods: {
+			steps() {
 				// 跳转物流
 				uni.navigateTo({
-					url:"/pages/mine/steps/steps"
+					url: "/pages/mine/steps/steps"
 				})
 			},
-			confirm(){
-				uni.request({
-				    url: 'http://ceshi3.dishait.cn/api/login',
-					method:"POST",
-				    success: (res) => {
-				        console.log(res.data);
-				        this.text = 'request success';
-				    }
-				});
+			//确认收货
+			confirm(e) {
+				this.$api.msg("收货成功")
+				setTimeout(()=>{
+					this.$store.commit("gettaketatus", e)
+					this.$store.commit("gettypeall",this.tabIndex)
+					},500)
+				
+			},
+			//去付款
+			pay(e) {
+				this.$store.commit("getpaystatusj", e)
+				uni.navigateTo({
+					url: "/pages/mine/deliver/confimindent"
+				})
+			},
+			//待评价
+			evaluated(e) {
+				this.$api.msg("评价完成")
+				setTimeout(()=>{
+					this.$store.commit("getobserverstatus", e)
+					this.$store.commit("gettypeall",this.tabIndex)
+				},500)
+				
+			},
+			//取消订单
+			cancellation(e) {
+				this.$api.msg("取消订单成功")
+				setTimeout(()=>{
+					this.$store.commit("getcancellation", e)
+					this.$store.commit("gettypeall",this.tabIndex)
+				},500)
+				
 			}
 		}
 	}
@@ -114,38 +137,45 @@
 		color: #FF6B01;
 	}
 
-	.uni-list-cell-navigate{
+	.uni-list-cell-navigate {
 		.image {
 			width: 150upx;
 			height: 150upx;
-			img{
+
+			img {
 				width: 100%;
 				height: 100%;
 			}
 		}
-		.text{
-			position: relative;
-			left: -120rpx;
-		}
-		.text-lasth{
+
+		.text-lasth {
+			width: 330rpx;
 			font-size: 28rpx;
 			color: #929292;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+
 		}
-		.txt{
+
+		.txt {
 			color: #929292;
 		}
-		.text-x{
+
+		.text-x {
 			text-align: right;
 		}
 	}
-	
+
 
 	.total {
 		height: 200upx;
 	}
 
-	.logistics{
+	.logistics {
 		text-align: right;
+
 		text {
 			font-size: 30rpx;
 			display: inline-block;
@@ -157,7 +187,7 @@
 			color: #80848A;
 			margin-right: 30upx;
 		}
-	} 
+	}
 
 	.total-price {
 		height: 80upx;

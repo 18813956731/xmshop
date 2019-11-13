@@ -18,7 +18,8 @@ const store = new Vuex.Store({
 		goodList:[],//购物车列表
 		token:"",//登录令牌
 		clearinggoods:"",//订单结算的商品
-		allorders:[]//全部订单
+		allorders:[],//全部订单
+		typeall:[]//不同状态的订单
 	},
 	getters:{
 		
@@ -130,6 +131,42 @@ const store = new Vuex.Store({
 		//改变地址内点击
 		change(state){
 			state.whether=true
+		},
+		//改变付款状态
+		getpaystatus(state){
+			state.clearinggoods.paystatus=true
+		},
+		//改变付款状态
+		getpaystatusj(state,e){
+			let index=state.allorders.map(item=>item.id).indexOf(e)
+			state.clearinggoods=state.allorders[index]
+		},
+		//改变评论状态
+		getobserverstatus(state,e){
+			let index=state.allorders.map(item=>item.id).indexOf(e)
+			state.allorders[index].observerstatus=true
+		},
+		//改变收货状态
+		gettaketatus(state,e){
+			let index=state.allorders.map(item=>item.id).indexOf(e)
+			state.allorders[index].taketatus=true
+		},
+		//取消订单，把订单移除
+		getcancellation(state,e){
+			let index=state.allorders.map(item=>item.id).indexOf(e)
+			state.allorders.splice(index,1)
+		},
+		//获取不同状态的订单
+		gettypeall(state,index){
+			if(index==0){
+				state.typeall=state.allorders
+			}else if(index==1){
+				state.typeall=state.allorders.filter(iter=>!iter.paystatus && !iter.observerstatus && !iter.taketatus);
+			}else if(index==2){
+				state.typeall=state.allorders.filter(iter=>iter.paystatus && !iter.observerstatus && !iter.taketatus);
+			}else{
+				state.typeall=state.allorders.filter(iter=>iter.paystatus && !iter.observerstatus && iter.taketatus);
+			}
 		}
 	},
 	actions: {

@@ -2,7 +2,7 @@
 	<view class="app">
 		<view class="price-box">
 			<text>支付金额</text>
-			<view class="price">{{total}}</view>
+			<view class="price">{{clearinggoods.total}}</view>
 		</view>
 
 		<view class="pay-type-list">
@@ -41,22 +41,13 @@
 	} from 'vuex' //导入状态管理
 	export default {
 		computed: {
-			...mapState(['clearinggoods', "total"])
+			...mapState(['clearinggoods'])
 		},
 		data() {
 			return {
-				payType: 1,
-				orderInfo: {},
-				total: 0
-			};
+				payType: 1
+				}
 		},
-		computed: {
-
-		},
-		onLoad(options) {
-			this.total = options.total
-		},
-
 		methods: {
 			//选择支付方式
 			changePayType(type) {
@@ -65,6 +56,7 @@
 			//确认支付
 			confirm: async function(e) {
 				if (e) {
+					this.$store.commit("getpaystatus")
 					uni.redirectTo({
 						url: '/pages/mine/confirmpayment/paysuccess'
 					})

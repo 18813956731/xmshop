@@ -108,10 +108,11 @@
 			this.my=this.token
 		},
 		onShow() {
-			uni.getStorage({//获取本地缓存
+			let _this=this
+			uni.getStorage({//获取本地缓存 
 				key:"storage_key",
 				success(res){
-					if(res.data==""){
+					if(res.data==""||_this.token==""){
 						uni.navigateTo({
 							url:"/pages/mine/login"
 						})
@@ -119,7 +120,7 @@
 						console.log("已在登录状态")
 					}
 				}})
-         this.my=this.token
+         _this.my=_this.token
 		},
 		methods: {
 			//设置

@@ -9,11 +9,13 @@
 		</view>
 		<view class="button"><button @tap="login">登录</button></view>
 		<view class="checkbox">
-			<span>已阅读并同意小米</span>
+			
+			<span >已阅读并同意小米</span>
 			<b>账号协议、隐私政策</b>
 			<span>和</span>
 			<b>小米商城用户协议</b>
-		</view>
+			</view>
+		
 		<view class="icon">
 			<span class="iconfont icon-zhifubao"></span>
 			<span class="iconfont icon-weixinzhifu"></span>
@@ -130,16 +132,19 @@ h1 {
 	background-color: orange;
 }
 .checkbox {
+	display: flex;
 	margin-top: 30rpx;
 	height: 80rpx;
-	width:750rpx;
+	width:100%;
 	line-height: 80rpx;
 	font-size: 25rpx;
+	justify-content: center;
 }
 .checkbox span {
 	color: #999999;
 }
 .icon {
+	position: relative;
 	width: 100%;
 	height: 100rpx;
 	overflow: hidden;

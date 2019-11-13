@@ -13,14 +13,14 @@
 							<view class='goods-image' @click="togglePopup('bottom', 'popup','type',item)">
 								<image :src="item.obj.cover"></image>
 							</view>
-							<view class='good-info' >
+							<view class='good-info'>
 								<view class='name' @click="togglePopup('bottom', 'popup','type',item)">{{item.obj.title}}</view>
 								<view class='lx' :class="{bjaction:editor}" @click="togglePopup('bottom', 'popup','type',item)">
 									<view class="lxtext">
 										{{item.obj.desc}}
 									</view>
 									<view>
-										<span v-show="editor" class="iconfont" >&#xe65d;</span>
+										<span v-show="editor" class="iconfont">&#xe65d;</span>
 									</view>
 								</view>
 								<view class="infobox">
@@ -42,7 +42,7 @@
 					<text class="txt">购物车还是空的</text>
 				</view>
 				<view class="twocart">
-					<button>去逛逛</button>
+					<button @click="tab">去逛逛</button>
 				</view>
 			</view>
 		</view>
@@ -57,10 +57,10 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
-	
+
 	import amount from "@/components/shopping/amount.vue"
 	import uniPopup from "@/components/shopping/uni-popup.vue"
-	
+
 	export default {
 		data() {
 			return {
@@ -76,11 +76,11 @@
 		},
 		methods: {
 			//弹出模态框
-			togglePopup(type,open,tktype,item) {
+			togglePopup(type, open, tktype, item) {
 				//传入编辑的商品入状态管理
 				var newObj = JSON.parse(JSON.stringify(item));
-				newObj.number=1;
-				this.$store.commit("getgood",newObj);
+				newObj.number = 1;
+				this.$store.commit("getgood", newObj);
 				this.tktype = tktype;
 				this.type = type
 				if (open === 'tip') {
@@ -91,16 +91,22 @@
 			},
 			// 点击选中
 			action(index) {
-				this.$store.commit("getaction",index)
-				this.$store.commit("getztchek")//购物车改变全选状态改变
+				this.$store.commit("getaction", index)
+				this.$store.commit("getztchek") //购物车改变全选状态改变
 			},
 			//改变购物车对应商品数量
-			change(event,index){
-				this.$store.commit("getchange",[event,index])
+			change(event, index) {
+				this.$store.commit("getchange", [event, index])
+			},
+			//跳转首页
+			tab() {
+				uni.switchTab({
+					url: "/pages/index/index"
+				})
 			}
 		},
 		computed: {
-			...mapState(['goodList','editor', 'allchek'])
+			...mapState(['goodList', 'editor', 'allchek'])
 		}
 	}
 </script>
@@ -203,15 +209,18 @@
 		height: 80rpx;
 		line-height: 80rpx;
 	}
-	.lxtext{
+
+	.lxtext {
 		white-space: nowrap;
 		width: 370rpx;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.lx view:last-child{
+
+	.lx view:last-child {
 		width: 40rpx;
 	}
+
 	.bjaction {
 		background-color: #F1F1F1;
 		color: #7C858D;
@@ -239,6 +248,7 @@
 		z-index: 1000;
 		bottom: 0;
 	}
+
 	/* 空购物车 */
 	.cart {
 		display: flex;
@@ -246,19 +256,23 @@
 		justify-content: center;
 		align-items: center;
 	}
-	.icons{
+
+	.icons {
 		color: #C8C7CC;
 		font-size: 80rpx;
 	}
-	.txt{
+
+	.txt {
 		color: #C8C7CC;
 		margin-left: 20rpx;
-		font-size:32rpx ;
+		font-size: 32rpx;
 	}
-	.twocart button{
-		height:80rpx;
+
+	.twocart button {
+		height: 80rpx;
 		margin-left: 20rpx;
 		line-height: 80rpx;
 		font-size: 35rpx;
+		font-size: 33rpx;
 	}
 </style>

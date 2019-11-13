@@ -140,7 +140,6 @@
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/goods/25' //接口拿取数据
 				})
-				console.log(res.data.data.hotComments)
 				this.cupr = res.data.data.goodsAttrs //CPU数据
 				this.shoppt = res.data.data.goodsBanner //外观预览
 			},
@@ -188,7 +187,6 @@
 					}
 					_this.$store.commit("getgood",obj)
 					_this.shuddd.push(res.data.data)
-					console.log(res.data.data)
 				}
 			})
 		}
