@@ -13,8 +13,30 @@ const address= [{
 		detailed: "星耀花园三期20栋",
 		whether: false
 	}
-]
-
+];
+const tabList = [{
+	name: '推荐',
+	id: '1',
+}, {
+	name: '手机',
+	id: '2'
+}, {
+	name: '智能',
+	id: '3'
+}, {
+	name: '电视',
+	id: '4'
+}, {
+	name: '笔记本',
+	id: '5'
+}, {
+	name: '家电',
+	id: '6'
+}, {
+	name: '生活周边',
+	id: '7'
+}];
 export default{
-	address
+	address,
+	tabList
 }

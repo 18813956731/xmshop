@@ -1,15 +1,16 @@
 <template>
 	<view id="box">
-		<!-- 顶导航tab切换  -->
-		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
-		<!-- :tabBars绑定tab渲染数据 -->
+		<!-- 顶部选项卡 -->
+		<scroll-view id="nav-bar" class="nav-bar" scroll-x scroll-with-animation :scroll-left="scrollLeft">
+			<view v-for="(item,index) in tabBars" :key="item.id" class="nav-item" :tabCurrentIndex="tabCurrentIndex" :class="{current: index === tabCurrentIndex}"
+			 :id="'tab'+index" @click="changeTab(index)">{{item.name}}</view>
+		</scroll-view>
 		<view>
 			<!-- class="swiper-item" -->
-			<swiper :current="tabIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
-				<swiper-item v-for="(itemz,indexz) in 10" :key='indexz'>
+			<swiper :current="tabCurrentIndex" @change="tabChange" :style="{ height: swiperheight_s + 'rpx' }">
+				<swiper-item v-for="tabItem in tabBars" :key="tabItem.id">
 					<!-- class="list" -->
-					<scroll-view scroll-y show-scrollbar="false"  :style="{ height: swiperheight_s + 'rpx' }"
-					 @scrolltolower="loadmore(indexz)">
+					<scroll-view scroll-y show-scrollbar="false" :style="{ height: swiperheight_s + 'rpx' }" @scrolltolower="loadmore">
 						<!-- 轮播 -->
 						<caroUsel />
 						<!-- 类别 -->
@@ -58,6 +59,10 @@
 </template>
 
 <script>
+	import json from '@/Json'
+	let windowWidth = 0,
+		scrollTimer = false,
+		tabBar;
 	//导入状态管理
 	import {
 		mapState,
@@ -67,6 +72,11 @@
 	import swiperTabHead from "@/components/home/tabBars.vue"
 	import caroUsel from "@/components/home/carousel.vue"
 	export default {
+		async onLoad() {
+			// 获取屏幕宽度
+			windowWidth = uni.getSystemInfoSync().windowWidth;
+			this.loadTabbars();
+		},
 		computed: {
 			...mapState(['recommend', 'jxlist'])
 		},
@@ -76,6 +86,9 @@
 		},
 		data() {
 			return {
+				tabCurrentIndex: 0, //当前选项卡索引
+				scrollLeft: 0, //顶部选项卡左滑距离
+				enableScroll: true,
 				swiperheight_s: 1055, //定义滚动高度
 				loadtext: "上拉加载更多", //加载更多
 				imgr: '', //广告图
@@ -121,12 +134,61 @@
 		},
 
 		methods: {
+			//获取分类
+			loadTabbars() {
+				let tabList = json.tabList;
+				this.tabBars = tabList;
+			},
+			//tab切换
+			async changeTab(e) {
+				let index = e;
+				//e=number为点击切换，e=object为swiper滑动切换
+				if (typeof tabBar !== 'object') {
+					tabBar = await this.getElSize("nav-bar")
+				}
+				//计算宽度相关
+				let tabBarScrollLeft = tabBar.scrollLeft;
+				let width = 0;
+				let nowWidth = 0;
+				//获取可滑动总宽度
+				for (let i = 0; i <= index; i++) {
+					let result = await this.getElSize('tab' + i);
+					width += result.width;
+					if (i === index) {
+						nowWidth = result.width;
+					}
+				}
+				if (typeof e === 'number') {
+					//点击切换时先切换再滚动tabbar，避免同时切换视觉错位
+					this.tabCurrentIndex = index;
+				}
+				//延迟300ms,等待swiper动画结束再修改tabbar
+				scrollTimer = setTimeout(() => {
+					if (width - nowWidth / 2 > windowWidth / 2) {
+						//如果当前项越过中心点，将其放在屏幕中心
+						this.scrollLeft = width - nowWidth / 2 - windowWidth / 2;
+					} else {
+						this.scrollLeft = 0;
+					}
+				})
+
+			},
+			//获得元素的size
+			getElSize(id) {
+				return new Promise((res, rej) => {
+					let el = uni.createSelectorQuery().select('#' + id);
+					el.fields({
+						size: true
+					}, (data) => {
+						res(data);
+					}).exec();
+				});
+			},
 			async shuj() {
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
 				})
 				// console.log(res)
-				this.tabBars = res.data.data.category //tab导航
 				this.selecteds = res.data.data.data[3].data //每日精选
 				this.imgr = res.data.data.data[2].data //广告图
 				this.newslist = res.data.data.data[1].data //类别
@@ -184,9 +246,6 @@
 			tabChange(e) {
 				this.tabIndex = e.detail.current; //滑块
 			},
-			tabtap(index) {
-				this.tabIndex = index; //顶部tab
-			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
 				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
@@ -202,12 +261,50 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 	* {
 		margin: 0;
 		padding: 0;
 	}
 
+	/* 顶部tabbar */
+	.nav-bar {
+		position: relative;
+		z-index: 10;
+		height: 72upx;
+		white-space: nowrap;
+
+		.nav-item {
+			display: inline-block;
+			width: 150upx;
+			height: 70upx;
+			text-align: center;
+			line-height: 90upx;
+			font-size: 30upx;
+			color: #555555;
+			position: relative;
+
+			&:after {
+				content: '';
+				border-bottom: 4upx solid #F0AD4E;
+				position: absolute;
+				left: 50%;
+				bottom: 0;
+				transform: translateX(-50%);
+				transition: .3s;
+			}
+		}
+
+		.current {
+			color: #F0AD4E;
+
+			&:after {
+				width: 80%;
+			}
+		}
+	}
+
+	/*  */
 	.box {
 		height: 100%;
 	}
