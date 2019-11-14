@@ -39,7 +39,7 @@
 						<text @click="pay(iter.id)">去付款</text>
 					</view>
 					<view class="logistics" v-if="iter.paystatus && !iter.observerstatus && iter.taketatus">
-						<text @click="steps(true)">查看物流</text>
+						<text @click="steps(false)">查看物流</text>
 						<text @click="evaluated(iter.id)">待评价</text>
 					</view>
 				</view>
@@ -62,7 +62,7 @@
 			steps(bul){
 				if(bul){
 					uni.navigateTo({
-						url: "/pages/mine/steps/steps"
+						url: "/pages/mine/steps/steps?index=2"
 					})
 				}else{
 					uni.navigateTo({
