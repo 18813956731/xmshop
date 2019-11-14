@@ -244,7 +244,6 @@
 		},
 		created() {
 			this.list = list.address[0]
-			console.log(this.list)
 		}
 	}
 </script>

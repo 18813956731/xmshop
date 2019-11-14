@@ -44,7 +44,6 @@
 			},
 			//提交修改
 			formSubmit(e) {
-				console.log(e)
 			}
 
 		}

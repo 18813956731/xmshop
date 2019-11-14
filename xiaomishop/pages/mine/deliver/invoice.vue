@@ -38,9 +38,7 @@
 		methods:{
 			// 修改发票
 			indexactive(e){
-				console.log(e)
 				this.active=e
-				console.log(this.active)
 			},
 		},
 		onLoad(option){

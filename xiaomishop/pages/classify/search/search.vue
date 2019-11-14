@@ -50,10 +50,8 @@ export default {
 			} else if (_this.text != '' && _this.record.indexOf(_this.text) == -1) {
 				_this.record.push(_this.text);//搜索历史内容小于十条的时候把内容加到数组里
 			} else {
-				console.log('搜索重复或者输入为空');
 			}
 		} else {
-			console.log(111);
 		}
 	},
 	// 搜索框回车键触发事件
@@ -64,7 +62,6 @@ export default {
 		} else if (_this.text != '' && _this.record.indexOf(_this.text) == -1) {
 			_this.record.push(_this.text);//加入数组
 		} else {
-			console.log('搜索重复或者输入为空');
 		}
 	}
 };

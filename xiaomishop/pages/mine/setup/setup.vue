@@ -80,18 +80,6 @@
 			//退出登录
 			sign() {
 				let _this=this
-				// uni.request({
-				// 	//登录
-				// 	url: 'http://ceshi3.dishait.cn/api/logout',
-				// 	method: 'POST',
-				// 	data:{
-				// 		token:false
-				// 	},
-				// 	success(res) {
-				// 		console.log(res.data)
-				// 	}
-				// })
-				
 				uni.setStorage({
 				    key: 'storage_key',
 				    data:"",

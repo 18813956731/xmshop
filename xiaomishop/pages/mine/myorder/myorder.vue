@@ -122,7 +122,6 @@
 			onLoad(options) {
 				this.tabIndex = options.steat
 				this.loadData()
-				console.log(this.typeall)
 			}
 		}
 	}

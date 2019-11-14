@@ -1,5 +1,6 @@
 <template>
-	<view>
+	<view class="commodity-all">
+		<!-- 循环订单内容 -->
 		<view v-for="(iter,index) in typeall" :key='index'>
 			<view class="line"></view>
 			<view class="time">
@@ -7,6 +8,7 @@
 				<view class="shipped">{{iter.paystatus?'已发货':'未发货'}}</view>
 			</view>
 			<view class="uni-list">
+				<!-- 循环订单内容详情 -->
 				<view class="uni-list-cell" v-for="(item,index) in iter.arr" :key="index">
 					<view class="uni-list-cell-navigate">
 						<view class="image">
@@ -23,11 +25,13 @@
 					</view>
 				</view>
 			</view>
+			<!-- 底部订单状态 -->
 			<view class="total">
 				<view class="" style="float: right;">
 					<view class="total-price">共{{iter.numbers}}件商品,合计: {{iter.total}}</view>
+					<!-- 判断确认收货状态 -->
 					<view class="logistics" v-if="iter.paystatus && !iter.observerstatus && !iter.taketatus">
-						<text @click="steps">查看物流</text>
+						<text @click="steps(true)">查看物流</text>
 						<text @click="confirm(iter.id)">确认收货</text>
 					</view>
 					<view class="logistics" v-if="!iter.paystatus && !iter.observerstatus && !iter.taketatus">
@@ -35,7 +39,7 @@
 						<text @click="pay(iter.id)">去付款</text>
 					</view>
 					<view class="logistics" v-if="iter.paystatus && !iter.observerstatus && iter.taketatus">
-						<text @click="steps">查看物流</text>
+						<text @click="steps(true)">查看物流</text>
 						<text @click="evaluated(iter.id)">待评价</text>
 					</view>
 				</view>
@@ -52,22 +56,29 @@
 		computed: {
 			...mapState(['typeall'])
 		},
-		props:["tabIndex"],
+		props: ["tabIndex"],
 		methods: {
-			steps() {
-				// 跳转物流
-				uni.navigateTo({
-					url: "/pages/mine/steps/steps"
-				})
+			// 跳转物流
+			steps(bul){
+				if(bul){
+					uni.navigateTo({
+						url: "/pages/mine/steps/steps"
+					})
+				}else{
+					uni.navigateTo({
+						url: "/pages/mine/steps/steps?index=4"
+					})
+				}
+				
 			},
 			//确认收货
 			confirm(e) {
 				this.$api.msg("收货成功")
-				setTimeout(()=>{
+				setTimeout(() => {
 					this.$store.commit("gettaketatus", e)
-					this.$store.commit("gettypeall",this.tabIndex)
-					},500)
-				
+					this.$store.commit("gettypeall", this.tabIndex)
+				}, 500)
+
 			},
 			//去付款
 			pay(e) {
@@ -79,20 +90,20 @@
 			//待评价
 			evaluated(e) {
 				this.$api.msg("评价完成")
-				setTimeout(()=>{
+				setTimeout(() => {
 					this.$store.commit("getobserverstatus", e)
-					this.$store.commit("gettypeall",this.tabIndex)
-				},500)
-				
+					this.$store.commit("gettypeall", this.tabIndex)
+				}, 500)
+
 			},
 			//取消订单
 			cancellation(e) {
 				this.$api.msg("取消订单成功")
-				setTimeout(()=>{
+				setTimeout(() => {
 					this.$store.commit("getcancellation", e)
-					this.$store.commit("gettypeall",this.tabIndex)
-				},500)
-				
+					this.$store.commit("gettypeall", this.tabIndex)
+				}, 500)
+
 			}
 		}
 	}

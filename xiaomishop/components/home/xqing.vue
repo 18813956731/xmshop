@@ -145,7 +145,6 @@
 			//编辑弹出框
 			togglePopup(type, open, tktype) {
 				//具体弹出层类型
-				console.log("123")
 				this.tktype = tktype
 				this.type = type
 				if (open === 'tip') {

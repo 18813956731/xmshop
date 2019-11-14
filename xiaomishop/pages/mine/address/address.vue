@@ -48,7 +48,6 @@
 			plus(e) {
 				let index = e.currentTarget.dataset.index
 				this.index = index
-				console.log(this.index)
 				if (index == null) {
 					uni.navigateTo({
 						url: "/pages/mine/address/edit?id=1"
@@ -62,7 +61,6 @@
 			},
 			//确认收货地址
 			onfirm(e) {
-				console.log(e)
 				if (this.whether) {
 					uni.navigateTo({
 						url: "/pages/mine/deliver/confimindent?index=" + e + ""

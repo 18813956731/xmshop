@@ -52,8 +52,7 @@ export default {
 					password: _this.pasd
 				},
 				success(res) {
-					console.log(res.data.data)
-					let data=res.data.data
+										let data=res.data.data
 					_this.$store.commit("login",data)
 					// let token = res.data.data.token;
 					
@@ -61,7 +60,7 @@ export default {
 					    key: 'storage_key',
 					    data:"token",
 					    success: function () {
-							console.log(_this.token);
+				
 						}
 					});
 					uni.navigateBack({
@@ -75,16 +74,14 @@ export default {
 		},
 	},
 	onLoad(options){
-		console.log(options)
 	},
 	onNavigationBarButtonTap(e){
-		console.log(e.index)
+		
 		if(e.index==0){
 			uni.switchTab({
 				url:"/pages/index/index"
 			})
 		}else{
-			console.log("123")
 		}
 	}
 		

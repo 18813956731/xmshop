@@ -79,7 +79,6 @@
 			uni.navigateTo({
 				url:"search/search"
 			})
-			console.log(1)
 		}
 	}
 </script>

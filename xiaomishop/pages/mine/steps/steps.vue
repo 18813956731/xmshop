@@ -40,6 +40,9 @@
 					this.active = 0
 				}
 			}
+		},
+		onLoad(options) {
+		    this.active=options.index
 		}
 	}
 </script>

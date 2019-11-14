@@ -120,7 +120,6 @@
 		//加载获取数据
 		onLoad(option) {
 			this.index =parseInt(option.index) 
-			console.log(this.index)
 			if (option.index != null) {
 				this.item = Json.address[this.index]
 			} else {

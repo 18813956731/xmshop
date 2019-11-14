@@ -117,7 +117,6 @@
 							url:"/pages/mine/login"
 						})
 					}else{
-						console.log("已在登录状态")
 					}
 				}})
          _this.my=_this.token

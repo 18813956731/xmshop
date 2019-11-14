@@ -74,7 +74,7 @@
 			}
 		},
 		onLoad() {
-			console.log(this.token)
+		
 		}
 	}
 </script>

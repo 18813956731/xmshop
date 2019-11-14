@@ -213,7 +213,6 @@
 				let [error, res] = await uni.request({
 					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
 				})
-				// console.log(res)
 				this.selecteds = res.data.data.data[3].data //每日精选
 				this.imgr = res.data.data.data[2].data //广告图
 				this.newslist = res.data.data.data[1].data //类别
@@ -252,7 +251,6 @@
 				})
 			},
 			loadmore(index) { //下拉加载更多
-				// console.log(this.loadtext)
 				if (this.loadtext == "上拉加载更多") {
 					//修改状态
 					this.loadtext = "加载中..."
@@ -269,7 +267,6 @@
 				}
 			},
 			navigateTo(e) { //点击商品跳转到商品详情购买页
-				// console.log(e) 
 				uni.navigateTo({ //跳转传参到商品详情页
 					url: "/components/home/xqing?data=" + e.id
 				})
