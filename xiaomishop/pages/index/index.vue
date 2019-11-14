@@ -129,7 +129,8 @@
 		created() {
 			this.shuj(); //调用方法周期里获取API的函数
 			this.remend(); //调用方法周期里获取API的函数
-			this.getshoplist();
+			this.getshoplist();//加入购物车列表
+			this.sign()//清除缓存
 		},
 
 		methods: {
@@ -181,6 +182,21 @@
 					}
 				})
 
+			},
+			// 清除本地缓存
+			sign() {
+				let _this=this;
+				uni.setStorage({
+				    key: 'storage_key',
+				    data:"",
+				    success: function () {
+						uni.navigateBack({
+						    delta: 1,
+						    animationType: 'pop-out',
+						    animationDuration: 500
+						});
+				    }
+				});
 			},
 			//获得元素的size
 			getElSize(id) {
@@ -262,7 +278,8 @@
 				uni.navigateTo({ //跳转到类别
 					url: "/components/home/products"
 				})
-			}
+			},
+			
 		}
 	}
 </script>

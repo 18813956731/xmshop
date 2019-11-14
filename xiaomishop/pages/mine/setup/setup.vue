@@ -79,6 +79,7 @@
 			},
 			//退出登录
 			sign() {
+				
 				let _this=this;
 				uni.setStorage({
 				    key: 'storage_key',
@@ -91,10 +92,6 @@
 						});
 				    }
 				});
-				uni.showToast({
-					title: '点击协',
-					icon: 'none'
-				})
 			},
 			//跳转指定页面
 			navTop(e) {
