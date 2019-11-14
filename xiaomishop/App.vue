@@ -9,13 +9,7 @@ import { mapState, mapMutations } from 'vuex';
 			uni.setStorage({
 			    key: 'storage_key',
 			    data:"",
-			    success: function () {
-					uni.navigateBack({
-					    delta: 1,
-					    animationType: 'pop-out',
-					    animationDuration: 500
-					});
-			    }
+			    success: function () {}
 			});
 		},
 		onShow: function() {

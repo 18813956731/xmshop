@@ -52,6 +52,7 @@ export default {
 					password: _this.pasd
 				},
 				success(res) {
+					console.log(res.data.data)
 					let data=res.data.data
 					_this.$store.commit("login",data)
 					// let token = res.data.data.token;
