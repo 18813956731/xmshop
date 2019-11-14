@@ -5,6 +5,18 @@ import { mapState, mapMutations } from 'vuex';
 			...mapState(['token'])
 		},
 		onLaunch: function() {
+			let _this=this;
+			uni.setStorage({
+			    key: 'storage_key',
+			    data:"",
+			    success: function () {
+					uni.navigateBack({
+					    delta: 1,
+					    animationType: 'pop-out',
+					    animationDuration: 500
+					});
+			    }
+			});
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -52,8 +52,15 @@
 					<view class="sitebox">
 						<view class="address">收货地址</view>
 						<view class="location">
-							<view class="lction">
-								<span class="iconfont">&#xe64d;</span>
+							<view class="from-mina">
+								<view class="from-mina-left" @click="onfirm(index)">
+									<view class="hred">
+										<view class="text">{{item.name}}</view>
+										<view class="phone">{{item.phone}}</view>
+									</view>
+									<view class="address">{{item.Location}}<br />{{item.detailed}}</view>
+								</view>
+								<view class="from-mina-right" @click="plus" :data-index="index">编辑</view>
 							</view>
 						</view>
 					</view>

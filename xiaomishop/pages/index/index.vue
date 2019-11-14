@@ -130,7 +130,7 @@
 			this.shuj(); //调用方法周期里获取API的函数
 			this.remend(); //调用方法周期里获取API的函数
 			this.getshoplist();//加入购物车列表
-			this.sign()//清除缓存
+			// this.sign()//清除缓存
 		},
 
 		methods: {
