@@ -102,8 +102,7 @@
 			return {
 				shoppt: '', //商品预览
 				loadtext: "上拉加载更多", //加载更多
-				swiperheight_s: 1050, //定义滚动高度
-				swiperheight_all: 1050, //定义滚动高度
+				swiperheight_s: 1100, //定义滚动高度
 				cupr: '', //cpu
 				shuddd: [], //商品信息
 				type: '', // 弹出层类型

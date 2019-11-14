@@ -1,5 +1,5 @@
 //地址
-const address= [{ 
+const address = [{
 		name: "林先生",
 		phone: '13559754011',
 		Location: "广东省深圳市龙岗坂田街道",
@@ -36,7 +36,21 @@ const tabList = [{
 	name: '生活周边',
 	id: '7'
 }];
-export default{
+const tabar=[{
+	name: '最热新品',
+	id: '1'
+},{
+	name: '最新上市',
+	id: '1'
+},{
+	name: '即将开售',
+	id: '1'
+},{
+	name: '新品手机',
+	id: '1'
+}]
+export default {
 	address,
-	tabList
+	tabList,
+	tabar
 }

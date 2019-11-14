@@ -1,9 +1,15 @@
 <template>
 	<view>
-		<swiperTabHead :tabBars="tabBars" :tabIndex="tabIndex" @tabtap="tabtap"></swiperTabHead>
+		<!-- 顶部选项卡 -->
+		<scroll-view id="nav-bar" class="nav-bar" scroll-x scroll-with-animation :scroll-left="scrollLeft">
+			<view class="taber-nav">
+				<view v-for="(item,index) in tabBars" :key="item.id" class="nav-item" :tabCurrentIndex="tabCurrentIndex" :class="{current: index === tabCurrentIndex}"
+				 :id="'tab'+index" @click="changeTab(index)">{{item.name}}</view>
+			</view>
+		</scroll-view>
 		<view class="uni-tab-bar">
-			<swiper class="swiper-box" :current="tabIndex" @change="tabChange">
-				<swiper-item v-for="(items,index) in 4" :key="index">
+			<swiper class="swiper-box" :current="tabCurrentIndex" @change="changeTab">
+				<swiper-item v-for="tabItem in tabBars" :key="tabItem.id">
 					<scroll-view scroll-y class="list" show-scrollbar="false" @scrolltolower="loadmore(indexz)">
 						<!-- 图文列表 -->
 						<view>
@@ -30,6 +36,10 @@
 </template>
 
 <script>
+	//导入json
+	import json from '@/Json'
+	let scrollTimer = false,
+		tabBar;
 	//导入状态管理
 	import {
 		mapState,
@@ -45,27 +55,50 @@
 		},
 		data() {
 			return {
-				tabIndex: 0,
-				tabBars: [{
-					name: '最新热品',
-					id: 'zuixinrepin'
-				}, {
-					name: '最新上架',
-					id: 'zuixinshangjia'
-				}, {
-					name: '即将开售',
-					id: 'jijiangkaishou'
-				}, {
-					name: '新品手机',
-					id: 'xinpinshouji'
-				}],
+				tabBars: [], //tab导航数据
+				tabCurrentIndex: 0,
 				loadtext: '上拉加载更多'
 			}
 		},
-		created() {
-			this.shuj();
+		async created() {
+			this.loadTabbars();
 		},
 		methods: {
+			//获取分类
+			loadTabbars() { //获取json数据
+				let tabList = json.tabar; //获取
+				this.tabBars = tabList; //赋值给data定义的tabBars
+			},
+			//tab切换
+			async changeTab(e) { //顶部选项卡
+				if (scrollTimer) { //每次切换执行最后一次
+					//多次切换只执行最后一次
+					clearTimeout(scrollTimer);
+					scrollTimer = false;
+				}
+
+				let index = e;
+				if (typeof e === 'object') { //跟随变化
+					index = e.detail.current
+					this.tabCurrentIndex = e.detail.current; //滑块滑动跟随变化
+				}
+
+				if (typeof e === 'number') {
+					//点击切换时先切换再滚动tabbar，避免同时切换视觉错位
+					this.tabCurrentIndex = index;
+				}
+			},
+			//获得元素的size
+			getElSize(id) {
+				return new Promise((res, rej) => {
+					let el = uni.createSelectorQuery().select('#' + id);
+					el.fields({
+						size: true
+					}, (data) => {
+						res(data);
+					}).exec();
+				});
+			},
 			loadmore(index) { //下拉加载更多
 				// console.log(this.loadtext)
 				if (this.loadtext == "上拉加载更多") {
@@ -82,30 +115,60 @@
 				} else {
 					return
 				}
-			},
-			async shuj() {
-				let [error, res] = await uni.request({
-					url: 'http://ceshi3.dishait.cn/api/index_category/data' //接口拿取数据
-				})
-				this.newslist = res.data.data.data[4].data //每日精选商品
-			},
-			tabChange(e) {
-				this.tabIndex = e.detail.current;
-			},
-			tabtap(index) {
-				this.tabIndex = index;
 			}
 		}
 	}
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+	/* 顶部tabbar */
+	.taber-nav{
+		display: flex;
+		justify-content: space-around;
+	}
+	.nav-bar {
+		position: relative;
+		z-index: 10;
+		height: 72upx;
+		white-space: nowrap;
+
+		.nav-item {
+			display: inline-block;
+			width: 150upx;
+			height: 70upx;
+			text-align: center;
+			line-height: 90upx;
+			font-size: 30upx;
+			color: #555555;
+			position: relative;
+
+			&:after {
+				content: '';
+				border-bottom: 4upx solid #F0AD4E;
+				position: absolute;
+				left: 50%;
+				bottom: 0;
+				transform: translateX(-50%);
+				transition: .3s;
+			}
+		}
+
+		.current {
+			color: #F0AD4E;
+
+			&:after {
+				width: 80%;
+			}
+		}
+	}
+
+	/*  */
 	.list {
-		height: 1155rpx;
+		height: 1130rpx;
 	}
 
 	.swiper-box {
-		height: 1155rpx;
+		height: 1130rpx;
 	}
 
 	/*  */
@@ -158,6 +221,7 @@
 		color: #555555;
 		font-size: 30rpx;
 	}
+
 	.load-more {
 		text-align: center;
 		height: 60rpx;
