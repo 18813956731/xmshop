@@ -100,7 +100,6 @@
 				});
 			},
 			loadmore(index) { //下拉加载更多
-				// console.log(this.loadtext)
 				if (this.loadtext == "上拉加载更多") {
 					//修改状态
 					this.loadtext = "加载中..."

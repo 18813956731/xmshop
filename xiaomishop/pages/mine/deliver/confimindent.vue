@@ -110,7 +110,7 @@
 			},
 			//更换地址
 			replace(){
-			this.$store.commit("change")
+			this.$store.commit("getchange",true)
 			uni.navigateTo({
 				url:"/pages/mine/address/address"
 			})
@@ -124,6 +124,7 @@
 			},
 			//跳转支付订单
 			payment(){
+				this.$store.commit("getchange",false)
 			let total=this.total
 			  uni.navigateTo({
 			  	url:"/pages/mine/confirmpayment/confirmpayment?total="+total+""

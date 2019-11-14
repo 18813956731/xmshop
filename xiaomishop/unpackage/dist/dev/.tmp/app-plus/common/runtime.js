@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/home/tabBars":1,"components/shopping/uni-popup":1,"components/home/goumai":1,"components/home/tuijian":1,"components/uni-drawer/uni-drawer":1,"components/shopping/goodslist":1,"components/shopping/goodsnav":1,"components/mine/uni-steps":1,"components/mine/all":1,"components/shopping/amount":1,"components/mine/uni-icons":1};
+/******/ 		var cssChunks = {"components/home/tabBars":1,"components/home/goumai":1,"components/home/tuijian":1,"components/shopping/uni-popup":1,"components/uni-drawer/uni-drawer":1,"components/shopping/goodslist":1,"components/shopping/goodsnav":1,"components/mine/uni-steps":1,"components/mine/all":1,"components/shopping/amount":1,"components/mine/uni-icons":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/home/tabBars":"components/home/tabBars","components/shopping/uni-popup":"components/shopping/uni-popup","components/home/goumai":"components/home/goumai","components/home/tuijian":"components/home/tuijian","components/uni-drawer/uni-drawer":"components/uni-drawer/uni-drawer","components/shopping/goodslist":"components/shopping/goodslist","components/shopping/goodsnav":"components/shopping/goodsnav","components/mine/uni-steps":"components/mine/uni-steps","components/mine/all":"components/mine/all","components/shopping/amount":"components/shopping/amount","components/mine/uni-icons":"components/mine/uni-icons"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/home/tabBars":"components/home/tabBars","components/home/goumai":"components/home/goumai","components/home/tuijian":"components/home/tuijian","components/shopping/uni-popup":"components/shopping/uni-popup","components/uni-drawer/uni-drawer":"components/uni-drawer/uni-drawer","components/shopping/goodslist":"components/shopping/goodslist","components/shopping/goodsnav":"components/shopping/goodsnav","components/mine/uni-steps":"components/mine/uni-steps","components/mine/all":"components/mine/all","components/shopping/amount":"components/shopping/amount","components/mine/uni-icons":"components/mine/uni-icons"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

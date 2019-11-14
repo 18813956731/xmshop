@@ -129,8 +129,13 @@ const store = new Vuex.Store({
 			state.allorders.push(cleargoods)
 		},
 		//改变地址内点击
-		change(state){
-			state.whether=true
+		getchange(state,e){
+			if(e){
+				state.whether=true
+			}else{
+				state.whether=false
+			}
+			
 		},
 		//改变付款状态
 		getpaystatus(state){

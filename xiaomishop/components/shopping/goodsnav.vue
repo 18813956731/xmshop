@@ -77,7 +77,6 @@
 						url:"/pages/mine/deliver/confimindent"
 					})
 					this.$store.commit("getztchek")//购物车改变全选状态改变
-					console.log(this.clearinggoods)
 				}				
 			},
 			//点击删除

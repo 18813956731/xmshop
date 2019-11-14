@@ -18,7 +18,6 @@
 		},
 		created() {
 			this.shujr()
-			// console.log(this.imgge)
 		},
 		methods: {
 			async shujr() {

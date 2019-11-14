@@ -108,7 +108,7 @@
 	.goods-carts {
 		position: fixed;
 		width: 100%;
-		bottom: 0rpx;
+		bottom: 100rpx;
 		background-color: #FFFFFF;
 		z-index: 111;
 	}

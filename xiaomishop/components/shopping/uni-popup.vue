@@ -50,21 +50,21 @@
 				<!-- 地址 -->
 				<view v-if="tktype=='site'" class="site">
 					<view class="sitebox">
-						<view class="address">收货地址</view>
+						<view class="addres">收货地址</view>
 						<view class="location">
 							<view class="from-mina">
-								<view class="from-mina-left" @click="onfirm(index)">
+								<view class="from-mina-left" @click="onfirm">
 									<view class="hred">
-										<view class="text">{{item.name}}</view>
-										<view class="phone">{{item.phone}}</view>
+										<view class="text">{{list.name}}</view>
+										<view class="phone">{{list.phone}}</view>
 									</view>
-									<view class="address">{{item.Location}}<br />{{item.detailed}}</view>
+									<view class="address">{{list.Location}}<br />{{list.detailed}}</view>
 								</view>
-								<view class="from-mina-right" @click="plus" :data-index="index">编辑</view>
+								<view class="from-mina-right" @click="plus">编辑</view>
 							</view>
 						</view>
 					</view>
-					<view class="newAddress" @click="close(true)">选择新的地址</view>
+					<view class="newAddress" @click="onfirm">选择新的地址</view>
 				</view>
 				<!-- 服务详情  setviceNote-->
 				<view v-if="tktype=='setviceNote'">
@@ -108,17 +108,17 @@
 </template>
 
 <script>
-	//导入状态管理
 	import {
 		mapState,
 		mapMutations
-	} from 'vuex';
-
+	} from 'vuex'; //导入状态管理
+	import list from "@/Json.js" //导入地址
 	import amount from "@/components/shopping/amount.vue"
 	export default {
 		name: 'UniPopup',
 		components: {
-			amount
+			amount,
+			list
 		},
 		computed: {
 			...mapState(['good', 'goodList', "token"])
@@ -157,9 +157,10 @@
 			return {
 				ani: '',
 				showPopup: false,
-				color: 0,
-				memory: 0,
-				meal: 0
+				color: 0, //颜色
+				memory: 0, //容量
+				meal: 0, //套餐
+				list: []
 			}
 		},
 		watch: {
@@ -186,7 +187,7 @@
 			},
 			//加入购物车
 			grgwc(type) {
-				let _this=this
+				let _this = this
 				uni.getStorage({ //获取本地缓存
 					key: "storage_key",
 					success(res) {
@@ -212,9 +213,7 @@
 					}
 				})
 			},
-			clear() {
-				console.log("1")
-			},
+			clear() {},
 			open() {
 				this.showPopup = true
 				this.$nextTick(() => {
@@ -235,11 +234,21 @@
 			//改变编辑商品的对应商品数量
 			change(event) {
 				this.$store.commit("getedchange", event)
+			},
+			//修改地址
+			onfirm() {
+				uni.navigateTo({
+					url: "/pages/mine/address/address"
+				})
 			}
+		},
+		created() {
+			this.list = list.address[0]
+			console.log(this.list)
 		}
 	}
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 	@charset "UTF-8";
 
 	.uni-popup {
@@ -436,21 +445,56 @@
 		padding: 20rpx 30rpx 0;
 	}
 
-	.address {
+	.addres {
 		height: 65rpx;
 		width: 100%;
 		text-align: center;
 		font-size: 30rpx;
-		font-weight: bold;
 	}
 
 	.location {
-		height: 140rpx;
-		line-height: 140rpx;
+		height: 174rpx;
 		width: 100%;
 		border-top: 1px solid #CCCCCC;
 		border-bottom: 1px solid #CCCCCC;
 		margin-bottom: 650rpx;
+	}
+
+	.from-mina {
+		display: flex;
+		justify-content: space-between;
+		padding: 20rpx 30rpx 20rpx 30rpx;
+
+		.hred {
+			height: 50rpx;
+			line-height: 50rpx;
+			display: inline-flex;
+
+			.text {
+				font-size: 35rpx;
+			}
+
+			.phone {
+				width: 230rpx;
+				text-align: center;
+				font-size: 28rpx;
+				color: #555555;
+			}
+		}
+
+		.address {
+			width: 428rpx;
+			font-size: 28rpx;
+			text-align: left;
+		}
+
+		.from-mina-right {
+			height: 120rpx;
+			line-height: 120rpx;
+			color: #F0AD4E;
+			font-size: 33rpx;
+
+		}
 	}
 
 	.lction {

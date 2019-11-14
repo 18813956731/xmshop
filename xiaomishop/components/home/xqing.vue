@@ -27,7 +27,7 @@
 					<view class="huohon">
 						<view class="shop-p" @click="togglePopup('bottom', 'popup','type')">已选 火焰红 64GB 标配<text class="iconfont icon-you icorr"></text>
 						</view>
-						<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 北京 东城区 <text class="calse"> 有现货</text>
+						<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 {{}}<text class="calse"> 有现货</text>
 							<text class="iconfont icon-you icorr"></text>
 						</view>
 						<view class="shop-p" style="border-bottom: none;" @click="togglePopup('bottom', 'popup','setviceNote')">
@@ -142,12 +142,10 @@
 				this.cupr = res.data.data.goodsAttrs //CPU数据
 				this.shoppt = res.data.data.goodsBanner //外观预览
 			},
-			change(e) {
-				// console.log(e.show)
-			},
 			//编辑弹出框
 			togglePopup(type, open, tktype) {
 				//具体弹出层类型
+				console.log("123")
 				this.tktype = tktype
 				this.type = type
 				if (open === 'tip') {
