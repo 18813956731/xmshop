@@ -1,0 +1,83 @@
+
+.container.data-v-1b9aa1e5 {
+	padding: 5%;
+}
+._h1.data-v-1b9aa1e5 {
+	margin: 60rpx 0rpx;
+}
+.txt.data-v-1b9aa1e5 {
+	width: 100%;
+	height: 60rpx;
+	border: none;
+}
+.txt2.data-v-1b9aa1e5 {
+	display: block;
+	float: left;
+	width: 40%;
+	height: 60rpx;
+	border: none;
+}
+.password ._span.data-v-1b9aa1e5 {
+	margin-left: 100rpx;
+}
+.input.data-v-1b9aa1e5 {
+	padding: 10rpx 0rpx;
+	border-bottom: 1rpx solid black;
+}
+.password.data-v-1b9aa1e5 {
+	height: 60rpx;
+	overflow: hidden;
+	margin-top: 80rpx;
+	padding: 10rpx 0rpx;
+	border-bottom: 1rpx solid black;
+}
+.tishi.data-v-1b9aa1e5 {
+	margin-top: 100rpx;
+	font-size: 25rpx;
+	color: #999999;
+	height: 35rpx;
+	line-height: 35rpx;
+	/* border: 1rpx solid black; */
+}
+.button button.data-v-1b9aa1e5 {
+	width: 100%;
+	height: 80rpx;
+	margin-top: 100rpx;
+	width: 100%;
+	line-height: 80rpx;
+	text-align: center;
+	outline: none;
+	border: none;
+	background-color: orange;
+}
+.checkbox.data-v-1b9aa1e5 {
+	margin-top: 30rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 25rpx;
+}
+.checkbox ._span.data-v-1b9aa1e5 {
+	color: #999999;
+}
+.icon.data-v-1b9aa1e5 {
+	width: 100%;
+	height: 200rpx;
+	overflow: hidden;
+}
+.icon-zhifubao.data-v-1b9aa1e5 {
+	line-height: 200rpx;
+	display: block;
+	float: left;
+	width: 40%;
+	text-align: right;
+	padding-right: 50rpx;
+}
+.icon-weixinzhifu.data-v-1b9aa1e5 {
+	line-height: 200rpx;
+	display: block;
+	float: left;
+	width: 40%;
+	text-align: left;
+	padding-left: 50rpx;
+}
+

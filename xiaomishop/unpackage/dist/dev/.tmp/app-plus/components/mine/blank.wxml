@@ -1,0 +1,1 @@
+<view><view class="order"><view class="image"><image src="{{nothing.ime}}" mode="widthFix"></image></view><view class="text">{{nothing.title}}</view></view></view>

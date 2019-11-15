@@ -1,0 +1,38 @@
+
+.tow.data-v-82932e74 {
+	width: 750rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	white-space: nowrap;
+}
+.trr.data-v-82932e74 {
+	height: 100%;
+	display: inline-block;
+	-webkit-flex-wrap: nowrap;
+	    -ms-flex-wrap: nowrap;
+	        flex-wrap: nowrap;
+}
+.swiper-tab-list.data-v-82932e74 {
+	padding: 10rpx 20rpx;
+	color: #333333;
+	font-size: 30rpx;
+}
+.one .active.data-v-82932e74 {
+	color: #F0AD4E;
+}
+.active .swiper-tab-line.data-v-82932e74 {
+	border-bottom: 6rpx solid #FEDE33;
+	width: 100%;
+}
+

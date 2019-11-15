@@ -22,7 +22,7 @@
 										<view>{{item.title}}</view>
 										<view class="item.one">{{item.desc}}</view>
 									</view>
-									<view class="purchase" 2>去购买</view>
+									<view class="purchase">去购买</view>
 								</view>
 								<view class="understand">了解更多<text class="iconfont icon-you"></text></view>
 							</view>

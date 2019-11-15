@@ -1,0 +1,29 @@
+{
+  "titleNView": {
+    "titleText": "我的订单",
+    "titleSize": "33rpx",
+    "buttons": [
+      {
+        "float": "right",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": "",
+        "color": "#666666",
+        "width": "40px",
+        "fontSize": "50rpx"
+      },
+      {
+        "float": "right",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": "",
+        "color": "#666666",
+        "width": "40px",
+        "fontSize": "50rpx"
+      }
+    ]
+  },
+  "usingComponents": {
+    "tuijian": "/components/home/tuijian",
+    "all": "/components/mine/all",
+    "blank": "/components/mine/blank"
+  }
+}

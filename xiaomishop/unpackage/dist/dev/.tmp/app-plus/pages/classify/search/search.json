@@ -1,0 +1,21 @@
+{
+  "titleNView": {
+    "searchInput": {
+      "align": "left",
+      "backgroundColor": "#fff",
+      "placeholder": "搜索"
+    },
+    "buttons": [
+      {
+        "color": "#555555",
+        "float": "right",
+        "fontSize": "36rpx",
+        "fontWeight": "normal",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": "搜索",
+        "width": "auto"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
