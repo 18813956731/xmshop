@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "amount": "/components/shopping/amount",
-    "list": "/Json"
-  },
-  "component": true
-}
