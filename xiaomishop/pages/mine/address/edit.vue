@@ -48,8 +48,8 @@
 	import {
 		mapState,
 		mapMutations
-	} from 'vuex'
-	import Json from '@/Json'
+	} from 'vuex'//导入状态管理
+	import Json from '@/Json'//导入地址数据
 	export default {
 		data() {
 			return {

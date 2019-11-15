@@ -144,13 +144,26 @@
 			},
 			//编辑弹出框
 			togglePopup(type, open, tktype) {
+				let _this=this
+				uni.getStorage({ //获取本地缓存
+					key: "storage_key",
+					success(res) {
+						if (res.data == ""||_this.token=="") {
+							uni.navigateTo({
+								url: "/pages/mine/login"
+							})
+						} else {
+							
+						}
+					}
+				})
 				//具体弹出层类型
-				this.tktype = tktype
-				this.type = type
+				_this.tktype = tktype
+				_this.type = type
 				if (open === 'tip') {
-					this.show = true
+					_this.show = true
 				} else {
-					this.$refs[open].open()
+					_this.$refs[open].open()
 				}
 			},
 			loadmore() { //下拉加载更多

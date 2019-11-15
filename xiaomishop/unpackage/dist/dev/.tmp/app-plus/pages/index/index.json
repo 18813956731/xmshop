@@ -1,0 +1,30 @@
+{
+  "titleNView": {
+    "searchInput": {
+      "align": "left",
+      "backgroundColor": "#fff",
+      "disabled": "true",
+      "placeholder": "搜索"
+    },
+    "buttons": [
+      {
+        "color": "#555555",
+        "float": "left",
+        "fontSize": "20px",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": ""
+      },
+      {
+        "color": "#555555",
+        "float": "right",
+        "fontSize": "20px",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": ""
+      }
+    ]
+  },
+  "usingComponents": {
+    "swiper-tab-head": "/components/home/tabBars",
+    "caro-usel": "/components/home/carousel"
+  }
+}

@@ -277,6 +277,12 @@
 				})
 			},
 			
+		},
+		onNavigationBarSearchInputClicked(e){
+			// 跳转搜索页面
+			uni.navigateTo({
+				url:"/pages/classify/search/search"
+			})
 		}
 	}
 </script>

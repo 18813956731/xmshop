@@ -1,5 +1,6 @@
 <template>
 	<view id="common-about">
+		<!-- 头部图片 -->
 		<view class="about">
 			<view class="about-hreder">
 				<view class="images">
@@ -8,6 +9,7 @@
 				<view class="text">小米商城 4.5.3.0529.r1</view>
 			</view>
 		</view>
+		<!-- 内容导航 -->
 		<view class="act">
 			<view class="banben" v-for="(itme,index) in list">
 				{{itme}}
@@ -22,7 +24,7 @@
 	export default{
 		data(){
 			return{
-				list:["版本更新","了解小米","官方微博","廉洁小米","app","分享","授权直供店","清楚缓存"]
+				list:["版本更新","了解小米","官方微博","廉洁小米","app","分享","授权直供店","清楚缓存"]//渲染数据
 			}
 		}
 	}
@@ -51,7 +53,7 @@
 		}
 		.text{
 			line-height: 60rpx;
-			font-size: 35rpx;
+			font-size: 30rpx;
 			color: #999999;
 		}
 	}
@@ -65,9 +67,9 @@
 
 	.banben {
 		width: 90%;
-		padding: 30rpx;
+		padding: 26rpx;
 		border-bottom: 1px solid #E5E5E5;
-		font-size: 35rpx;
+		font-size: 32rpx;
 		overflow: hidden;
 	}
    .icon-you{
@@ -79,7 +81,8 @@
 
 	.xiaomi {
 		width: 100%;
-		padding: 30rpx;
+		height: 108rpx;
+		line-height: 110rpx;
 		font-size: 33rpx;
 		color: #999999;
 		text-align: center;

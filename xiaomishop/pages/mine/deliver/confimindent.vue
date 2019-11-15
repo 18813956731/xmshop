@@ -98,7 +98,7 @@
 					price: "无可用"
 				}],
 				list: "",//结算数据
-				listindex:0
+				listindex:0//渲染地址下标
 			}
 		},
 		methods: {
@@ -134,6 +134,7 @@
 		computed: {
 			...mapState(['clearinggoods'])
 		},
+		//进入渲染地址
 		onLoad(option) {
 			if(option.index!=null){
 				this.listindex=option.index

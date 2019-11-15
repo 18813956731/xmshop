@@ -2,7 +2,7 @@
 	<view class="content">
 		<text class="success-icon iconfont icon-iconfontxuanzhong4"></text>
 		<text class="tit">支付成功</text>
-		
+		<!-- 跳转指定页面 -->
 		<view class="btn-group">
 			<navigator url="/pages/mine/myorder/myorder?steat=0" open-type="redirect" class="mix-btn">查看订单</navigator>
 			<navigator url="/pages/index/index" open-type="switchTab" class="mix-btn hollow">返回首页</navigator>
@@ -11,16 +11,6 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
 </script>
 
 <style lang='scss'>

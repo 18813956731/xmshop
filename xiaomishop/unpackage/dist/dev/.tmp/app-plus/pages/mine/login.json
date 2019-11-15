@@ -1,0 +1,15 @@
+{
+  "titleNView": {
+    "autoBackButton": false,
+    "buttons": [
+      {
+        "color": "#555555",
+        "float": "right",
+        "fontSize": "50rpx",
+        "fontSrc": "/static/icon/iconfont.ttf",
+        "text": ""
+      }
+    ]
+  },
+  "usingComponents": {}
+}

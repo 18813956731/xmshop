@@ -1,12 +1,12 @@
 <template>
 	<view class="app">
+		<!-- 头部支付金额 -->
 		<view class="price-box">
 			<text>支付金额</text>
 			<view class="price">{{clearinggoods.total}}</view>
 		</view>
-
 		<view class="pay-type-list">
-
+               <!-- 微信支付 -->
 			<view class="type-item b-b" @click="changePayType(1)">
 				<text class="iconfont icon-weixinzhifu"></text>
 				<view class="con">
@@ -18,6 +18,7 @@
 					</radio>
 				</label>
 			</view>
+			<!-- 支付宝支付 -->
 			<view class="type-item b-b" @click="changePayType(2)">
 				<text class="iconfont icon-zhifubao"></text>
 				<view class="con">
@@ -45,7 +46,7 @@
 		},
 		data() {
 			return {
-				payType: 1
+				payType: 1//支付选择
 				}
 		},
 		methods: {

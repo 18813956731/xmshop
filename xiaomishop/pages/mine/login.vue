@@ -43,6 +43,9 @@ export default {
 		},
 		login() {
 			let _this = this;
+			if(_this.txt==""||_this.pasd==""){
+				console.log("账号或者密码为空")
+			}else{
 			uni.request({
 				//登录
 				url: 'http://ceshi3.dishait.cn/api/login',
@@ -52,8 +55,8 @@ export default {
 					password: _this.pasd
 				},
 				success(res) {
-										let data=res.data.data
-					_this.$store.commit("login",data)
+					let data=res.data.data
+					_this.$store.commit("login",data)//登录成功返回对象存到状态管理
 					// let token = res.data.data.token;
 					
 					uni.setStorage({//本地存储
@@ -70,7 +73,7 @@ export default {
 					});
 				}
 			});
-			
+			}
 		},
 	},
 	onLoad(options){

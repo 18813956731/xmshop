@@ -11,7 +11,6 @@
 		<view class="invoice-title">
 			<view class="title">发票抬头</view>
 			<view class="units" v-for="(item,index) in list" :key="index" :class="active==index?'btn':''"  @click="indexactive(index)">{{item}}</view>
-			
 		</view>
 		<view class="line"></view>
 		<view class="name">个人姓名: 个人</view>
@@ -29,9 +28,9 @@
 	export default {
 		data() {
 			return {
-				active:0,
+				active:0,//样式下标
 				list:["个人","单位"],
-				phone:0,
+				phone:0,//号码
 				discrip: "电子发票与纸质发票具有相同的法律效力，可作为报销、售后、维权凭证，推荐使用电子发票，不怕丢失，更方便，环保。"
 			}
 		},
@@ -41,6 +40,7 @@
 				this.active=e
 			},
 		},
+		//传入
 		onLoad(option){
 			this.phone=option.phone
 		}
@@ -52,13 +52,13 @@
 	  }
 	.line {
 		width: 100%;
-		height: 20upx;
+		height: 20rpx;
 		background-color: #F5F5F5;
 	}
 
 	.invoice-type,
 	.invoice-title {
-		padding: 20upx;
+		padding: 20rpx;
 		font-size: 30rpx;
 		background-color: white;
 	}
@@ -68,31 +68,31 @@
 	}
 
 	.title {
-		margin-bottom: 40upx;
+		margin-bottom: 40rpx;
 	}
 
 	.btn {
-		width: 200upx;
-		height: 70upx;
-		line-height: 70upx;
+		width: 200rpx;
+		height: 70rpx;
+		line-height: 70rpx;
 		background-color: #FCE0D5 !important;
-		border: 2upx solid #FA8538;
+		border: 2rpx solid #FA8538;
 		color: #FA8538;
 		text-align: center;
-		margin-bottom: 20upx;
-		border-radius: 5upx;
+		margin-bottom: 20rpx;
+		border-radius: 5rpx;
 		font-size: 30rpx;
 	}
 
 	.units {
-		width: 200upx;
-		height: 70upx;
-		line-height: 70upx;
+		width: 200rpx;
+		height: 70rpx;
+		line-height: 70rpx;
 		background-color: #CACACA;
 		margin-right: 30rpx;
 		text-align: center;
-		margin-bottom: 20upx;
-		border-radius: 5upx;
+		margin-bottom: 20rpx;
+		border-radius: 5rpx;
 		font-size: 30rpx;
 		display: inline-block;
 	}
@@ -105,22 +105,21 @@
 	.name,
 	.content,
 	.phone {
-		height: 90upx;
-		line-height: 90upx;
-		padding-left: 20upx;
+		height: 90rpx;
+		line-height: 90rpx;
+		padding-left: 20rpx;
 		background-color: white;
 		font-size: 30rpx;
 	}
 
 	.name {
-		border-bottom: 2upx solid #EBEDF0;
+		border-bottom: 2rpx solid #EBEDF0;
 	}
 
 	.information {
-		padding-left: 20upx;
+		padding-left: 20rpx;
 		background-color: #F5F5F5;
-		padding-top: 20upx;
-		height: 276upx;
+		padding-top: 20rpx;
 	}
 
 	.information text {

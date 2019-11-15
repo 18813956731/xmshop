@@ -48,6 +48,7 @@
 			plus(e) {
 				let index = e.currentTarget.dataset.index
 				this.index = index
+				//新增与编辑
 				if (index == null) {
 					uni.navigateTo({
 						url: "/pages/mine/address/edit?id=1"
@@ -70,6 +71,7 @@
 				}
 			}
 		},
+		//引用状态
 		computed: {
 			...mapState(["whether"])
 		},

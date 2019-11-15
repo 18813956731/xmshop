@@ -41,7 +41,10 @@
 				"enablePullDownRefresh": true //开启下拉刷新
 			}
 		}, {
-			"path": "components/home/xqing"
+			"path": "components/home/xqing",
+			"style": {
+				"navigationBarTitleText": "商品详情" //设置页面标题文字
+			}
 		}, {
 			"path": "pages/mine/about/about",
 			"style": {

@@ -81,8 +81,12 @@
 			},
 			//点击删除
 			del(){
-				this.$store.commit("getdel")
-				this.$store.commit("getztchek")//购物车改变全选状态改变
+				this.$api.msg("删除成功")
+				setTimeout(()=>{
+					this.$store.commit("getdel")
+					this.$store.commit("getztchek")//购物车改变全选状态改变
+				},800)
+				
 			},
 			//日期函数
 			getNowFormatDate(){

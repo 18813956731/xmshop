@@ -18,7 +18,7 @@
 				<!-- 循环图片 -->
 			    <block v-for="(image,index) in imageList" :key="index">
 			    <view class="uni-uploader__file">
-					<image class="uni-uploader__img" :src="image" :data-src="image" @tap="previewImage"></image>
+					<img class="uni-uploader__img" :src="image" :data-src="image" @tap="previewImage"/>
 				</view>
 			    </block>
 				<!-- 提交图片 -->
@@ -59,7 +59,15 @@
 			},
 			//上传图片
 			chooseImage(){
-				
+				// 从相册选择6张图
+				uni.chooseImage({
+				    count: 6,
+				    sizeType: ['original', 'compressed'],
+				    sourceType: ['album'],
+				    success: function(res) {
+				        console.log(res.tempFilePaths)
+				    }
+				    })
 			},
 			//跳转我的反馈
 			mine(){
