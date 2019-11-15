@@ -1,1 +1,0 @@
-<view class="data-v-8d973a14"><view class="example-body data-v-8d973a14"><uni-steps vue-id="1" options="{{list1}}" active="{{active}}" direction="column" class="data-v-8d973a14" bind:__l="__l"></uni-steps></view></view>
