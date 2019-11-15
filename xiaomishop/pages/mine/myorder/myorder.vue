@@ -105,7 +105,7 @@
 				}else{
 					this.$store.commit("gettypeall",index)
 				}
-				
+			
 				this.blank = this.nothing[index]
 				let tab = this.typeall.length //获取数据长度
 				this.$store.commit("getheighttactive",tab)
