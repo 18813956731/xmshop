@@ -141,12 +141,6 @@
 			},
 			//tab切换
 			async changeTab(e) {//顶部选项卡
-				if(scrollTimer){//每次切换执行最后一次
-					//多次切换只执行最后一次
-					clearTimeout(scrollTimer);
-					scrollTimer = false;
-				}
-				
 				let index = e;
 				if(typeof e === 'object'){//跟随变化
 					index = e.detail.current
