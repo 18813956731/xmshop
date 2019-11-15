@@ -27,7 +27,7 @@
 					<view class="huohon">
 						<view class="shop-p" @click="togglePopup('bottom', 'popup','type')">已选 火焰红 64GB 标配<text class="iconfont icon-you icorr"></text>
 						</view>
-						<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 {{}}<text class="calse"> 有现货</text>
+						<view class="shop-p" @click="togglePopup('bottom', 'popup','site')">配送 北京市 东城区<text class="calse"> 有现货</text>
 							<text class="iconfont icon-you icorr"></text>
 						</view>
 						<view class="shop-p" style="border-bottom: none;" @click="togglePopup('bottom', 'popup','setviceNote')">
