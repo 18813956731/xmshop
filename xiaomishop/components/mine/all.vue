@@ -77,6 +77,8 @@
 				setTimeout(() => {
 					this.$store.commit("gettaketatus", e)
 					this.$store.commit("gettypeall", this.tabIndex)
+					let tab = this.typeall.length //获取数据长度
+					this.$store.commit("getheighttactive",tab)
 				}, 500)
 
 			},
@@ -90,9 +92,12 @@
 			//待评价
 			evaluated(e) {
 				this.$api.msg("评价完成")
+				
 				setTimeout(() => {
 					this.$store.commit("getobserverstatus", e)
 					this.$store.commit("gettypeall", this.tabIndex)
+					let tab = this.typeall.length //获取数据长度
+					this.$store.commit("getheighttactive",tab)
 				}, 500)
 
 			},
@@ -102,6 +107,8 @@
 				setTimeout(() => {
 					this.$store.commit("getcancellation", e)
 					this.$store.commit("gettypeall", this.tabIndex)
+					let tab = this.typeall.length //获取数据长度
+					this.$store.commit("getheighttactive",tab)
 				}, 500)
 
 			}

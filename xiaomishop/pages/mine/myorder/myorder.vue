@@ -44,7 +44,7 @@
 			blank
 		},
 		computed: {
-			...mapState(['allorders', "clearinggoods","typeall"])
+			...mapState(['allorders', "clearinggoods","typeall","heighttactive"])
 		},
 		data() {
 			return {
@@ -83,7 +83,6 @@
 					}
 				],
 				tabIndex: 0, //条件渲染
-				heighttactive: true //样式渲染
 
 			}
 		},
@@ -106,13 +105,11 @@
 				}else{
 					this.$store.commit("gettypeall",index)
 				}
-				let tab = this.typeall.length //获取数据长度
+				
 				this.blank = this.nothing[index]
-				if (tab == 0) {
-					this.heighttactive = true
-				} else {
-					this.heighttactive = false
-				}
+				let tab = this.typeall.length //获取数据长度
+				this.$store.commit("getheighttactive",tab)
+				
 			},
 			//滑动内容导航一起
 			ontabchange(e) {

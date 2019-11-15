@@ -7,6 +7,7 @@ const store = new Vuex.Store({
 	state: {
 		allchek:false,//全选状态
 		total:0,//合计金额
+		heighttactive:true,//订单空白状态
 		good:"",//详情商品
 		edgood:"",//点击编辑的商品
 		editor:false,//编辑状态
@@ -171,6 +172,14 @@ const store = new Vuex.Store({
 				state.typeall=state.allorders.filter(iter=>iter.paystatus && !iter.observerstatus && !iter.taketatus);
 			}else{
 				state.typeall=state.allorders.filter(iter=>iter.paystatus && !iter.observerstatus && iter.taketatus);
+			}
+		},
+		//获取订单数据长度
+		getheighttactive(state,tab){
+			if (tab == 0) {
+				state.heighttactive = true
+			} else {
+				state.heighttactive = false
 			}
 		}
 	},
