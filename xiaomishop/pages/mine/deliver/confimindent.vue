@@ -124,7 +124,7 @@
 			},
 			//跳转支付订单
 			payment(){
-				this.$store.commit("getchange",false)
+				this.$store.commit("getchangees",false)
 			let total=this.total
 			  uni.navigateTo({
 			  	url:"/pages/mine/confirmpayment/confirmpayment?total="+total+""
