@@ -110,7 +110,7 @@
 			},
 			//更换地址
 			replace(){
-			this.$store.commit("getchange",true)
+			this.$store.commit("getchangees",true)
 			uni.navigateTo({
 				url:"/pages/mine/address/address"
 			})

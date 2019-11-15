@@ -87,7 +87,7 @@
 								url: "/pages/mine/login"
 							})
 						} else {
-							_this.$api.msg("成功加入购物车")
+							  _this.$api.msg("成功加入购物车")
 							if (uni.report) {
 								uni.report(item.text, item.text)
 							}
@@ -100,7 +100,7 @@
 							if (indexs == -1) {
 								_this.$store.commit("getgoodList", _this.good);
 							} else {
-								_this.$store.commit("getgoodnum", indexs);
+								_this.$store.commit("getgoodnums", indexs);
 							}
 							_this.$store.commit("getztchek") //购物车改变全选状态改变
 						}

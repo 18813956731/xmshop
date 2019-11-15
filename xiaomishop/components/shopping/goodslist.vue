@@ -96,6 +96,7 @@
 			},
 			//改变购物车对应商品数量
 			change(event, index) {
+				console.log(event,index)
 				this.$store.commit("getchange", [event, index])
 			},
 			//跳转首页

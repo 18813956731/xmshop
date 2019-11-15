@@ -7,9 +7,9 @@ const store = new Vuex.Store({
 	state: {
 		allchek:false,//全选状态
 		total:0,//合计金额
-		heighttactive:true,//订单空白状态
 		good:"",//详情商品
 		edgood:"",//点击编辑的商品
+		heighttactive:true,//订单空白状态
 		editor:false,//编辑状态
 		whether:false,//地址状态
 		shoplist:[],//分类商品列表
@@ -50,9 +50,13 @@ const store = new Vuex.Store({
 		getgoodList(state,obj){
 			state.goodList.push(obj)
 		},
-		//已加入购物车商品，在加入数量
+		//已加入购物车商品，在数量+数量
 		getgoodnum(state,index){
 			state.goodList[index].number=state.goodList[index].number+state.good.number;
+		},
+		//已加入购物车商品，数量+1
+		getgoodnums(state,index){
+			state.goodList[index].number++;
 		},
 		//获取商品选中状态
 		getaction(state,index){
@@ -130,7 +134,7 @@ const store = new Vuex.Store({
 			state.allorders.push(cleargoods)
 		},
 		//改变地址内点击
-		getchange(state,e){
+		getchangees(state,e){
 			if(e){
 				state.whether=true
 			}else{
