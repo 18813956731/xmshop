@@ -67,7 +67,7 @@
 					</view>
 					<!-- 为你推荐 -->
 					<text class="text">为你推荐</text>
-					<tuijian></tuijian>
+					<recommend></recommend>
 					<view class="load-more">{{loadtext}}</view>
 				</scroll-view>
 			</swiper-item>
@@ -87,12 +87,12 @@
 		mapMutations
 	} from 'vuex';
 
-	import tuijian from '@/components/home/tuijian.vue'
+	import recommend from '@/components/home/recommend.vue'
 	import goumai from '@/components/home/goumai.vue'
 	import uniPopup from "@/components/shopping/uni-popup.vue"
 	export default {
 		components: {
-			tuijian,
+			recommend,
 			goumai,
 			uniPopup
 		},

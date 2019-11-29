@@ -19,7 +19,7 @@
 						<view class="reline"></view>
 						<view class="retext">买了人还买了</view>
 					</view>
-					<tuijian></tuijian>
+					<recommend></recommend>
 				</view>
 			</view>
 		</scroll-view>
@@ -35,7 +35,7 @@
 
 	import goodslist from "@/components/shopping/goodslist.vue"
 	import goodsnav from "@/components/shopping/goodsnav.vue"
-	import tuijian from "@/components/home/tuijian.vue"
+	import recommend from "@/components/home/recommend.vue"
 	export default {
 		data() {
 			return {
@@ -54,7 +54,7 @@
 		components: {
 			goodslist,
 			goodsnav,
-			tuijian //推荐
+			recommend //推荐
 		},
 		methods: {
 			tiao() {

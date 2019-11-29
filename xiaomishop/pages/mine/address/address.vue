@@ -40,8 +40,8 @@
 		methods: {
 			//返回上一层
 			returni() {
-				uni.navigateBack({
-					delta: 1
+				uni.navigateTo({
+					url:"/pages/mine/setup/setup"
 				})
 			},
 			//跳转编辑地址页面

@@ -24,13 +24,13 @@
 				<view class="text">猜你喜欢</view>
 				<view class="text-flex">实时推荐你的爱</view>
 			</view>
-			<tuijian></tuijian>
+			<recommend></recommend>
 		</view>
 	</view>
 </template>
 
 <script>
-	import tuijian from "@/components/home/tuijian.vue"
+	import recommend from "@/components/home/recommend.vue"
 	import all from "@/components/mine/all.vue"
 	import blank from "@/components/mine/blank.vue"
 	import {
@@ -39,7 +39,7 @@
 	} from 'vuex'; //导入状态管理
 	export default {
 		components: {
-			tuijian,
+			recommend,
 			all,
 			blank
 		},

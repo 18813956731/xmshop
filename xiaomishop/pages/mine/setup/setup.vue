@@ -61,8 +61,8 @@
 		methods: {
 			//返回上一层
 			returni() {
-				uni.navigateBack({
-					delta: 1
+				uni.navigateTo({
+					url:"/pages/mine/index/index"
 				})
 			},
 			//个人资料
